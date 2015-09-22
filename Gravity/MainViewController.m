@@ -7,8 +7,11 @@
 //
 
 #import "MainViewController.h"
+#import "InstructionsViewController.h"
 
 @interface MainViewController ()
+
+@property (strong, nonatomic) InstructionsViewController *instructions;
 
 @end
 
@@ -16,7 +19,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+
+    self.instructions = [self.storyboard instantiateViewControllerWithIdentifier:@"InstructionsViewController"];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    [self presentViewController:self.instructions animated:YES completion:^{
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {

@@ -20,6 +20,7 @@
 		DC1828861BB1D54400997DD2 /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828851BB1D54400997DD2 /* InstructionsViewController.m */; settings = {ASSET_TAGS = (); }; };
 		DC1828891BB1D5B000997DD2 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828881BB1D5B000997DD2 /* UIColor+AppColors.m */; settings = {ASSET_TAGS = (); }; };
 		DC18288E1BB1D6B700997DD2 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18288D1BB1D6B700997DD2 /* Constants.m */; settings = {ASSET_TAGS = (); }; };
+		DC1828921BB1DE3E00997DD2 /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828911BB1DE3E00997DD2 /* InstructionViewController.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,8 @@
 		DC18288C1BB1D69400997DD2 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		DC18288D1BB1D6B700997DD2 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		DC18288F1BB1D6C300997DD2 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		DC1828901BB1DE3E00997DD2 /* InstructionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionViewController.h; sourceTree = "<group>"; };
+		DC1828911BB1DE3E00997DD2 /* InstructionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,10 +125,7 @@
 				DC18288A1BB1D5DB00997DD2 /* Utilities */,
 				DC18284F1BB1D01300997DD2 /* AppDelegate.h */,
 				DC1828501BB1D01300997DD2 /* AppDelegate.m */,
-				DC1828841BB1D54400997DD2 /* InstructionsViewController.h */,
-				DC1828851BB1D54400997DD2 /* InstructionsViewController.m */,
-				DC18288F1BB1D6C300997DD2 /* Constants.h */,
-				DC18288D1BB1D6B700997DD2 /* Constants.m */,
+				DC1828931BB1DEA200997DD2 /* Instructions */,
 				DC1828521BB1D01300997DD2 /* MainViewController.h */,
 				DC1828531BB1D01300997DD2 /* MainViewController.m */,
 				DC1828551BB1D01300997DD2 /* Main.storyboard */,
@@ -142,6 +142,8 @@
 			children = (
 				DC18288C1BB1D69400997DD2 /* PrefixHeader.pch */,
 				DC18284D1BB1D01300997DD2 /* main.m */,
+				DC18288F1BB1D6C300997DD2 /* Constants.h */,
+				DC18288D1BB1D6B700997DD2 /* Constants.m */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -171,6 +173,17 @@
 				DC1828881BB1D5B000997DD2 /* UIColor+AppColors.m */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		DC1828931BB1DEA200997DD2 /* Instructions */ = {
+			isa = PBXGroup;
+			children = (
+				DC1828841BB1D54400997DD2 /* InstructionsViewController.h */,
+				DC1828851BB1D54400997DD2 /* InstructionsViewController.m */,
+				DC1828901BB1DE3E00997DD2 /* InstructionViewController.h */,
+				DC1828911BB1DE3E00997DD2 /* InstructionViewController.m */,
+			);
+			name = Instructions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1828921BB1DE3E00997DD2 /* InstructionViewController.m in Sources */,
 				DC1828891BB1D5B000997DD2 /* UIColor+AppColors.m in Sources */,
 				DC1828541BB1D01300997DD2 /* MainViewController.m in Sources */,
 				DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */,

@@ -1,5 +1,5 @@
 //
-//  InstructionsViewController.h
+//  InstructionViewController.h
 //  Gravity
 //
 //  Created by Ryan McLeod on 9/22/15.
@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface InstructionsViewController : UIViewController <UIPageViewControllerDataSource>
+@interface InstructionViewController : UIViewController
+
+@property (strong, nonatomic) NSString *titleText;
 
 @end
