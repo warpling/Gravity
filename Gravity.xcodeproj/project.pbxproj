@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		DC18284E1BB1D01300997DD2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18284D1BB1D01300997DD2 /* main.m */; };
 		DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828501BB1D01300997DD2 /* AppDelegate.m */; };
-		DC1828541BB1D01300997DD2 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828531BB1D01300997DD2 /* ViewController.m */; };
+		DC1828541BB1D01300997DD2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828531BB1D01300997DD2 /* MainViewController.m */; };
 		DC1828571BB1D01300997DD2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC1828551BB1D01300997DD2 /* Main.storyboard */; };
 		DC1828591BB1D01300997DD2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC1828581BB1D01300997DD2 /* Assets.xcassets */; };
 		DC18285C1BB1D01300997DD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC18285A1BB1D01300997DD2 /* LaunchScreen.storyboard */; };
@@ -17,6 +17,9 @@
 		DC1828721BB1D01300997DD2 /* GravityUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828711BB1D01300997DD2 /* GravityUITests.m */; };
 		DC1828821BB1D0FC00997DD2 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1828801BB1D0FC00997DD2 /* Fabric.framework */; settings = {ASSET_TAGS = (); }; };
 		DC1828831BB1D0FC00997DD2 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1828811BB1D0FC00997DD2 /* Crashlytics.framework */; settings = {ASSET_TAGS = (); }; };
+		DC1828861BB1D54400997DD2 /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828851BB1D54400997DD2 /* InstructionsViewController.m */; settings = {ASSET_TAGS = (); }; };
+		DC1828891BB1D5B000997DD2 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828881BB1D5B000997DD2 /* UIColor+AppColors.m */; settings = {ASSET_TAGS = (); }; };
+		DC18288E1BB1D6B700997DD2 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18288D1BB1D6B700997DD2 /* Constants.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,8 +44,8 @@
 		DC18284D1BB1D01300997DD2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DC18284F1BB1D01300997DD2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		DC1828501BB1D01300997DD2 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		DC1828521BB1D01300997DD2 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		DC1828531BB1D01300997DD2 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		DC1828521BB1D01300997DD2 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		DC1828531BB1D01300997DD2 /* MainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		DC1828561BB1D01300997DD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DC1828581BB1D01300997DD2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC18285B1BB1D01300997DD2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -55,6 +58,13 @@
 		DC1828731BB1D01300997DD2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DC1828801BB1D0FC00997DD2 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
 		DC1828811BB1D0FC00997DD2 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		DC1828841BB1D54400997DD2 /* InstructionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionsViewController.h; sourceTree = "<group>"; };
+		DC1828851BB1D54400997DD2 /* InstructionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionsViewController.m; sourceTree = "<group>"; };
+		DC1828871BB1D5B000997DD2 /* UIColor+AppColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+AppColors.h"; sourceTree = "<group>"; };
+		DC1828881BB1D5B000997DD2 /* UIColor+AppColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+AppColors.m"; sourceTree = "<group>"; };
+		DC18288C1BB1D69400997DD2 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		DC18288D1BB1D6B700997DD2 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		DC18288F1BB1D6C300997DD2 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,10 +119,15 @@
 		DC18284B1BB1D01300997DD2 /* Gravity */ = {
 			isa = PBXGroup;
 			children = (
+				DC18288A1BB1D5DB00997DD2 /* Utilities */,
 				DC18284F1BB1D01300997DD2 /* AppDelegate.h */,
 				DC1828501BB1D01300997DD2 /* AppDelegate.m */,
-				DC1828521BB1D01300997DD2 /* ViewController.h */,
-				DC1828531BB1D01300997DD2 /* ViewController.m */,
+				DC1828841BB1D54400997DD2 /* InstructionsViewController.h */,
+				DC1828851BB1D54400997DD2 /* InstructionsViewController.m */,
+				DC18288F1BB1D6C300997DD2 /* Constants.h */,
+				DC18288D1BB1D6B700997DD2 /* Constants.m */,
+				DC1828521BB1D01300997DD2 /* MainViewController.h */,
+				DC1828531BB1D01300997DD2 /* MainViewController.m */,
 				DC1828551BB1D01300997DD2 /* Main.storyboard */,
 				DC1828581BB1D01300997DD2 /* Assets.xcassets */,
 				DC18285A1BB1D01300997DD2 /* LaunchScreen.storyboard */,
@@ -125,6 +140,7 @@
 		DC18284C1BB1D01300997DD2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				DC18288C1BB1D69400997DD2 /* PrefixHeader.pch */,
 				DC18284D1BB1D01300997DD2 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -146,6 +162,15 @@
 				DC1828731BB1D01300997DD2 /* Info.plist */,
 			);
 			path = GravityUITests;
+			sourceTree = "<group>";
+		};
+		DC18288A1BB1D5DB00997DD2 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				DC1828871BB1D5B000997DD2 /* UIColor+AppColors.h */,
+				DC1828881BB1D5B000997DD2 /* UIColor+AppColors.m */,
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -295,9 +320,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC1828541BB1D01300997DD2 /* ViewController.m in Sources */,
+				DC1828891BB1D5B000997DD2 /* UIColor+AppColors.m in Sources */,
+				DC1828541BB1D01300997DD2 /* MainViewController.m in Sources */,
 				DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */,
 				DC18284E1BB1D01300997DD2 /* main.m in Sources */,
+				DC1828861BB1D54400997DD2 /* InstructionsViewController.m in Sources */,
+				DC18288E1BB1D6B700997DD2 /* Constants.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -436,10 +464,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Gravity/PrefixHeader.pch;
 				INFOPLIST_FILE = Gravity/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.growpixel.gravity;
@@ -455,6 +486,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)",
 				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Gravity/PrefixHeader.pch;
 				INFOPLIST_FILE = Gravity/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.growpixel.gravity;
