@@ -1,5 +1,5 @@
 //
-//  UIColor+AppColors.h
+//  WeighArea.h
 //  Gravity
 //
 //  Created by Ryan McLeod on 9/22/15.
@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIColor (AppColors)
-
-+ (UIColor*) gravityPurple;
-+ (UIColor*) roverRed;
-+ (UIColor*) lunarLilac;
+@interface WeighArea : UIView
 
 @end

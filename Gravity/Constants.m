@@ -9,3 +9,6 @@
 #include "Constants.h"
 
 NSString * const InstructionsCompleted = @"InstructionsCompleted";
+
+NSString * const AvenirNextRegular = @"AvenirNext-Regular";
+NSString * const AvenirNextDemiBold = @"AvenirNext-DemiBold";

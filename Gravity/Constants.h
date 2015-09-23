@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+// Void Block
 typedef void (^VoidBlock)(void);
 
+// Flags
 extern NSString * const InstructionsCompleted;
+
+// Fonts
+extern NSString * const AvenirNextRegular;
+extern NSString * const AvenirNextDemiBold;
