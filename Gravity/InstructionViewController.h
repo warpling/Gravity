@@ -11,5 +11,6 @@
 @interface InstructionViewController : UIViewController
 
 @property (strong, nonatomic) NSString *titleText;
+@property (strong, nonatomic) NSString *captionText;
 
 @end

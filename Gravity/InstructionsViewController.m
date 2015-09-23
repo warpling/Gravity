@@ -54,18 +54,18 @@
     
     
     InstructionViewController *firstView = [InstructionViewController new];
-    firstView.title = @"Hello";
-//    [firstView.view setBackgroundColor:[UIColor redColor]];
+    [firstView setTitleText:@"Hello"];
+    [firstView setCaptionText:@"Ready to get weighing?"];
     [views addObject:firstView];
     
     InstructionViewController *secondView = [InstructionViewController new];
-    secondView.title = @"Good Afternoon";
-//    [secondView.view setBackgroundColor:[UIColor orangeColor]];
+    [secondView setTitleText:@"Good Afternoon"];
+    [secondView setCaptionText:@"First you gotta stop being such a basket case. How are we going to fix that you ask? Simple. We're going to build a basket."];
     [views addObject:secondView];
     
     InstructionViewController *thirdView = [InstructionViewController new];
-    thirdView.title = @"Good night";
-//    [thirdView.view setBackgroundColor:[UIColor yellowColor]];
+    [thirdView setTitleText:@"Buenas Noches"];
+    [thirdView setCaptionText:@""];
     [views addObject:thirdView];
     
     

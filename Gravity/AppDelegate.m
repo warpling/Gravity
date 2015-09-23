@@ -18,6 +18,8 @@
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [[UIView appearance] setTintColor:[UIColor gravityPurple]];
 
     [Fabric with:@[[Crashlytics class]]];
 
