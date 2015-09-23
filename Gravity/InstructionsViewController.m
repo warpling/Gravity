@@ -112,7 +112,12 @@
 {
     UIViewController *currentVC = pageViewController.viewControllers.firstObject;
     return [self.instructionViews indexOfObject:currentVC];
-//    return [self.instructionViews indexOfObject:pageViewController];;
+}
+
+#pragma mark Status Bar
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end

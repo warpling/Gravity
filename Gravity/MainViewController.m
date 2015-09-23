@@ -18,6 +18,7 @@
 
 @property (strong, nonatomic) InstructionsViewController *instructions;
 
+@property (strong, nonatomic) UIButton *resetIntroButton;
 @property (strong, nonatomic) WeighArea *weighArea;
 @property (strong, nonatomic) UILabel *outputLabel;
 @property (strong, nonatomic) UIButton *tareButton;
@@ -40,12 +41,12 @@ static const CGFloat buttonsMaxHeight = 75;
     [super viewDidLoad];
     
     UIButton *resetIntroButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [resetIntroButton setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
     [resetIntroButton setTitle:@"Reset Intro" forState:UIControlStateNormal];
     [resetIntroButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
     [resetIntroButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithWhite:0 alpha:0.1]] forState:UIControlStateNormal];
     [resetIntroButton addTarget:self action:@selector(resetIntro) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:resetIntroButton];
+    self.resetIntroButton = resetIntroButton;
+    [self.view addSubview:self.resetIntroButton];
 
     
     UILabel *outputLabel = [UILabel new];
@@ -86,6 +87,15 @@ static const CGFloat buttonsMaxHeight = 75;
 }
 
 - (void) createConstraints {
+    
+    [self.resetIntroButton makeConstraints:^(MASConstraintMaker *make) {
+        UIView *topLayoutGuide = (id)self.topLayoutGuide;
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.top.equalTo(topLayoutGuide.bottom);
+        make.height.equalTo(@44);
+    }];
+    
     [self.tareButton makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
         make.bottom.equalTo(self.view);
@@ -168,7 +178,7 @@ static const CGFloat buttonsMaxHeight = 75;
 #pragma mark Status Bar
 
 - (UIStatusBarStyle) preferredStatusBarStyle {
-    return UIStatusBarStyleLightContent;
+    return UIStatusBarStyleDefault;
 }
 
 @end

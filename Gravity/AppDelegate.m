@@ -19,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    self.window.tintColor = [UIColor gravityPurple];
+    [[UIWindow appearance] setTintColor:[UIColor gravityPurple]];
     [[UIView appearance] setTintColor:[UIColor gravityPurple]];
 
     [Fabric with:@[[Crashlytics class]]];
