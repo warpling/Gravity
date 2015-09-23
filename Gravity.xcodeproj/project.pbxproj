@@ -27,6 +27,7 @@
 		DC1828961BB229EB00997DD2 /* GhostButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828951BB229EB00997DD2 /* GhostButton.m */; settings = {ASSET_TAGS = (); }; };
 		DC1828991BB256AF00997DD2 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828981BB256AF00997DD2 /* UIImage+ImageWithColor.m */; settings = {ASSET_TAGS = (); }; };
 		DC18289C1BB263BC00997DD2 /* WeighArea.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18289B1BB263BC00997DD2 /* WeighArea.m */; settings = {ASSET_TAGS = (); }; };
+		DC866CE91BB34A730031EF44 /* Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = DC866CE81BB34A730031EF44 /* Scale.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,8 @@
 		DC1828981BB256AF00997DD2 /* UIImage+ImageWithColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithColor.m"; sourceTree = "<group>"; };
 		DC18289A1BB263BC00997DD2 /* WeighArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeighArea.h; sourceTree = "<group>"; };
 		DC18289B1BB263BC00997DD2 /* WeighArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeighArea.m; sourceTree = "<group>"; };
+		DC866CE71BB34A730031EF44 /* Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scale.h; sourceTree = "<group>"; };
+		DC866CE81BB34A730031EF44 /* Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scale.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -177,6 +180,8 @@
 				DC1828931BB1DEA200997DD2 /* Instructions */,
 				DC1828521BB1D01300997DD2 /* MainViewController.h */,
 				DC1828531BB1D01300997DD2 /* MainViewController.m */,
+				DC866CE71BB34A730031EF44 /* Scale.h */,
+				DC866CE81BB34A730031EF44 /* Scale.m */,
 				DC18289A1BB263BC00997DD2 /* WeighArea.h */,
 				DC18289B1BB263BC00997DD2 /* WeighArea.m */,
 				DC1828551BB1D01300997DD2 /* Main.storyboard */,
@@ -490,6 +495,7 @@
 				DC1828891BB1D5B000997DD2 /* UIColor+AppColors.m in Sources */,
 				DC1828541BB1D01300997DD2 /* MainViewController.m in Sources */,
 				DC18289C1BB263BC00997DD2 /* WeighArea.m in Sources */,
+				DC866CE91BB34A730031EF44 /* Scale.m in Sources */,
 				DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */,
 				DC18284E1BB1D01300997DD2 /* main.m in Sources */,
 				DC1828861BB1D54400997DD2 /* InstructionsViewController.m in Sources */,
@@ -633,6 +639,7 @@
 			baseConfigurationReference = 0B063946473B63D1BC0D7D31 /* Pods-Gravity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -652,6 +659,7 @@
 			baseConfigurationReference = 8A4C67706398C13C2E405B4B /* Pods-Gravity.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",

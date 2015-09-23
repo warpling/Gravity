@@ -40,6 +40,11 @@ static const CGFloat buttonsMaxHeight = 75;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.scale = [Scale new];
+    [self.scale setScaleDisplayDelegate:self];
+    
+    // -------
+    
     UIButton *resetIntroButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [resetIntroButton setTitle:@"Reset Intro" forState:UIControlStateNormal];
     [resetIntroButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
@@ -67,6 +72,7 @@ static const CGFloat buttonsMaxHeight = 75;
     [tareButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [tareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [tareButton setTitle:@"tare" forState:UIControlStateNormal];
+    [tareButton addTarget:self.scale action:@selector(tare) forControlEvents:UIControlEventTouchUpInside];
     self.tareButton = tareButton;
     [self.view addSubview:tareButton];
     
@@ -77,6 +83,7 @@ static const CGFloat buttonsMaxHeight = 75;
     [unitsButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [unitsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [unitsButton setTitle:@"units" forState:UIControlStateNormal];
+    [unitsButton addTarget:self.scale action:@selector(switchUnits) forControlEvents:UIControlEventTouchUpInside];
     self.unitsButton = unitsButton;
     [self.view addSubview:unitsButton];
     
@@ -134,7 +141,13 @@ static const CGFloat buttonsMaxHeight = 75;
         [self showIntroAnimated:NO];
     }
     
-    [self setCurrentWeight:4.123991991234];
+    [self.scale setCurrentForce:4.123991991234];
+}
+
+#pragma mark ScaleDisplayDelegate
+
+- (void) displayStringDidChange:(NSString*)displayString {
+    [self.outputLabel setText:displayString];
 }
 
 #pragma mark UI Updating

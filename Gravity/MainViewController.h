@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Scale.h"
 
-@interface MainViewController : UIViewController
+@interface MainViewController : UIViewController <ScaleDisplayDelegate>
 
+@property (strong, nonatomic) Scale *scale;
 
 @end
 

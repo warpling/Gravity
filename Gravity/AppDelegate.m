@@ -19,6 +19,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
+                                          [NSNumber numberWithBool:NO], InstructionsCompleted,
+                                          [NSNumber numberWithInt:NSMassFormatterUnitGram], DefaultUnits,
+                                          nil];
+    [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
+    
+    // TODO: Is this actually doing anything 
     self.window.tintColor = [UIColor gravityPurple];
     [[UIWindow appearance] setTintColor:[UIColor gravityPurple]];
     [[UIView appearance] setTintColor:[UIColor gravityPurple]];
@@ -31,6 +38,7 @@
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
     // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
@@ -48,6 +56,7 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 @end

@@ -8,7 +8,10 @@
 
 #include "Constants.h"
 
+const float gramToOzMultiplier = 0.035274;
+
 NSString * const InstructionsCompleted = @"InstructionsCompleted";
+NSString * const DefaultUnits = @"DefaultUnits";
 
 NSString * const AvenirNextRegular = @"AvenirNext-Regular";
 NSString * const AvenirNextDemiBold = @"AvenirNext-DemiBold";

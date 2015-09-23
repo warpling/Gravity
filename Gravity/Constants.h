@@ -11,8 +11,13 @@
 // Void Block
 typedef void (^VoidBlock)(void);
 
+
+// Maths
+extern const float gramToOzMultiplier;
+
 // Flags
 extern NSString * const InstructionsCompleted;
+extern NSString * const DefaultUnits;
 
 // Fonts
 extern NSString * const AvenirNextRegular;
