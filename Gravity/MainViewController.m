@@ -18,13 +18,10 @@
 
 @property (strong, nonatomic) InstructionsViewController *instructions;
 
-@property (strong, nonatomic) UIButton *resetIntroButton;
 @property (strong, nonatomic) WeighArea *weighArea;
 @property (strong, nonatomic) UILabel *outputLabel;
 @property (strong, nonatomic) UIButton *tareButton;
 @property (strong, nonatomic) UIButton *unitsButton;
-
-//@property (nonatomic) NSUInteger currentMassUnits;
 
 @end
 
@@ -44,14 +41,7 @@ static const CGFloat buttonsMaxHeight = 75;
     [self.scale setScaleDisplayDelegate:self];
     
     // -------
-    
-    UIButton *resetIntroButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [resetIntroButton setTitle:@"Reset Intro" forState:UIControlStateNormal];
-    [resetIntroButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
-    [resetIntroButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithWhite:0 alpha:0.1]] forState:UIControlStateNormal];
-    [resetIntroButton addTarget:self action:@selector(resetIntro) forControlEvents:UIControlEventTouchUpInside];
-    self.resetIntroButton = resetIntroButton;
-    [self.view addSubview:self.resetIntroButton];
+
 
     
     UILabel *outputLabel = [UILabel new];
@@ -94,14 +84,6 @@ static const CGFloat buttonsMaxHeight = 75;
 }
 
 - (void) createConstraints {
-    
-    [self.resetIntroButton makeConstraints:^(MASConstraintMaker *make) {
-        UIView *topLayoutGuide = (id)self.topLayoutGuide;
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
-        make.top.equalTo(topLayoutGuide.bottom);
-        make.height.equalTo(@44);
-    }];
     
     [self.tareButton makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
@@ -193,5 +175,19 @@ static const CGFloat buttonsMaxHeight = 75;
 - (UIStatusBarStyle) preferredStatusBarStyle {
     return UIStatusBarStyleDefault;
 }
+
+#pragma mark Shaking
+-(BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake)
+    {
+        [self resetIntro];
+    }
+}
+
 
 @end

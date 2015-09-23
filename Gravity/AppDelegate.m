@@ -19,6 +19,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    
+    // User Defaults
     NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
                                           [NSNumber numberWithBool:NO], InstructionsCompleted,
                                           [NSNumber numberWithInt:NSMassFormatterUnitGram], DefaultUnits,
@@ -30,7 +32,11 @@
     [[UIWindow appearance] setTintColor:[UIColor gravityPurple]];
     [[UIView appearance] setTintColor:[UIColor gravityPurple]];
 
+    // Fabric
     [Fabric with:@[[Crashlytics class]]];
+    
+    // Useful for debugging
+    application.applicationSupportsShakeToEdit = YES;
 
     return YES;
 }
