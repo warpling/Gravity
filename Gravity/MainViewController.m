@@ -8,6 +8,7 @@
 
 #import "MainViewController.h"
 #import "InstructionsViewController.h"
+#import "UIImage+ImageWithColor.h"
 
 @interface MainViewController ()
 
@@ -19,14 +20,36 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
+    UIButton *resetIntroButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [resetIntroButton setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 44)];
+    [resetIntroButton setTitle:@"Reset Intro" forState:UIControlStateNormal];
+    [resetIntroButton setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [resetIntroButton setBackgroundImage:[UIImage imageWithColor:[UIColor colorWithWhite:0 alpha:0.1]] forState:UIControlStateNormal];
+    [resetIntroButton addTarget:self action:@selector(resetIntro) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:resetIntroButton];
+    
     self.instructions = [self.storyboard instantiateViewControllerWithIdentifier:@"InstructionsViewController"];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    [self presentViewController:self.instructions animated:YES completion:^{
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:InstructionsCompleted] boolValue]) {
+        [self showIntroAnimated:NO];
+    }
+}
+
+- (void) showIntroAnimated:(BOOL)animated {
+    [self presentViewController:self.instructions animated:animated completion:^{
         
     }];
+}
+
+- (void) resetIntro {
+    [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:InstructionsCompleted];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
+    [self showIntroAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

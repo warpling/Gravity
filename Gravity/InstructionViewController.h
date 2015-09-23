@@ -12,5 +12,7 @@
 
 @property (strong, nonatomic) NSString *titleText;
 @property (strong, nonatomic) NSString *captionText;
+@property (strong, nonatomic) NSString *bottomButtonText;
+@property (copy,   nonatomic) VoidBlock buttonAction;
 
 @end

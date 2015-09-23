@@ -24,6 +24,8 @@
 		DC1828891BB1D5B000997DD2 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828881BB1D5B000997DD2 /* UIColor+AppColors.m */; settings = {ASSET_TAGS = (); }; };
 		DC18288E1BB1D6B700997DD2 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18288D1BB1D6B700997DD2 /* Constants.m */; settings = {ASSET_TAGS = (); }; };
 		DC1828921BB1DE3E00997DD2 /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828911BB1DE3E00997DD2 /* InstructionViewController.m */; settings = {ASSET_TAGS = (); }; };
+		DC1828961BB229EB00997DD2 /* GhostButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828951BB229EB00997DD2 /* GhostButton.m */; settings = {ASSET_TAGS = (); }; };
+		DC1828991BB256AF00997DD2 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828981BB256AF00997DD2 /* UIImage+ImageWithColor.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +82,10 @@
 		DC18288F1BB1D6C300997DD2 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		DC1828901BB1DE3E00997DD2 /* InstructionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstructionViewController.h; sourceTree = "<group>"; };
 		DC1828911BB1DE3E00997DD2 /* InstructionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstructionViewController.m; sourceTree = "<group>"; };
+		DC1828941BB229EB00997DD2 /* GhostButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GhostButton.h; sourceTree = "<group>"; };
+		DC1828951BB229EB00997DD2 /* GhostButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GhostButton.m; sourceTree = "<group>"; };
+		DC1828971BB256AF00997DD2 /* UIImage+ImageWithColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageWithColor.h"; sourceTree = "<group>"; };
+		DC1828981BB256AF00997DD2 /* UIImage+ImageWithColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithColor.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -209,6 +215,8 @@
 		DC18288A1BB1D5DB00997DD2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				DC1828971BB256AF00997DD2 /* UIImage+ImageWithColor.h */,
+				DC1828981BB256AF00997DD2 /* UIImage+ImageWithColor.m */,
 				DC1828871BB1D5B000997DD2 /* UIColor+AppColors.h */,
 				DC1828881BB1D5B000997DD2 /* UIColor+AppColors.m */,
 			);
@@ -222,6 +230,8 @@
 				DC1828851BB1D54400997DD2 /* InstructionsViewController.m */,
 				DC1828901BB1DE3E00997DD2 /* InstructionViewController.h */,
 				DC1828911BB1DE3E00997DD2 /* InstructionViewController.m */,
+				DC1828941BB229EB00997DD2 /* GhostButton.h */,
+				DC1828951BB229EB00997DD2 /* GhostButton.m */,
 			);
 			name = Instructions;
 			sourceTree = "<group>";
@@ -470,6 +480,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC1828921BB1DE3E00997DD2 /* InstructionViewController.m in Sources */,
+				DC1828991BB256AF00997DD2 /* UIImage+ImageWithColor.m in Sources */,
+				DC1828961BB229EB00997DD2 /* GhostButton.m in Sources */,
 				DC1828891BB1D5B000997DD2 /* UIColor+AppColors.m in Sources */,
 				DC1828541BB1D01300997DD2 /* MainViewController.m in Sources */,
 				DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */,

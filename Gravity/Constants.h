@@ -8,4 +8,6 @@
 
 #import <Foundation/Foundation.h>
 
+typedef void (^VoidBlock)(void);
+
 extern NSString * const InstructionsCompleted;

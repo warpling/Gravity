@@ -9,11 +9,13 @@
 #import "InstructionViewController.h"
 #define MAS_SHORTHAND
 #import "Masonry.h"
+#import "GhostButton.h"
 
 @interface InstructionViewController ()
 
 @property (strong, nonatomic) UILabel *titleLabel;
 @property (strong, nonatomic) UILabel *captionLabel;
+@property (strong, nonatomic) GhostButton *bottomButton;
 
 @end
 
@@ -67,12 +69,41 @@
     return _captionLabel;
 }
 
+- (UIButton*) bottomButton {
+    if (!_bottomButton) {
+        _bottomButton = [GhostButton new];
+        _bottomButton.fillColor = [UIColor gravityPurple];
+        _bottomButton.borderColor = [UIColor whiteColor];
+        
+        [_bottomButton addTarget:self action:@selector(runButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        
+        [self.view addSubview:_bottomButton];
+        
+        [_bottomButton makeConstraints:^(MASConstraintMaker *make) {
+            make.centerX.equalTo(self.view);
+            make.bottom.greaterThanOrEqualTo(self.view).with.offset(-40);
+        }];
+    }
+    
+    return _bottomButton;
+}
+
 - (void) setTitleText:(NSString *)titleText {
     [self.titleLabel setText:titleText];
 }
 
 - (void) setCaptionText:(NSString *)captionText {
     [self.captionLabel setText:captionText];
+}
+
+- (void) setBottomButtonText:(NSString *)bottomButtonText {
+    [self.bottomButton setTitle:bottomButtonText forState:UIControlStateNormal];
+}
+
+- (void) runButtonAction {
+    if (self.buttonAction) {
+        self.buttonAction();
+    }
 }
 
 - (UIStatusBarStyle) preferredStatusBarStyle {

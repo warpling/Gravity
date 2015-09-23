@@ -33,7 +33,7 @@
     [self.pageController setViewControllers:initialInstructionView direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     self.pageController.dataSource = self;
     
-    [[UIPageControl appearance] setPageIndicatorTintColor:[UIColor colorWithWhite:0 alpha:0.5]];
+    [[UIPageControl appearance] setPageIndicatorTintColor:[UIColor colorWithWhite:1 alpha:0.2]];
     [[UIPageControl appearance] setCurrentPageIndicatorTintColor:[UIColor colorWithWhite:1 alpha:0.9]];
     [[UIPageControl appearance] setBackgroundColor:[UIColor clearColor]];
 
@@ -49,44 +49,48 @@
 }
 
 - (void) generateInstructionViews {
-
-    NSMutableArray *views = [NSMutableArray new];
-    
     
     InstructionViewController *firstView = [InstructionViewController new];
     [firstView setTitleText:@"Hello"];
     [firstView setCaptionText:@"Ready to get weighing?"];
-    [views addObject:firstView];
+    [firstView setBottomButtonText:@"I'm listening"];
+    [firstView setButtonAction:^{
+        [self advancePage];
+    }];
     
     InstructionViewController *secondView = [InstructionViewController new];
     [secondView setTitleText:@"Good Afternoon"];
     [secondView setCaptionText:@"First you gotta stop being such a basket case. How are we going to fix that you ask? Simple. We're going to build a basket."];
-    [views addObject:secondView];
+    [secondView setBottomButtonText:@"Let's test it!"];
+    [secondView setButtonAction:^{
+        [self advancePage];
+    }];
     
     InstructionViewController *thirdView = [InstructionViewController new];
     [thirdView setTitleText:@"Buenas Noches"];
-    [thirdView setCaptionText:@""];
-    [views addObject:thirdView];
+    [thirdView setCaptionText:@"Alright, you look confused and ready to go! Let's get weighing!"];
+    [thirdView setBottomButtonText:@"Let's weigh!"];
+    [thirdView setButtonAction:^{
+        [self dismissViewControllerAnimated:YES completion:^{
+            [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:InstructionsCompleted];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+        }];
+    }];
     
-    
-    self.instructionViews = views;
+    self.instructionViews = @[firstView, secondView, thirdView];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void) advancePage {
+    NSUInteger currentIndex = [self.instructionViews indexOfObject:[[self.pageController viewControllers] firstObject]];
+    
+    if (currentIndex <= (self.instructionViews.count - 1)) {
+        NSArray *nextInstructionView = @[[self.instructionViews objectAtIndex:(currentIndex+1)]];
+        [self.pageController setViewControllers:nextInstructionView direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    }
 }
-*/
 
 #pragma mark UIPageViewControllerDataSource
-
-//- (UIViewController*) viewControllerAtIndex:(NSUInteger)index {
-//    return (index >= 0 && index < self.instructionViews.count) ? [self.instructionViews objectAtIndex:index] :;
-//}
 
 - (UIViewController*) pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController {
     NSUInteger currentIndex = [self.instructionViews indexOfObject:viewController];
@@ -106,7 +110,8 @@
 // Note: this is only used the first time the page views are manually set (that's why it makes sense to return 0)
 - (NSInteger) presentationIndexForPageViewController:(UIPageViewController *)pageViewController
 {
-    return 0;
+    UIViewController *currentVC = pageViewController.viewControllers.firstObject;
+    return [self.instructionViews indexOfObject:currentVC];
 //    return [self.instructionViews indexOfObject:pageViewController];;
 }
 
