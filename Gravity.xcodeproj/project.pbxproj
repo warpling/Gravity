@@ -27,6 +27,7 @@
 		DC1828961BB229EB00997DD2 /* GhostButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828951BB229EB00997DD2 /* GhostButton.m */; settings = {ASSET_TAGS = (); }; };
 		DC1828991BB256AF00997DD2 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828981BB256AF00997DD2 /* UIImage+ImageWithColor.m */; settings = {ASSET_TAGS = (); }; };
 		DC18289C1BB263BC00997DD2 /* WeighArea.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18289B1BB263BC00997DD2 /* WeighArea.m */; settings = {ASSET_TAGS = (); }; };
+		DC1CDB221BB605F600E52F8B /* CircularTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB211BB605F600E52F8B /* CircularTextView.m */; settings = {ASSET_TAGS = (); }; };
 		DC866CE91BB34A730031EF44 /* Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = DC866CE81BB34A730031EF44 /* Scale.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,8 @@
 		DC1828981BB256AF00997DD2 /* UIImage+ImageWithColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageWithColor.m"; sourceTree = "<group>"; };
 		DC18289A1BB263BC00997DD2 /* WeighArea.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeighArea.h; sourceTree = "<group>"; };
 		DC18289B1BB263BC00997DD2 /* WeighArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeighArea.m; sourceTree = "<group>"; };
+		DC1CDB201BB605F600E52F8B /* CircularTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularTextView.h; sourceTree = "<group>"; };
+		DC1CDB211BB605F600E52F8B /* CircularTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularTextView.m; sourceTree = "<group>"; };
 		DC866CE71BB34A730031EF44 /* Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scale.h; sourceTree = "<group>"; };
 		DC866CE81BB34A730031EF44 /* Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scale.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -225,6 +228,8 @@
 		DC18288A1BB1D5DB00997DD2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				DC1CDB201BB605F600E52F8B /* CircularTextView.h */,
+				DC1CDB211BB605F600E52F8B /* CircularTextView.m */,
 				DC1828971BB256AF00997DD2 /* UIImage+ImageWithColor.h */,
 				DC1828981BB256AF00997DD2 /* UIImage+ImageWithColor.m */,
 				DC1828871BB1D5B000997DD2 /* UIColor+AppColors.h */,
@@ -320,6 +325,7 @@
 				TargetAttributes = {
 					DC1828481BB1D01300997DD2 = {
 						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = JVBMY6T275;
 					};
 					DC1828611BB1D01300997DD2 = {
 						CreatedOnToolsVersion = 7.0;
@@ -491,6 +497,7 @@
 			files = (
 				DC1828921BB1DE3E00997DD2 /* InstructionViewController.m in Sources */,
 				DC1828991BB256AF00997DD2 /* UIImage+ImageWithColor.m in Sources */,
+				DC1CDB221BB605F600E52F8B /* CircularTextView.m in Sources */,
 				DC1828961BB229EB00997DD2 /* GhostButton.m in Sources */,
 				DC1828891BB1D5B000997DD2 /* UIColor+AppColors.m in Sources */,
 				DC1828541BB1D01300997DD2 /* MainViewController.m in Sources */,
@@ -640,6 +647,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -648,9 +656,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Gravity/PrefixHeader.pch;
 				INFOPLIST_FILE = Gravity/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.growpixel.gravity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -660,6 +670,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
@@ -667,9 +678,11 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Gravity/PrefixHeader.pch;
 				INFOPLIST_FILE = Gravity/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.growpixel.gravity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WeighArea.h"
 #import "Scale.h"
 
-@interface MainViewController : UIViewController <ScaleDisplayDelegate>
+@interface MainViewController : UIViewController <ScaleDisplayDelegate, WeighAreaEventsDelegate, UITraitEnvironment>
 
 @property (strong, nonatomic) Scale *scale;
 

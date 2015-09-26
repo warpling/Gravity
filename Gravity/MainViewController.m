@@ -19,6 +19,7 @@
 @property (strong, nonatomic) InstructionsViewController *instructions;
 
 @property (strong, nonatomic) WeighArea *weighArea;
+@property (strong, nonatomic) UILabel *debugLabel;
 @property (strong, nonatomic) UILabel *outputLabel;
 @property (strong, nonatomic) UIButton *tareButton;
 @property (strong, nonatomic) UIButton *unitsButton;
@@ -40,9 +41,23 @@ static const CGFloat buttonsMaxHeight = 75;
     self.scale = [Scale new];
     [self.scale setScaleDisplayDelegate:self];
     
-    // -------
 
-
+    self.weighArea = [WeighArea new];
+    self.weighArea.weightAreaDelegate = self;
+    [self.view addSubview:self.weighArea];
+    
+    #ifdef DEBUG
+    UILabel *debugLabel = [UILabel new];
+    [debugLabel setBackgroundColor:[[UIColor gravityPurple] colorWithAlphaComponent:0.9]];
+    [debugLabel setFont:[UIFont fontWithName:AvenirNextDemiBold size:14]];
+    [debugLabel setTextColor:[UIColor whiteColor]];
+    [debugLabel setTextAlignment:NSTextAlignmentLeft];
+    [debugLabel setNumberOfLines:0];
+    [debugLabel setAdjustsFontSizeToFitWidth:YES];
+    self.debugLabel = debugLabel;
+    [self.debugLabel setText:@"--"];
+    [self.view addSubview:self.debugLabel];
+    #endif
     
     UILabel *outputLabel = [UILabel new];
     [outputLabel setBackgroundColor:[UIColor gravityPurple]];
@@ -85,6 +100,18 @@ static const CGFloat buttonsMaxHeight = 75;
 
 - (void) createConstraints {
     
+    [self.weighArea makeConstraints:^(MASConstraintMaker *make) {
+        UIView *topLayoutGuide = (UIView*)self.topLayoutGuide;
+        make.top.equalTo(topLayoutGuide.bottom);
+        #ifdef DEBUG
+        make.bottom.equalTo(self.debugLabel.top);
+        #else
+        make.bottom.equalTo(self.outputLabel.top);
+        #endif
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+    }];
+    
     [self.tareButton makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
         make.bottom.equalTo(self.view);
@@ -109,12 +136,19 @@ static const CGFloat buttonsMaxHeight = 75;
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
         make.bottom.equalTo(self.tareButton.top);
-        make.width.equalTo(self.view);
         
         make.height.equalTo(self.view.height).priorityHigh();
         make.height.lessThanOrEqualTo(@(outputLabelMaxHeight));
         make.height.greaterThanOrEqualTo(@(outputLabelMinHeight));
     }];
+    
+    #ifdef DEBUG
+    [self.debugLabel makeConstraints:^(MASConstraintMaker *make) {
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+        make.bottom.equalTo(self.outputLabel.top);
+    }];
+    #endif
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -130,6 +164,21 @@ static const CGFloat buttonsMaxHeight = 75;
 
 - (void) displayStringDidChange:(NSString*)displayString {
     [self.outputLabel setText:displayString];
+}
+
+#pragma mark WeighAreaEventsDelegate
+
+- (void) singleTouchDetectedWithForce:(CGFloat)force maximumPossibleForce:(CGFloat)maxiumPossibleForce {
+    self.weighArea.backgroundColor = [UIColor colorWithWhite:0.5 alpha:1];
+    [self.scale setCurrentForce:force];
+}
+
+- (void) multipleTouchesDetected {
+    self.weighArea.backgroundColor = [UIColor redColor];
+}
+
+- (void) debugDataUpdated:(NSString*)debugData {
+    [self.debugLabel setText:debugData];
 }
 
 #pragma mark UI Updating
@@ -151,9 +200,7 @@ static const CGFloat buttonsMaxHeight = 75;
 #pragma mark Intro
 
 - (void) showIntroAnimated:(BOOL)animated {
-    [self presentViewController:self.instructions animated:animated completion:^{
-        
-    }];
+    [self presentViewController:self.instructions animated:animated completion:nil];
 }
 
 - (void) resetIntro {
@@ -189,5 +236,26 @@ static const CGFloat buttonsMaxHeight = 75;
     }
 }
 
+#pragma mark Trait Collection
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    UIForceTouchCapability forceTouchCapability = [self.traitCollection forceTouchCapability];
+    switch (forceTouchCapability) {
+        case UIForceTouchCapabilityUnknown:
+            NSLog(@"Force Touch support unknown");
+            break;
+        case UIForceTouchCapabilityUnavailable:
+            NSLog(@"Force Touch unavailable");
+            break;
+        case UIForceTouchCapabilityAvailable:
+            NSLog(@"Force Touch enabled");
+            break;
+    }
+    
+    if (forceTouchCapability == UIForceTouchCapabilityAvailable) {
+        [self.weighArea setForceAvailable:YES];
+    } else {
+        [self.weighArea setForceAvailable:NO];
+    }
+}
 
 @end
