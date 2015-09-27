@@ -28,6 +28,9 @@
 		DC1828991BB256AF00997DD2 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828981BB256AF00997DD2 /* UIImage+ImageWithColor.m */; settings = {ASSET_TAGS = (); }; };
 		DC18289C1BB263BC00997DD2 /* WeighArea.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18289B1BB263BC00997DD2 /* WeighArea.m */; settings = {ASSET_TAGS = (); }; };
 		DC1CDB221BB605F600E52F8B /* CircularTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB211BB605F600E52F8B /* CircularTextView.m */; settings = {ASSET_TAGS = (); }; };
+		DC1CDB261BB746B900E52F8B /* Spoon.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB251BB746B900E52F8B /* Spoon.m */; settings = {ASSET_TAGS = (); }; };
+		DC1CDB291BB74E7000E52F8B /* LinearFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB281BB74E7000E52F8B /* LinearFunction.m */; settings = {ASSET_TAGS = (); }; };
+		DC1CDB2B1BB7507C00E52F8B /* LinearFunctionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB2A1BB7507C00E52F8B /* LinearFunctionTests.m */; settings = {ASSET_TAGS = (); }; };
 		DC866CE91BB34A730031EF44 /* Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = DC866CE81BB34A730031EF44 /* Scale.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -93,6 +96,11 @@
 		DC18289B1BB263BC00997DD2 /* WeighArea.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeighArea.m; sourceTree = "<group>"; };
 		DC1CDB201BB605F600E52F8B /* CircularTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircularTextView.h; sourceTree = "<group>"; };
 		DC1CDB211BB605F600E52F8B /* CircularTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircularTextView.m; sourceTree = "<group>"; };
+		DC1CDB241BB746B900E52F8B /* Spoon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spoon.h; sourceTree = "<group>"; };
+		DC1CDB251BB746B900E52F8B /* Spoon.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spoon.m; sourceTree = "<group>"; };
+		DC1CDB271BB74E7000E52F8B /* LinearFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearFunction.h; sourceTree = "<group>"; };
+		DC1CDB281BB74E7000E52F8B /* LinearFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearFunction.m; sourceTree = "<group>"; };
+		DC1CDB2A1BB7507C00E52F8B /* LinearFunctionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearFunctionTests.m; sourceTree = "<group>"; };
 		DC866CE71BB34A730031EF44 /* Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scale.h; sourceTree = "<group>"; };
 		DC866CE81BB34A730031EF44 /* Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scale.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -183,6 +191,10 @@
 				DC1828931BB1DEA200997DD2 /* Instructions */,
 				DC1828521BB1D01300997DD2 /* MainViewController.h */,
 				DC1828531BB1D01300997DD2 /* MainViewController.m */,
+				DC1CDB241BB746B900E52F8B /* Spoon.h */,
+				DC1CDB251BB746B900E52F8B /* Spoon.m */,
+				DC1CDB271BB74E7000E52F8B /* LinearFunction.h */,
+				DC1CDB281BB74E7000E52F8B /* LinearFunction.m */,
 				DC866CE71BB34A730031EF44 /* Scale.h */,
 				DC866CE81BB34A730031EF44 /* Scale.m */,
 				DC18289A1BB263BC00997DD2 /* WeighArea.h */,
@@ -211,6 +223,7 @@
 			isa = PBXGroup;
 			children = (
 				DC1828661BB1D01300997DD2 /* GravityTests.m */,
+				DC1CDB2A1BB7507C00E52F8B /* LinearFunctionTests.m */,
 				DC1828681BB1D01300997DD2 /* Info.plist */,
 			);
 			path = GravityTests;
@@ -245,10 +258,18 @@
 				DC1828851BB1D54400997DD2 /* InstructionsViewController.m */,
 				DC1828901BB1DE3E00997DD2 /* InstructionViewController.h */,
 				DC1828911BB1DE3E00997DD2 /* InstructionViewController.m */,
+				DC1CDB231BB7465A00E52F8B /* Instruction VCs */,
 				DC1828941BB229EB00997DD2 /* GhostButton.h */,
 				DC1828951BB229EB00997DD2 /* GhostButton.m */,
 			);
 			name = Instructions;
+			sourceTree = "<group>";
+		};
+		DC1CDB231BB7465A00E52F8B /* Instruction VCs */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "Instruction VCs";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -495,6 +516,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1CDB291BB74E7000E52F8B /* LinearFunction.m in Sources */,
 				DC1828921BB1DE3E00997DD2 /* InstructionViewController.m in Sources */,
 				DC1828991BB256AF00997DD2 /* UIImage+ImageWithColor.m in Sources */,
 				DC1CDB221BB605F600E52F8B /* CircularTextView.m in Sources */,
@@ -507,6 +529,7 @@
 				DC18284E1BB1D01300997DD2 /* main.m in Sources */,
 				DC1828861BB1D54400997DD2 /* InstructionsViewController.m in Sources */,
 				DC18288E1BB1D6B700997DD2 /* Constants.m in Sources */,
+				DC1CDB261BB746B900E52F8B /* Spoon.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -514,6 +537,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1CDB2B1BB7507C00E52F8B /* LinearFunctionTests.m in Sources */,
 				DC1828671BB1D01300997DD2 /* GravityTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
