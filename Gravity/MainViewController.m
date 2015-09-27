@@ -13,6 +13,7 @@
 #define MAS_SHORTHAND
 #import "Masonry.h"
 #import "UIColor+Additions.h"
+#import "CoinHolder.h"
 
 @interface MainViewController ()
 
@@ -24,16 +25,18 @@
 @property (strong, nonatomic) UIButton *tareButton;
 @property (strong, nonatomic) UIButton *unitsButton;
 
+@property (strong, nonatomic) CoinHolder *coinHolder;
+
 @end
 
 
 @implementation MainViewController
 
 static const CGFloat outputLabelMinHeight = 65;
-static const CGFloat outputLabelMaxHeight = 80;
+static const CGFloat outputLabelMaxHeight = 90;
 
 static const CGFloat buttonsMinHeight = 50;
-static const CGFloat buttonsMaxHeight = 75;
+static const CGFloat buttonsMaxHeight = 60;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,47 +49,51 @@ static const CGFloat buttonsMaxHeight = 75;
     self.weighArea.weightAreaDelegate = self;
     [self.view addSubview:self.weighArea];
     
+    self.coinHolder = [[CoinHolder alloc] initWithFrame:CGRectMake(0, 30, self.view.bounds.size.width, 50) coinType:CoinTypeUSQuarter numCoins:4];
+    self.coinHolder.coinSelectionDelegate = self;
+    [self.view addSubview:self.coinHolder];
+    
     #ifdef DEBUG
     UILabel *debugLabel = [UILabel new];
     [debugLabel setBackgroundColor:[[UIColor gravityPurple] colorWithAlphaComponent:0.9]];
     [debugLabel setFont:[UIFont fontWithName:AvenirNextDemiBold size:14]];
-    [debugLabel setTextColor:[UIColor whiteColor]];
+    [debugLabel setTextColor:[UIColor colorWithWhite:1 alpha:0.8]];
     [debugLabel setTextAlignment:NSTextAlignmentLeft];
     [debugLabel setNumberOfLines:0];
     [debugLabel setAdjustsFontSizeToFitWidth:YES];
     self.debugLabel = debugLabel;
-    [self.debugLabel setText:@"--"];
+    [self.debugLabel setText:@"––––"];
     [self.view addSubview:self.debugLabel];
     #endif
     
     UILabel *outputLabel = [UILabel new];
-    [outputLabel setBackgroundColor:[UIColor gravityPurple]];
-    [outputLabel setFont:[UIFont fontWithName:AvenirNextDemiBold size:36]];
+    [outputLabel setBackgroundColor:[UIColor gravityPurpleDark]];
+    [outputLabel setFont:[UIFont fontWithName:AvenirNextBold size:42]];
     [outputLabel setTextColor:[UIColor whiteColor]];
     [outputLabel setTextAlignment:NSTextAlignmentCenter];
     [outputLabel setNumberOfLines:1];
     [outputLabel setAdjustsFontSizeToFitWidth:YES];
     self.outputLabel = outputLabel;
-    [self.outputLabel setText:@"--"];
+    [self.outputLabel setText:@"––––"];
     [self.view addSubview:self.outputLabel];
     
     UIButton *tareButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [tareButton setBackgroundImage:[UIImage imageWithColor:[UIColor roverRed]] forState:UIControlStateNormal];
-    [tareButton setBackgroundImage:[UIImage imageWithColor:[[UIColor roverRed] add_colorWithBrightness:0.8]] forState:UIControlStateHighlighted];
-    [tareButton.titleLabel setFont:[UIFont fontWithName:AvenirNextDemiBold size:24]];
+    [tareButton setBackgroundImage:[UIImage imageWithColor:[UIColor gravityPurple]] forState:UIControlStateNormal];
+    [tareButton setBackgroundImage:[UIImage imageWithColor:[[UIColor gravityPurple] add_colorWithBrightness:0.8]] forState:UIControlStateHighlighted];
+    [tareButton.titleLabel setFont:[UIFont fontWithName:AvenirNextDemiBold size:30]];
     [tareButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [tareButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [tareButton setTitle:@"tare" forState:UIControlStateNormal];
+    [tareButton setTitleColor:[UIColor gravityPurpleDark] forState:UIControlStateNormal];
+    [tareButton setTitle:@"zero" forState:UIControlStateNormal];
     [tareButton addTarget:self.scale action:@selector(tare) forControlEvents:UIControlEventTouchUpInside];
     self.tareButton = tareButton;
     [self.view addSubview:tareButton];
     
     UIButton *unitsButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [unitsButton setBackgroundImage:[UIImage imageWithColor:[UIColor lunarLilac]] forState:UIControlStateNormal];
-    [unitsButton setBackgroundImage:[UIImage imageWithColor:[[UIColor lunarLilac] add_colorWithBrightness:0.75]] forState:UIControlStateHighlighted];
-    [unitsButton.titleLabel setFont:[UIFont fontWithName:AvenirNextDemiBold size:24]];
+    [unitsButton setBackgroundImage:[UIImage imageWithColor:[UIColor gravityPurple]] forState:UIControlStateNormal];
+    [unitsButton setBackgroundImage:[UIImage imageWithColor:[[UIColor gravityPurple] add_colorWithBrightness:0.75]] forState:UIControlStateHighlighted];
+    [unitsButton.titleLabel setFont:[UIFont fontWithName:AvenirNextDemiBold size:30]];
     [unitsButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [unitsButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [unitsButton setTitleColor:[UIColor gravityPurpleDark] forState:UIControlStateNormal];
     [unitsButton setTitle:@"units" forState:UIControlStateNormal];
     [unitsButton addTarget:self.scale action:@selector(switchUnits) forControlEvents:UIControlEventTouchUpInside];
     self.unitsButton = unitsButton;
@@ -156,8 +163,6 @@ static const CGFloat buttonsMaxHeight = 75;
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:InstructionsCompleted] boolValue]) {
         [self showIntroAnimated:NO];
     }
-    
-    [self.scale setCurrentForce:4.123991991234];
 }
 
 #pragma mark ScaleDisplayDelegate
@@ -169,12 +174,12 @@ static const CGFloat buttonsMaxHeight = 75;
 #pragma mark WeighAreaEventsDelegate
 
 - (void) singleTouchDetectedWithForce:(CGFloat)force maximumPossibleForce:(CGFloat)maxiumPossibleForce {
-    self.weighArea.backgroundColor = [UIColor colorWithWhite:0.5 alpha:1];
-    [self.scale setCurrentForce:force];
+    self.weighArea.backgroundColor = [UIColor moonGrey];
+    [self.scale recordNewForce:force];
 }
 
 - (void) multipleTouchesDetected {
-    self.weighArea.backgroundColor = [UIColor redColor];
+    self.weighArea.backgroundColor = [UIColor roverRed];
 }
 
 - (void) debugDataUpdated:(NSString*)debugData {
@@ -234,6 +239,12 @@ static const CGFloat buttonsMaxHeight = 75;
     {
         [self resetIntro];
     }
+}
+
+#pragma mark Temporary
+
+- (void) coinSelected:(NSUInteger)coinIndex {
+    [self.scale recordCalibrationForCountNum:coinIndex];
 }
 
 #pragma mark Trait Collection

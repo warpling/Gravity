@@ -11,7 +11,10 @@
 @interface UIColor (AppColors)
 
 + (UIColor*) gravityPurple;
++ (UIColor*) gravityPurpleDark;
++ (UIColor*) moonGrey;
++ (UIColor*) moonGreyDark;
 + (UIColor*) roverRed;
-+ (UIColor*) lunarLilac;
++ (UIColor*) roverRedDark;
 
 @end

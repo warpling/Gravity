@@ -7,20 +7,25 @@
 //
 
 #import "Scale.h"
+#import "Spoon.h"
 
 @interface Scale ()
 
+@property (strong, nonatomic) Spoon *spoon;
 @property (nonatomic, readwrite) CGFloat tareMass;
 @property (nonatomic, readwrite) CGFloat currentMass;
 @property (nonatomic, assign) NSMassFormatterUnit currentMassUnit;
 
 @end
 
+
 @implementation Scale
 
 - (instancetype) init {
     self = [super init];
-    if (self) {        
+    if (self) {
+        self.spoon = [Spoon new];
+        // TODO: refactor into scaleDisplayView
         self.currentMassUnit = (NSMassFormatterUnit)[[[NSUserDefaults standardUserDefaults] objectForKey:DefaultUnits] intValue];
     }
     return self;
@@ -30,32 +35,34 @@
  @param currentForce
         A force value from a 3D touch.
  */
-- (void) setCurrentForce:(CGFloat)currentForce {
+- (void) recordNewForce:(CGFloat)currentForce {
     
     _currentForce = currentForce;
     
-    self.currentMass = [self applyTare:[self convertForceToGrams:currentForce]];
-    
-    NSString *displayString = [Scale displayString:self.currentMass units:self.currentMassUnit];
-    [self.scaleDisplayDelegate displayStringDidChange:displayString];
+//    self.currentMass = [self applyTare:[self convertForceToGrams:currentForce]];
+    if ([self.spoon isCalibrated]) {
+        self.currentMass = [self.spoon weightFromForce:self.currentForce];
+        NSString *displayString = [Scale displayStringForMass:self.currentMass units:self.currentMassUnit];
+        [self.scaleDisplayDelegate displayStringDidChange:displayString];
+    }
 }
 
 - (void) setCurrentMassUnits:(NSMassFormatterUnit)currentMassUnit {
     _currentMassUnit = currentMassUnit;
     
     // Force out a string since the units changed
-    [self massComponentsDidChange];
+    [self recomputeDisplayValue];
 }
 
-- (void) massComponentsDidChange {
+- (void) recomputeDisplayValue {
     
     CGFloat taredMass = self.currentMass - self.tareMass;
     
-    NSString *displayString = [Scale displayString:taredMass units:self.currentMassUnit];
+    NSString *displayString = [Scale displayStringForMass:taredMass units:self.currentMassUnit];
     [self.scaleDisplayDelegate displayStringDidChange:displayString];
 }
 
-+ (NSString*) displayString:(CGFloat)mass units:(NSMassFormatterUnit)units {
++ (NSString*) displayStringForMass:(CGFloat)mass units:(NSMassFormatterUnit)units {
     
     static NSMassFormatter *massFormatter = nil;
     static dispatch_once_t onceToken;
@@ -73,16 +80,10 @@
 }
 
 - (void) tare {
+    [self.spoon recordBaseForce:self.currentForce];
+
     self.tareMass = self.currentMass;
-    [self massComponentsDidChange];
-}
-
-- (CGFloat) convertForceToGrams:(CGFloat)force {
-    return force;
-}
-
-- (CGFloat) applyTare:(CGFloat)grams {
-    return (grams - self.tareMass);
+    [self recomputeDisplayValue];
 }
 
 - (void) switchUnits {
@@ -95,7 +96,13 @@
     
     [[NSUserDefaults standardUserDefaults] setValue:@(self.currentMassUnit) forKey:DefaultUnits];
     
-    [self massComponentsDidChange];
+    [self recomputeDisplayValue];
+}
+
+#pragma mark temp
+
+- (void) recordCalibrationForCountNum:(NSUInteger)coinNum {
+    [self.spoon recordCalibrationForce:self.currentForce forKnownWeight:((coinNum+1) * coinWeightUSQuarter)];
 }
 
 @end

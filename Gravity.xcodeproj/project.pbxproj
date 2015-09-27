@@ -31,6 +31,10 @@
 		DC1CDB261BB746B900E52F8B /* Spoon.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB251BB746B900E52F8B /* Spoon.m */; settings = {ASSET_TAGS = (); }; };
 		DC1CDB291BB74E7000E52F8B /* LinearFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB281BB74E7000E52F8B /* LinearFunction.m */; settings = {ASSET_TAGS = (); }; };
 		DC1CDB2B1BB7507C00E52F8B /* LinearFunctionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB2A1BB7507C00E52F8B /* LinearFunctionTests.m */; settings = {ASSET_TAGS = (); }; };
+		DC1CDB2E1BB76B0500E52F8B /* CoinHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB2D1BB76B0500E52F8B /* CoinHolder.m */; settings = {ASSET_TAGS = (); }; };
+		DC1CDB311BB76CE900E52F8B /* CoinButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB301BB76CE900E52F8B /* CoinButton.m */; settings = {ASSET_TAGS = (); }; };
+		DC1CDB341BB76D9700E52F8B /* CKShapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB331BB76D9700E52F8B /* CKShapeView.m */; settings = {ASSET_TAGS = (); }; };
+		DC7B38CC1BB86A620013936B /* CalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7B38CB1BB86A620013936B /* CalibrationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		DC866CE91BB34A730031EF44 /* Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = DC866CE81BB34A730031EF44 /* Scale.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -101,6 +105,14 @@
 		DC1CDB271BB74E7000E52F8B /* LinearFunction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LinearFunction.h; sourceTree = "<group>"; };
 		DC1CDB281BB74E7000E52F8B /* LinearFunction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearFunction.m; sourceTree = "<group>"; };
 		DC1CDB2A1BB7507C00E52F8B /* LinearFunctionTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LinearFunctionTests.m; sourceTree = "<group>"; };
+		DC1CDB2C1BB76B0500E52F8B /* CoinHolder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinHolder.h; sourceTree = "<group>"; };
+		DC1CDB2D1BB76B0500E52F8B /* CoinHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinHolder.m; sourceTree = "<group>"; };
+		DC1CDB2F1BB76CE900E52F8B /* CoinButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinButton.h; sourceTree = "<group>"; };
+		DC1CDB301BB76CE900E52F8B /* CoinButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinButton.m; sourceTree = "<group>"; };
+		DC1CDB321BB76D9700E52F8B /* CKShapeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKShapeView.h; sourceTree = "<group>"; };
+		DC1CDB331BB76D9700E52F8B /* CKShapeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKShapeView.m; sourceTree = "<group>"; };
+		DC7B38CA1BB86A620013936B /* CalibrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalibrationViewController.h; sourceTree = "<group>"; };
+		DC7B38CB1BB86A620013936B /* CalibrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalibrationViewController.m; sourceTree = "<group>"; };
 		DC866CE71BB34A730031EF44 /* Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scale.h; sourceTree = "<group>"; };
 		DC866CE81BB34A730031EF44 /* Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scale.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -191,6 +203,10 @@
 				DC1828931BB1DEA200997DD2 /* Instructions */,
 				DC1828521BB1D01300997DD2 /* MainViewController.h */,
 				DC1828531BB1D01300997DD2 /* MainViewController.m */,
+				DC1CDB2C1BB76B0500E52F8B /* CoinHolder.h */,
+				DC1CDB2D1BB76B0500E52F8B /* CoinHolder.m */,
+				DC1CDB2F1BB76CE900E52F8B /* CoinButton.h */,
+				DC1CDB301BB76CE900E52F8B /* CoinButton.m */,
 				DC1CDB241BB746B900E52F8B /* Spoon.h */,
 				DC1CDB251BB746B900E52F8B /* Spoon.m */,
 				DC1CDB271BB74E7000E52F8B /* LinearFunction.h */,
@@ -241,6 +257,8 @@
 		DC18288A1BB1D5DB00997DD2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				DC1CDB321BB76D9700E52F8B /* CKShapeView.h */,
+				DC1CDB331BB76D9700E52F8B /* CKShapeView.m */,
 				DC1CDB201BB605F600E52F8B /* CircularTextView.h */,
 				DC1CDB211BB605F600E52F8B /* CircularTextView.m */,
 				DC1828971BB256AF00997DD2 /* UIImage+ImageWithColor.h */,
@@ -268,6 +286,8 @@
 		DC1CDB231BB7465A00E52F8B /* Instruction VCs */ = {
 			isa = PBXGroup;
 			children = (
+				DC7B38CA1BB86A620013936B /* CalibrationViewController.h */,
+				DC7B38CB1BB86A620013936B /* CalibrationViewController.m */,
 			);
 			name = "Instruction VCs";
 			sourceTree = "<group>";
@@ -519,14 +539,18 @@
 				DC1CDB291BB74E7000E52F8B /* LinearFunction.m in Sources */,
 				DC1828921BB1DE3E00997DD2 /* InstructionViewController.m in Sources */,
 				DC1828991BB256AF00997DD2 /* UIImage+ImageWithColor.m in Sources */,
+				DC7B38CC1BB86A620013936B /* CalibrationViewController.m in Sources */,
+				DC1CDB341BB76D9700E52F8B /* CKShapeView.m in Sources */,
 				DC1CDB221BB605F600E52F8B /* CircularTextView.m in Sources */,
 				DC1828961BB229EB00997DD2 /* GhostButton.m in Sources */,
 				DC1828891BB1D5B000997DD2 /* UIColor+AppColors.m in Sources */,
 				DC1828541BB1D01300997DD2 /* MainViewController.m in Sources */,
 				DC18289C1BB263BC00997DD2 /* WeighArea.m in Sources */,
 				DC866CE91BB34A730031EF44 /* Scale.m in Sources */,
+				DC1CDB2E1BB76B0500E52F8B /* CoinHolder.m in Sources */,
 				DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */,
 				DC18284E1BB1D01300997DD2 /* main.m in Sources */,
+				DC1CDB311BB76CE900E52F8B /* CoinButton.m in Sources */,
 				DC1828861BB1D54400997DD2 /* InstructionsViewController.m in Sources */,
 				DC18288E1BB1D6B700997DD2 /* Constants.m in Sources */,
 				DC1CDB261BB746B900E52F8B /* Spoon.m in Sources */,

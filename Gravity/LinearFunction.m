@@ -52,28 +52,27 @@
         sumY2 += powf(y, 2);
     }
     
-    CGFloat denominator = (numPoints * sumX2 - sqrtf(sumX));
+    CGFloat denominator = (numPoints * sumX2 - powf(sumX, 2));
     if (denominator == 0) {
         // singular matrix. Can't solve the problem.
         NSLog(@"Could not calculate best fit!");
         return nil;
     }
     
-//    CGFloat slope = ((numPoints * sumXY) - (sumX * sumY)) / denominator;
+    CGFloat slope = ((numPoints * sumXY) - (sumX * sumY)) / denominator;
 //    CGFloat slope = ((numPoints * sumXY) - (sumX * sumY)) / (numPoints * sumX2 - sumX * sumX);
-//    CGFloat yIntercept = (sumY * sumX2 - sumX * sumXY) / denominator;
+    CGFloat yIntercept = (sumY * sumX2 - sumX * sumXY) / denominator;
 //    CGFloat yIntercept = (sumY - slope *sumX) / numPoints;
-//    CGFloat rSquared = (sumXY - sumX * sumY / numPoints)
-//                        / sqrtf(sumX2 - powf(sumX, 2)/numPoints)
-//                        * (sumY2 - powf(sumY, 2) / numPoints);
-//    CGFloat rSquared = 
+    CGFloat rSquared = (sumXY - sumX * sumY / numPoints)
+                        / sqrtf((sumX2 - powf(sumX, 2)/numPoints)
+                        * (sumY2 - powf(sumY, 2) / numPoints));
     
     
-    CGFloat slope = ((numPoints * sumXY) - (sumX * sumY)) / ((numPoints * sumX2) - (sumX * sumX));
-//    CGFloat yIntercept = ((sumY * sumX2) - (slope * sumXY))/((numPoints * sumX2) - (sumX * sumX));
-    CGFloat yIntercept = (sumY - slope * sumX) / numPoints;
-    CGFloat rSquared = ((numPoints * sumXY) - (sumX * sumY)) / (sqrt(numPoints * sumX2 - (sumX * sumX)) * sqrt(numPoints * sumY2 - (sumY * sumY)));
-
+//    CGFloat slope = ((numPoints * sumXY) - (sumX * sumY)) / ((numPoints * sumX2) - (sumX * sumX));
+////    CGFloat yIntercept = ((sumY * sumX2) - (slope * sumXY))/((numPoints * sumX2) - (sumX * sumX));
+//    CGFloat yIntercept = (sumY - slope * sumX) / numPoints;
+//    CGFloat rSquared = ((numPoints * sumXY) - (sumX * sumY)) / (sqrt(numPoints * sumX2 - (sumX * sumX)) * sqrt(numPoints * sumY2 - (sumY * sumY)));
+//
 
     return [LinearFunction linearFunctionWithSlope:slope
                                         yIntercept:yIntercept

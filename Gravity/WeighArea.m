@@ -22,7 +22,7 @@
 - (instancetype) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setBackgroundColor:[UIColor grayColor]];
+        [self setBackgroundColor:[UIColor moonGrey]];
         
         self.multipleTouchEnabled = YES;
         self.activeTouches = [NSMutableDictionary dictionary];
@@ -73,7 +73,7 @@
     NSString *infoString = @"Non-force touch";
     if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
         infoString = [NSString stringWithFormat:@"%f", touch.force];
-        NSLog(@"Force: %f", touch.force, touch.maximumPossibleForce);
+        NSLog(@"Force: %f", touch.force);
     }
     
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:infoString attributes:attributes];

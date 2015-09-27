@@ -3,31 +3,31 @@
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Gravity-29.png",
+      "filename" : "Gravity_icon-final-29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Gravity-29@2x.png",
+      "filename" : "Gravity_icon-final-29@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "Gravity-29@3x.png",
+      "filename" : "Gravity_icon-final-29@3x.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Gravity-40@2x.png",
+      "filename" : "Gravity_icon-final-40@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "Gravity-40@3x.png",
+      "filename" : "Gravity_icon-final-40@3x.png",
       "scale" : "3x"
     },
     {
@@ -43,13 +43,13 @@
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Gravity-60@2x.png",
+      "filename" : "Gravity_icon-final-60@2x.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "Gravity-60@3x.png",
+      "filename" : "Gravity_icon-final-60@3x.png",
       "scale" : "3x"
     }
   ],

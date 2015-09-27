@@ -15,10 +15,26 @@ typedef void (^VoidBlock)(void);
 // Maths
 extern const float gramToOzMultiplier;
 
+// Coin Types
+typedef NS_ENUM(NSInteger, CoinType) {
+    CoinTypeUSPenny,
+    CoinTypeUSNickel,
+    CoinTypeUSDime,
+    CoinTypeUSQuarter
+};
+
+// Coin Weights
+extern const float coinWeightUSPenny;
+extern const float coinWeightUSNickel;
+extern const float coinWeightUSDime;
+extern const float coinWeightUSQuarter;
+
 // Flags
 extern NSString * const InstructionsCompleted;
 extern NSString * const DefaultUnits;
 
 // Fonts
-extern NSString * const AvenirNextRegular;
+extern NSString * const AvenirNextMedium;
 extern NSString * const AvenirNextDemiBold;
+extern NSString * const AvenirNextBold;
+extern NSString * const AvenirNextHeavy;

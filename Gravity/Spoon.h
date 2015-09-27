@@ -13,4 +13,11 @@
 @property (nonatomic, readonly) CGFloat spoonForce;
 @property (strong, nonatomic, readonly) NSDictionary *calibrationForces;
 
+- (void) recordBaseForce:(CGFloat)force;
+- (void) recordCalibrationForce:(CGFloat)force forKnownWeight:(CGFloat)knownWeight;
+
+- (CGFloat) spoonWeight;
+- (CGFloat) weightFromForce:(CGFloat)force;
+- (BOOL) isCalibrated;
+
 @end

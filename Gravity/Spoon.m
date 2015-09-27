@@ -12,7 +12,6 @@
 @interface Spoon ()
 @property (nonatomic, readwrite) CGFloat spoonForce;
 @property (strong, nonatomic, readwrite) NSDictionary *calibrationForces;
-
 @property (strong, nonatomic) LinearFunction *bestFit;
 
 @end
@@ -37,6 +36,7 @@
     NSMutableDictionary *newCalibrationForces = [self.calibrationForces mutableCopy];
     [newCalibrationForces setObject:@(force) forKey:@(knownWeight)];
     self.calibrationForces = newCalibrationForces;
+    [self calculateBestFit];
 }
 
 - (CGFloat) spoonWeight {
@@ -53,11 +53,16 @@
     NSArray *yValues = [self.calibrationForces allKeys];
     
     self.bestFit = [LinearFunction bestFitWithXValues:xValues yValues:yValues];
+    NSLog(@"New Best Fit: y = %.3fx + %.3f", self.bestFit.slope, self.bestFit.yIntercept);
 }
 
 // Returns weight in grams
 - (CGFloat) weightFromForce:(CGFloat)force {
     return [self.bestFit solveGivenX:force];
+}
+
+- (BOOL) isCalibrated {
+    return ([self.calibrationForces count] >= 4);
 }
 
 @end

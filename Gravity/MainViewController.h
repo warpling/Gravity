@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 #import "WeighArea.h"
 #import "Scale.h"
+#import "CoinHolder.h"
 
-@interface MainViewController : UIViewController <ScaleDisplayDelegate, WeighAreaEventsDelegate, UITraitEnvironment>
+@interface MainViewController : UIViewController <ScaleDisplayDelegate, WeighAreaEventsDelegate, UITraitEnvironment, CoinSelectionDelegate>
 
 @property (strong, nonatomic) Scale *scale;
 
