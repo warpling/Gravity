@@ -281,7 +281,6 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             NSLog(@">> Remove Spoon");
                         
             [self.buttonBar removeAllArrangedSubviewsFromSuperView];
-            [self.buttonBar addArrangedSubview:self.resetButton];
             
             [self.headerLabel setText:@"Remove spoon to continue"];
             [self.coins setHidden:YES];

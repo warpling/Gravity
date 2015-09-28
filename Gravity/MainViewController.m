@@ -204,7 +204,8 @@ static const CGFloat buttonsMaxHeight = 60;
 #pragma mark WeighAreaEventsDelegate
 
 - (void) singleTouchDetectedWithForce:(CGFloat)force maximumPossibleForce:(CGFloat)maxiumPossibleForce {
-    self.weighArea.backgroundColor = [UIColor moonGrey];
+    [self.view setBackgroundColor:[UIColor gravityPurple]];
+    [self.weighArea setBackgroundColor:[UIColor moonGrey]];
 
     // TODO: It's unclear if this value ever changes, so we'll just record it everytime
     [self.scale setMaximumPossibleForce:maxiumPossibleForce];
@@ -212,11 +213,13 @@ static const CGFloat buttonsMaxHeight = 60;
 }
 
 - (void) multipleTouchesDetected {
-    self.weighArea.backgroundColor = [UIColor roverRed];
+    [self.view setBackgroundColor:[UIColor roverRedDark]];
+    [self.weighArea setBackgroundColor:[UIColor roverRed]];
 }
 
 - (void) allTouchesEnded {
-    self.weighArea.backgroundColor = [UIColor moonGrey];
+    [self.view setBackgroundColor:[UIColor gravityPurple]];
+    [self.weighArea setBackgroundColor:[UIColor moonGrey]];
 }
 
 - (void) debugDataUpdated:(NSString*)debugData {
