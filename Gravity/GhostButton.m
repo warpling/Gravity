@@ -57,6 +57,7 @@ static const CGFloat verticalInsets = 9;
     self.layer.cornerRadius = self.bounds.size.height/2.f;
 }
 
+
 //- (CGSize) intrinsicContentSize {
 //    return [super intrinsicContentSize];
 //}

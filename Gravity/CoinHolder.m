@@ -1,4 +1,4 @@
-//
+
 //  CoinHolder.m
 //  Gravity
 //
@@ -12,6 +12,7 @@
 
 @interface CoinHolder ()
     @property (strong, nonatomic) NSArray *coinButtons;
+    @property (nonatomic) NSUInteger activeCoinButtonIndex;
 @end
 
 @implementation CoinHolder
@@ -37,7 +38,7 @@ static const CGFloat coinSpacing = 20;
         self.coinButtons = [NSArray new];
         
         for (int ctr = 0; ctr < numCoins; ctr++) {
-            CoinButton *coinButton = [CoinButton buttonWithCoinType:CoinTypeUSQuarter color:[UIColor whiteColor] highlightColor:[UIColor gravityPurple]];
+            CoinButton *coinButton = [CoinButton buttonWithCoinType:CoinTypeUSQuarter fillColor:[UIColor gravityPurple] accentColor:[UIColor whiteColor] disabledAccentColor:[UIColor gravityPurpleDark]];
             
             [coinButton makeConstraints:^(MASConstraintMaker *make) {
                 make.height.equalTo(coinButton.width);
@@ -50,6 +51,8 @@ static const CGFloat coinSpacing = 20;
             self.coinButtons = [self.coinButtons arrayByAddingObject:coinButton];
             [self addArrangedSubview:coinButton];
         }
+        
+        [self setActiveCoinButtonIndex:0];
     }
     return self;
 }
@@ -57,12 +60,26 @@ static const CGFloat coinSpacing = 20;
 - (void) coinSelected:(NSUInteger)coinIndex {
     NSLog(@"Coin Selected: %ld", coinIndex);
     [self.coinSelectionDelegate coinSelected:coinIndex];
+    self.activeCoinButtonIndex++;
+}
+
+- (void) setActiveCoinButtonIndex:(NSUInteger)activeCoinButtonIndex {
+    _activeCoinButtonIndex = activeCoinButtonIndex;
+    
+    for (int ctr = 0; ctr < self.numCoins; ctr++) {
+        [self.coinButtons[ctr] setEnabled:(ctr <= activeCoinButtonIndex)];
+        [self.coinButtons[ctr] setUserInteractionEnabled:(ctr == activeCoinButtonIndex)];
+    }
 }
 
 - (void) reset {
+    
+    // Reset userInteractionEnabled and enabled for all buttons
+    self.activeCoinButtonIndex = 0;
+    
+    // Unselect all buttons
     for (CoinButton *coinButton in self.coinButtons) {
         [coinButton setSelected:NO];
-        [coinButton setUserInteractionEnabled:YES];
     }
 }
 

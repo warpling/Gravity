@@ -13,6 +13,6 @@
 
 @property (nonatomic, copy) VoidBlock action;
 
-+ (instancetype) buttonWithCoinType:(CoinType)coinType color:(UIColor*)color highlightColor:(UIColor*)highlightColor;
++ (instancetype) buttonWithCoinType:(CoinType)coinType fillColor:(UIColor*)fillColor accentColor:(UIColor*)accentColor disabledAccentColor:(UIColor*)disabledAccentColor;
 
 @end
