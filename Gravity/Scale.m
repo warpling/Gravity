@@ -32,6 +32,7 @@
  */
 - (void) recordNewForce:(CGFloat)currentForce {
     _currentForce = currentForce;
+
     [self sendOutWeightChange];
 }
 
@@ -42,8 +43,15 @@
 
 - (void) sendOutWeightChange {
     
-    CGFloat rawWeight, tareWeight;
     
+    // Maximum weight reached, display MAX and get out
+    if ((self.maximumPossibleForce - self.currentForce) <= 0.001) {
+        [self.scaleOutputDelegate currentWeightAtMaximum];
+        return;
+    }
+    
+    // Go about business as usual
+    CGFloat rawWeight, tareWeight;
     if ([self.spoon isCalibrated]) {
         rawWeight   = [self.spoon weightFromForce:self.currentForce];
         tareWeight  = [self.spoon weightFromForce:self.tareForce];

@@ -16,6 +16,7 @@
 @protocol ScaleOutputDelegate <NSObject>
 
 - (void) currentWeightDidChange:(CGFloat)grams;
+- (void) currentWeightAtMaximum;
 
 @end
 

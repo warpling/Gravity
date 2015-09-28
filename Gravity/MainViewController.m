@@ -187,6 +187,9 @@ static const CGFloat buttonsMaxHeight = 60;
 
 - (void) singleTouchDetectedWithForce:(CGFloat)force maximumPossibleForce:(CGFloat)maxiumPossibleForce {
     self.weighArea.backgroundColor = [UIColor moonGrey];
+
+    // TODO: It's unclear if this value ever changes, so we'll just record it everytime
+    [self.scale setMaximumPossibleForce:maxiumPossibleForce];
     [self.scale recordNewForce:force];
 }
 

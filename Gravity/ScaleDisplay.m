@@ -63,4 +63,8 @@
     [self setWeight:grams];
 }
 
+- (void) currentWeightAtMaximum {
+    [self setText:@"MAX"];
+}
+
 @end
