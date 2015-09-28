@@ -15,11 +15,11 @@
         case CoinTypeUSPenny:
             return CoinWeightUSPenny;
         case CoinTypeUSNickel:
-            return CoinTypeUSNickel;
+            return CoinWeightUSNickel;
         case CoinTypeUSDime:
-            return CoinTypeUSDime;
+            return CoinWeightUSDime;
         case CoinTypeUSQuarter:
-            return CoinTypeUSQuarter;
+            return CoinWeightUSQuarter;
     }
 }
 

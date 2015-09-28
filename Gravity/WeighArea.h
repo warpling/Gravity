@@ -13,6 +13,7 @@
 - (void) singleTouchDetectedWithForce:(CGFloat)force maximumPossibleForce:(CGFloat)maxiumPossibleForce;
 - (void) multipleTouchesDetected;
 
+@optional
 - (void) debugDataUpdated:(NSString*)debugData;
 
 @end
@@ -20,6 +21,12 @@
 @interface WeighArea : UIView
 
 @property (weak, nonatomic) id<WeighAreaEventsDelegate> weightAreaDelegate;
-@property (nonatomic) BOOL forceAvailable;
+//@property (nonatomic, readonly) BOOL forceAvailable;
+
+// Could be stale! Must check timestamp before using
+@property (nonatomic, readonly) UITouch *lastActiveTouch;
+
+@property (nonatomic) BOOL debugLabelsEnabled;
+@property (nonatomic) BOOL touchCirclesEnabled;
 
 @end

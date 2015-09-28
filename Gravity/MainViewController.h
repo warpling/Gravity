@@ -17,5 +17,7 @@
 
 @property (strong, nonatomic) Scale *scale;
 
+@property (nonatomic) BOOL debugInfoBarEnabled;
+
 @end
 

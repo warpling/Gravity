@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "CoinHolder.h"
 #import "Spoon.h"
+#import "WeighArea.h"
 
 @protocol SpoonCalibrationDelegate <NSObject>
-- (void) newSpoonCalibrated:(Spoon*)spoon;
+- (void) spoonCalibrated:(Spoon*)spoon;
 @end
 
 
-@interface CalibrationViewController : UIViewController <CoinSelectionDelegate>
+@interface CalibrationViewController : UIViewController <CoinSelectionDelegate, WeighAreaEventsDelegate>
 
 @property (weak, nonatomic) id<SpoonCalibrationDelegate> spoonCalibrationDelegate;
 

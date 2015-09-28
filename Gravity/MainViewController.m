@@ -25,6 +25,7 @@
 @property (strong, nonatomic) UILabel *outputLabel;
 @property (strong, nonatomic) UIButton *tareButton;
 @property (strong, nonatomic) UIButton *unitsButton;
+@property (strong, nonatomic) UIView *buttonDivider;
 
 @property (strong, nonatomic) CoinHolder *coinHolder;
 
@@ -45,9 +46,12 @@ static const CGFloat buttonsMaxHeight = 60;
     self.scale = [[Scale alloc] initWithSpoon:nil];
     [self.scale setScaleDisplayDelegate:self];
     
+    [self.view setBackgroundColor:[UIColor gravityPurple]];
 
     self.weighArea = [WeighArea new];
-    self.weighArea.weightAreaDelegate = self;
+    [self.weighArea setWeightAreaDelegate:self];
+    [self.weighArea setTouchCirclesEnabled:YES];
+    [self.weighArea setBackgroundColor:[UIColor moonGrey]];
     [self.view addSubview:self.weighArea];
     
 //    self.coinHolder = [[CoinHolder alloc] initWithFrame:CGRectMake(0, 30, self.view.bounds.size.width, 50) coinType:CoinTypeUSQuarter numCoins:4];
@@ -62,6 +66,7 @@ static const CGFloat buttonsMaxHeight = 60;
     [debugLabel setTextAlignment:NSTextAlignmentLeft];
     [debugLabel setNumberOfLines:0];
     [debugLabel setAdjustsFontSizeToFitWidth:YES];
+    [debugLabel setHidden:!self.debugInfoBarEnabled];
     self.debugLabel = debugLabel;
     [self.debugLabel setText:@"––––"];
     [self.view addSubview:self.debugLabel];
@@ -69,7 +74,7 @@ static const CGFloat buttonsMaxHeight = 60;
     
     UILabel *outputLabel = [UILabel new];
     [outputLabel setBackgroundColor:[UIColor gravityPurpleDark]];
-    [outputLabel setFont:[UIFont fontWithName:AvenirNextBold size:42]];
+    [outputLabel setFont:[UIFont fontWithName:AvenirNextBold size:46]];
     [outputLabel setTextColor:[UIColor whiteColor]];
     [outputLabel setTextAlignment:NSTextAlignmentCenter];
     [outputLabel setNumberOfLines:1];
@@ -100,6 +105,11 @@ static const CGFloat buttonsMaxHeight = 60;
     self.unitsButton = unitsButton;
     [self.view addSubview:unitsButton];
     
+    UIView *buttonDivider = [UIView new];
+    [buttonDivider setBackgroundColor:[UIColor gravityPurpleDark]];
+    self.buttonDivider = buttonDivider;
+    [self.view addSubview:buttonDivider];
+    
     
     self.instructionsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InstructionsViewController"];
 
@@ -116,11 +126,7 @@ static const CGFloat buttonsMaxHeight = 60;
     [self.weighArea makeConstraints:^(MASConstraintMaker *make) {
         UIView *topLayoutGuide = (UIView*)self.topLayoutGuide;
         make.top.equalTo(topLayoutGuide.bottom);
-        #ifdef DEBUG
-        make.bottom.equalTo(self.debugLabel.top);
-        #else
         make.bottom.equalTo(self.outputLabel.top);
-        #endif
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
     }];
@@ -155,6 +161,15 @@ static const CGFloat buttonsMaxHeight = 60;
         make.height.greaterThanOrEqualTo(@(outputLabelMinHeight));
     }];
     
+    [self.buttonDivider makeConstraints:^(MASConstraintMaker *make) {
+        CGFloat width = 2;
+        CGFloat verticalInset = 5;
+        make.width.equalTo(@(width));
+        make.top.equalTo(self.tareButton).with.offset(verticalInset);
+        make.bottom.equalTo(self.tareButton).with.offset(-verticalInset);
+        make.left.equalTo(self.tareButton.right).with.offset(-(width/2));
+    }];
+    
     #ifdef DEBUG
     [self.debugLabel makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
@@ -169,6 +184,8 @@ static const CGFloat buttonsMaxHeight = 60;
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:InstructionsCompleted] boolValue]) {
         [self showIntroAnimated:NO];
     }
+    
+    [self setDebugInfoBarEnabled:NO];
 }
 
 #pragma mark ScaleDisplayDelegate
@@ -206,6 +223,11 @@ static const CGFloat buttonsMaxHeight = 60;
     NSString *massString = [massFormatter stringFromValue:grams unit:NSMassFormatterUnitGram];
     
     [self.outputLabel setText:massString];
+}
+
+- (void) setDebugInfoBarEnabled:(BOOL)debugInfoBarEnabled {
+    _debugInfoBarEnabled = debugInfoBarEnabled;
+    self.debugLabel.hidden = !debugInfoBarEnabled;
 }
 
 #pragma mark Intro
@@ -249,7 +271,7 @@ static const CGFloat buttonsMaxHeight = 60;
 }
 
 #pragma mark SpoonCalibrationDelegate
-- (void) newSpoonCalibrated:(Spoon *)spoon {
+- (void) spoonCalibrated:(Spoon *)spoon {
     [self.scale setSpoon:spoon];
 }
 
@@ -266,12 +288,6 @@ static const CGFloat buttonsMaxHeight = 60;
         case UIForceTouchCapabilityAvailable:
             NSLog(@"Force Touch enabled");
             break;
-    }
-    
-    if (forceTouchCapability == UIForceTouchCapabilityAvailable) {
-        [self.weighArea setForceAvailable:YES];
-    } else {
-        [self.weighArea setForceAvailable:NO];
     }
 }
 

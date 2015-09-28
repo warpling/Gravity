@@ -27,6 +27,8 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 
 @property (strong, nonatomic) Spoon *spoon;
 
+@property (strong, nonatomic) WeighArea *weighArea;
+
 @property (strong, nonatomic) UIView *statusBarBackground;
 @property (strong, nonatomic) UILabel *headerLabel;
 @property (strong, nonatomic) UILabel *topLabel;
@@ -45,6 +47,8 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 
 
 @implementation CalibrationViewController
+
+static CGFloat const staleTimestampThreshold = 0.2;
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -96,11 +100,14 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     
     [self setupButtonBar];
     
-//
-    [self.headerLabel setText:@"Set device on flat surface"];
-    [self.topLabel setText:@"Gently place spoon below"];
-    [self.bottomLabel setText:@"Place one quarter into the spoon and press the icon below."];
-//
+    
+    // Weigh area
+    self.weighArea = [WeighArea new];
+    self.weighArea.weightAreaDelegate = self;
+    [self.view addSubview:self.weighArea];
+    
+
+
     
     [self setupViewConstraints];
 }
@@ -110,6 +117,8 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     
     [self resetCalibration];
     [self setCalibrationStep:CalibrationStepLayFlat];
+    
+    [self.headerLabel setText:@"Set device on flat surface"];
 }
 
 - (void) setupButtonBar {
@@ -138,11 +147,6 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     [doneButton setTitle:@"Finish" forState:UIControlStateNormal];
     self.doneButton = doneButton;
     
-//    self.buttonSpacer1 = [UIView new];
-//    self.buttonSpacer2 = [UIView new];
-//
-//    [self.buttonBar addArrangedSubview:self.resetButton];
-//    [self.buttonBar addArrangedSubview:self.doneButton];
     [self.view addSubview:self.buttonBar];
 }
 
@@ -193,47 +197,20 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         make.width.equalTo(self.view).with.offset(-20);
     }];
     
-    
     [self.buttonBar makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view).priorityHigh();
         make.centerX.equalTo(self.view);
         make.height.lessThanOrEqualTo(@100);
-//        make.width.greaterThanOrEqualTo(@200);
     }];
     
-//    [self.nextButton makeConstraints:^(MASConstraintMaker *make) {
-//        make.leading.equalTo(self.buttonBar.leading);
-//        make.trailing.equalTo(self.buttonSpacer1.leading);
-//        make.centerY.equalTo(self.buttonBar);
-//    }];
-//    
-//    [self.buttonSpacer1 makeConstraints:^(MASConstraintMaker *make) {
-//        make.width.greaterThanOrEqualTo(@(buttonSpacerMinWidth));
-//        make.width.equalTo(@(buttonSpacerWidth));
-//        make.centerY.equalTo(self.buttonBar);
-//        make.leading.equalTo(self.nextButton.trailing);
-//        make.trailing.equalTo(self.resetButton.leading);
-//    }];
-//    
-//    [self.resetButton makeConstraints:^(MASConstraintMaker *make) {
-//        make.leading.equalTo(self.buttonSpacer1.trailing);
-//        make.trailing.equalTo(self.buttonSpacer2.leading);
-//        make.centerY.equalTo(self.buttonBar);
-//    }];
-//    
-//    [self.buttonSpacer2 makeConstraints:^(MASConstraintMaker *make) {
-//        make.width.equalTo(self.buttonSpacer1);
-//        make.centerY.equalTo(self.buttonBar);
-//        make.leading.equalTo(self.resetButton.trailing);
-//        make.trailing.equalTo(self.doneButton.leading);
-//    }];
-//    
-//    [self.doneButton makeConstraints:^(MASConstraintMaker *make) {
-//        make.trailing.equalTo(self.buttonBar.trailing);
-//        make.centerY.equalTo(self.buttonBar);
-//    }];
     
-
+    // Transparent weigh area
+    [self.weighArea makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.headerLabel.bottom);
+        make.bottom.equalTo(self.coins.top);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
+    }];
 }
 
 #pragma mark - Calibration State
@@ -296,13 +273,6 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             [self.topLabel setText:@""];
             [self.coins setHidden:NO];
             [self.bottomLabel setText:@"Place one quarter into the spoon and press the icon below"];
-//            [self.bottomLabel setText:@"Place another quarter into the spoon and press the next icon"];
-//            [self.bottomLabel setText:@"Do that again!"];
-//            [self.bottomLabel setText:@"One last time!"];
-//            
-//            if ([self.coins allCoinsSelected]) {
-//                [self setCalibrationStep:CalibrationStepDone];;
-//            }
 
             break;
         }
@@ -349,19 +319,46 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 - (void) recordSpoonForce {
     
     // record it
-    [self.spoon recordBaseForce:0];
-//    [self.spoon recordCalibrationForce:0 forKnownWeight:0];
+    UITouch *lastActiveTouch = self.weighArea.lastActiveTouch;
+//    CGFloat systemUptime = [[NSProcessInfo processInfo] systemUptime];
+//    if ((systemUptime - touch.timestamp) < staleTimestampThreshold) {
+    if (lastActiveTouch) {
+        [self.spoon recordBaseForce:lastActiveTouch.force];
+        //    [self.spoon recordCalibrationForce:0 forKnownWeight:0];
+
+        [self setCalibrationStep:CalibrationStepAddCoins];
+    }
+    else {
+//        NSLog(@"Record spoon weight: touch was stale by %fs", (systemUptime - lastActiveTouch.timestamp));
+
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No spoon?" message:@"Gravity isn't detecting a metal spoon on the screen. Try slightly dampening the back of the spoon or trying a new spoon!" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+//            [alert dismissViewControllerAnimated:YES completion:^{}];
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 
     
-    [self setCalibrationStep:CalibrationStepAddCoins];
 }
 
 
 
 - (void) done {
+    [self.spoonCalibrationDelegate spoonCalibrated:self.spoon];
+    
     [self dismissViewControllerAnimated:YES completion:^{
         //
     }];
+}
+
+#pragma mark - WeighAreaEventDelegate
+
+- (void) singleTouchDetectedWithForce:(CGFloat)force maximumPossibleForce:(CGFloat)maxiumPossibleForce {
+    [self.weighArea setBackgroundColor:[UIColor clearColor]];
+}
+
+- (void) multipleTouchesDetected {
+    [self.weighArea setBackgroundColor:[UIColor roverRed]];
 }
 
 #pragma mark CoinSelectionDelegate
@@ -370,7 +367,26 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     
     // record it
     CGFloat knownWeight = (coinIndex+1) * [CoinInfo knownWeightForCoinType:[self.coins coinType]];
-    [self.spoon recordCalibrationForce:0 forKnownWeight:knownWeight];
+    
+    UITouch *lastActiveTouch = self.weighArea.lastActiveTouch;
+//    CGFloat systemUptime = [[NSProcessInfo processInfo] systemUptime];
+//    if ((systemUptime - touch.timestamp) < staleTimestampThreshold) {
+    if (lastActiveTouch) {
+            [self.spoon recordCalibrationForce:lastActiveTouch.force forKnownWeight:knownWeight];
+    }
+    else {
+//        NSLog(@"Record coin %d: touch was stale by %fs", (int)(coinIndex+1), (systemUptime - touch.timestamp));
+        
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No spoon?" message:@"Gravity isn't detecting a metal spoon on the screen. Try slightly dampening the back of the spoon or trying a new spoon!" preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Ignore" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            [alert dismissViewControllerAnimated:YES completion:nil];
+        }]];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Restart Calibration" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+//            [alert dismissViewControllerAnimated:YES completion:nil];
+            [self resetCalibration];
+        }]];
+        [self presentViewController:alert animated:YES completion:nil];
+    }
     
     // HACK
     if (coinIndex == ([self.coins numCoins] - 1)) {

@@ -10,43 +10,54 @@
 #import "CircularTextView.h"
 
 @interface WeighArea ()
-
-//@property (strong, nonatomic) NSMutableSet *activeTouches;
 @property (strong, nonatomic) NSMutableDictionary *activeTouches;
-
+@property (nonatomic, readwrite) UITouch *lastActiveTouch;
+@property (nonatomic) BOOL forceAvailable;
 @end
 
 
 @implementation WeighArea
 
+static CGFloat const touchCircleSize = 120;
+
 - (instancetype) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
-        [self setBackgroundColor:[UIColor moonGrey]];
         
         self.multipleTouchEnabled = YES;
         self.activeTouches = [NSMutableDictionary dictionary];
+        
+        UIForceTouchCapability forceTouchCapability = [self.traitCollection forceTouchCapability];
+        self.forceAvailable = (forceTouchCapability == UIForceTouchCapabilityAvailable);
     }
     return self;
 }
 
-#pragma mark
+#pragma mark - In case Force permissions change
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection {
+    UIForceTouchCapability forceTouchCapability = [self.traitCollection forceTouchCapability];
+    self.forceAvailable = (forceTouchCapability == UIForceTouchCapabilityAvailable);
+}
+
+#pragma mark - Touch Management
 
 - (void) registerTouch:(UITouch*)touch {
-    UIView *circle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 100, 100)];
+    UIView *circle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, touchCircleSize, touchCircleSize)];
     circle.backgroundColor = [UIColor clearColor];
     circle.layer.backgroundColor = [[UIColor clearColor] CGColor];
     circle.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.8] CGColor];
     circle.layer.borderWidth = 3;
-    circle.layer.cornerRadius = 50;
+    circle.layer.cornerRadius = touchCircleSize/2.f;
     circle.center = [touch locationInView:self];
+    circle.hidden = !self.touchCirclesEnabled;
     [self addSubview:circle];
     
     CGFloat inset = -30;
     CircularTextView *circularLabel = [[CircularTextView alloc] initWithFrame:CGRectInset(circle.bounds, inset, inset)];
     [circle addSubview:circularLabel];
     circularLabel.backgroundColor = [UIColor clearColor];
-    
+    circularLabel.hidden = !self.debugLabelsEnabled;
     
     [self.activeTouches setObject:circle forKey:[NSValue valueWithNonretainedObject:touch]];
 }
@@ -93,7 +104,7 @@
         [self updateTouch:touch];
     }
     
-    [self updateDebugInfo];
+    [self touchesDidChange];
 }
 
 - (void) touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -101,7 +112,7 @@
         [self updateTouch:touch];
     }
 
-    [self updateDebugInfo];
+    [self touchesDidChange];
 }
 
 - (void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -109,7 +120,7 @@
         [self deregisterTouch:touch];
     }
     
-    [self updateDebugInfo];
+    [self touchesDidChange];
 }
 
 - (void) touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
@@ -117,18 +128,24 @@
         [self deregisterTouch:touch];
     }
     
-    [self updateDebugInfo];
+    [self touchesDidChange];
 }
 
 #pragma mark Debug Stats
-- (void) updateDebugInfo {
+- (void) touchesDidChange {
     
     if (self.forceAvailable) {
         if ([self.activeTouches count] > 1) {
+            self.lastActiveTouch = nil;
             [self.weightAreaDelegate multipleTouchesDetected];
-        } else {
+        }
+        else if ([self.activeTouches count] == 1) {
             UITouch *touch = [[[self.activeTouches allKeys] firstObject] nonretainedObjectValue];
+            self.lastActiveTouch = touch;
             [self.weightAreaDelegate singleTouchDetectedWithForce:touch.force maximumPossibleForce:touch.maximumPossibleForce];
+        }
+        else {
+            self.lastActiveTouch = nil;
         }
     }
     
@@ -143,7 +160,9 @@
         }
     }
     
-    [self.weightAreaDelegate debugDataUpdated:debugString];
+    if ([self.weightAreaDelegate respondsToSelector:@selector(debugDataUpdated:)]) {
+        [self.weightAreaDelegate debugDataUpdated:debugString];
+    }
 }
 
 @end
