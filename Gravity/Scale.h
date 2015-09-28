@@ -29,13 +29,11 @@
 
 // The system reported force maximum value
 @property (nonatomic) CGFloat maximumPossibleForce;
-// TODO: hide behind recordCurrentForce: method
+
 // The current force from a touch
 @property (nonatomic, setter=recordNewForce:) CGFloat currentForce;
-// The current set tare in grams
-@property (nonatomic, readonly) CGFloat tareMass;
-// The current estimated mass in grams.
-@property (nonatomic, readonly) CGFloat currentMass;
+// The recorded tare force
+@property (nonatomic, readonly) CGFloat tareForce;
 
 @property (weak, nonatomic) id<ScaleOutputDelegate> scaleOutputDelegate;
 
