@@ -20,7 +20,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     CalibrationStepLayFlat,
     CalibrationStepWeighSpoon,
     CalibrationStepAddCoins,
-    CalibrationStepDone
+    CalibrationStepFinish
 };
 
 @property (nonatomic) CalibrationStep calibrationStep;
@@ -41,14 +41,14 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 @property (strong, nonatomic) UIView *buttonSpacer2;
 @property (strong, nonatomic) GhostButton *nextButton;
 @property (strong, nonatomic) GhostButton *resetButton;
-@property (strong, nonatomic) GhostButton *doneButton;
+@property (strong, nonatomic) GhostButton *finishButton;
 
 @end
 
 
 @implementation CalibrationViewController
 
-static CGFloat const staleTimestampThreshold = 0.2;
+//static CGFloat const staleTimestampThreshold = 0.2;
 
 - (void) viewDidLoad {
     [super viewDidLoad];
@@ -141,11 +141,11 @@ static CGFloat const staleTimestampThreshold = 0.2;
     [resetButton setTitle:@"Reset" forState:UIControlStateNormal];
     self.resetButton = resetButton;
     
-    GhostButton *doneButton = [GhostButton new];
-    doneButton.fillColor = [UIColor whiteColor];
-    doneButton.borderColor = [UIColor gravityPurple];
-    [doneButton setTitle:@"Finish" forState:UIControlStateNormal];
-    self.doneButton = doneButton;
+    GhostButton *finishButton = [GhostButton new];
+    finishButton.fillColor = [UIColor whiteColor];
+    finishButton.borderColor = [UIColor gravityPurple];
+    [finishButton setTitle:@"Finish" forState:UIControlStateNormal];
+    self.finishButton = finishButton;
     
     [self.view addSubview:self.buttonBar];
 }
@@ -277,7 +277,7 @@ static CGFloat const staleTimestampThreshold = 0.2;
             break;
         }
             
-        case CalibrationStepDone:
+        case CalibrationStepFinish:
         {
             NSLog(@">> Done");
             
@@ -286,12 +286,12 @@ static CGFloat const staleTimestampThreshold = 0.2;
             [self.resetButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
             [self.resetButton addTarget:self action:@selector(resetCalibration) forControlEvents:UIControlEventTouchUpInside];
 
-            [self.doneButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
-            [self.doneButton addTarget:self action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
+            [self.finishButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+            [self.finishButton addTarget:self action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
 
             [self.buttonBar removeAllArrangedSubviewsFromSuperView];
             [self.buttonBar addArrangedSubview:self.resetButton];
-            [self.buttonBar addArrangedSubview:self.doneButton];
+            [self.buttonBar addArrangedSubview:self.finishButton];
             
             [self.topLabel setText:@""];
             [self.coins setHidden:NO];
@@ -390,7 +390,7 @@ static CGFloat const staleTimestampThreshold = 0.2;
     
     // HACK
     if (coinIndex == ([self.coins numCoins] - 1)) {
-        [self setCalibrationStep:CalibrationStepDone];
+        [self setCalibrationStep:CalibrationStepFinish];
     }
 }
 
