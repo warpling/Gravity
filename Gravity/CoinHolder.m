@@ -11,8 +11,8 @@
 #import "Masonry.h"
 
 @interface CoinHolder ()
-    @property (strong, nonatomic) NSArray *coinButtons;
-    @property (nonatomic) NSUInteger activeCoinButtonIndex;
+@property (strong, nonatomic) NSArray *coinButtons;
+@property (nonatomic, readwrite) NSUInteger activeCoinButtonIndex;
 @end
 
 @implementation CoinHolder
@@ -67,8 +67,11 @@ static const CGFloat coinSpacing = 20;
     _activeCoinButtonIndex = activeCoinButtonIndex;
     
     for (int ctr = 0; ctr < self.numCoins; ctr++) {
-        [self.coinButtons[ctr] setEnabled:(ctr <= activeCoinButtonIndex)];
-        [self.coinButtons[ctr] setUserInteractionEnabled:(ctr == activeCoinButtonIndex)];
+        CoinButton *button = self.coinButtons[ctr];
+        // Use existing value or reset depending on position
+        [button setSelected:((ctr < activeCoinButtonIndex) ? button.selected : NO)];
+        [button setEnabled:(ctr <= activeCoinButtonIndex)];
+        [button setUserInteractionEnabled:(ctr == activeCoinButtonIndex)];
     }
 }
 

@@ -20,10 +20,12 @@
 @interface CoinHolder : UIStackView
 
 @property (nonatomic, readonly) CoinType coinType;
+@property (nonatomic, readonly) NSUInteger activeCoinButtonIndex;
 @property (nonatomic, readonly) NSUInteger numCoins;
 @property (weak, nonatomic) id<CoinSelectionDelegate> coinSelectionDelegate;
 
 - (instancetype) initWithFrame:(CGRect)frame coinType:(CoinType)coinType numCoins:(NSUInteger)numCoins;
+- (void) setActiveCoinButtonIndex:(NSUInteger)activeCoinButtonIndex;
 - (void) reset;
 
 @end

@@ -146,6 +146,7 @@ static CGFloat const touchCircleSize = 120;
         }
         else {
             self.lastActiveTouch = nil;
+            [self.weightAreaDelegate allTouchesEnded];
         }
     }
     

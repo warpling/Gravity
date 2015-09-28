@@ -11,6 +11,7 @@
 @protocol WeighAreaEventsDelegate <NSObject>
 
 - (void) singleTouchDetectedWithForce:(CGFloat)force maximumPossibleForce:(CGFloat)maxiumPossibleForce;
+- (void) allTouchesEnded;
 - (void) multipleTouchesDetected;
 
 @optional

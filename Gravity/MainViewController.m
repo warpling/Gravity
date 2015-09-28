@@ -205,6 +205,10 @@ static const CGFloat buttonsMaxHeight = 60;
     self.weighArea.backgroundColor = [UIColor roverRed];
 }
 
+- (void) allTouchesEnded {
+    self.weighArea.backgroundColor = [UIColor moonGrey];
+}
+
 - (void) debugDataUpdated:(NSString*)debugData {
     [self.debugLabel setText:debugData];
 }

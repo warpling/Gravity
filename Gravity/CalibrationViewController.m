@@ -20,6 +20,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     CalibrationStepLayFlat,
     CalibrationStepWeighSpoon,
     CalibrationStepAddCoins,
+    CalibrationStepRemoveSpoon,
     CalibrationStepFinish
 };
 
@@ -217,6 +218,12 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 
 - (void) setCalibrationStep:(CalibrationStep)calibrationStep {
     _calibrationStep = calibrationStep;
+    
+    // Defaults
+    [self.headerLabel setText:@""];
+    [self.topLabel setText:@""];
+    [self.bottomLabel setText:@""];
+    [self.headerLabel setTextColor:[UIColor gravityPurple]];
 
     switch (calibrationStep) {
             
@@ -232,9 +239,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             [self.nextButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
             [self.nextButton addTarget:self action:@selector(phoneHasBeenLayedFlat) forControlEvents:UIControlEventTouchUpInside];
             
-            [self.topLabel setText:@""];
             [self.coins setHidden:YES];
-            [self.bottomLabel setText:@""];
             
             break;
         }
@@ -243,8 +248,6 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         {
             NSLog(@">> Weigh Spoon");
             
-            [self.headerLabel setTextColor:[UIColor gravityPurple]];
-
             [self.nextButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
             [self.nextButton addTarget:self action:@selector(recordSpoonForce) forControlEvents:UIControlEventTouchUpInside];
             
@@ -253,7 +256,6 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             
             [self.topLabel setText:@"Gently place spoon below"];
             [self.coins setHidden:YES];
-            [self.bottomLabel setText:@""];
             
             break;
         }
@@ -262,17 +264,31 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         {
             NSLog(@">> Add Coins");
             
-            [self.headerLabel setTextColor:[UIColor gravityPurple]];
-
             [self.resetButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
             [self.resetButton addTarget:self action:@selector(resetCalibration) forControlEvents:UIControlEventTouchUpInside];
 
             [self.buttonBar removeAllArrangedSubviewsFromSuperView];
             [self.buttonBar addArrangedSubview:self.resetButton];
             
-            [self.topLabel setText:@""];
             [self.coins setHidden:NO];
             [self.bottomLabel setText:@"Place one quarter into the spoon and press the icon below"];
+
+            break;
+        }
+            
+        case CalibrationStepRemoveSpoon:
+        {
+            NSLog(@">> Remove Spoon");
+            
+            [self.nextButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+            [self.nextButton addTarget:self action:@selector(spoonHasBeenRemoved) forControlEvents:UIControlEventTouchUpInside];
+            
+            [self.buttonBar removeAllArrangedSubviewsFromSuperView];
+            [self.buttonBar addArrangedSubview:self.resetButton];
+            
+            [self.headerLabel setText:@"Remove spoon to continue"];
+            [self.coins setHidden:YES];
+            [self.bottomLabel setText:@"Remove spoon to continue"];
 
             break;
         }
@@ -281,20 +297,17 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         {
             NSLog(@">> Done");
             
-            [self.headerLabel setTextColor:[UIColor gravityPurple]];
-
             [self.resetButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
             [self.resetButton addTarget:self action:@selector(resetCalibration) forControlEvents:UIControlEventTouchUpInside];
 
             [self.finishButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
-            [self.finishButton addTarget:self action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
+            [self.finishButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
 
             [self.buttonBar removeAllArrangedSubviewsFromSuperView];
             [self.buttonBar addArrangedSubview:self.resetButton];
             [self.buttonBar addArrangedSubview:self.finishButton];
             
-            [self.topLabel setText:@""];
-            [self.coins setHidden:NO];
+            [self.coins setHidden:YES];
             [self.bottomLabel setText:@"Very good"];
 
             break;
@@ -343,7 +356,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 
 
 
-- (void) done {
+- (void) dismiss {
     [self.spoonCalibrationDelegate spoonCalibrated:self.spoon];
     
     [self dismissViewControllerAnimated:YES completion:^{
@@ -355,6 +368,13 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 
 - (void) singleTouchDetectedWithForce:(CGFloat)force maximumPossibleForce:(CGFloat)maxiumPossibleForce {
     [self.weighArea setBackgroundColor:[UIColor clearColor]];
+}
+
+- (void) allTouchesEnded {
+    // TODO: touches could potentially end before CalibrationStepRemoveSpoon and then the user would never be able to advance without resetting
+    if (self.calibrationStep == CalibrationStepRemoveSpoon) {
+        [self setCalibrationStep:CalibrationStepFinish];
+    }
 }
 
 - (void) multipleTouchesDetected {
@@ -377,8 +397,10 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     else {
 //        NSLog(@"Record coin %d: touch was stale by %fs", (int)(coinIndex+1), (systemUptime - touch.timestamp));
         
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No spoon?" message:@"Gravity isn't detecting a metal spoon on the screen. Try slightly dampening the back of the spoon or trying a new spoon!" preferredStyle:UIAlertControllerStyleAlert];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Ignore" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No spoon?" message:@"Gravity isn't detecting a metal spoon on the screen. Try placing the spoon again or consider reseting with a new spoon." preferredStyle:UIAlertControllerStyleAlert];
+        [alert addAction:[UIAlertAction actionWithTitle:@"Let me try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            // Reset the button
+            [self.coins setActiveCoinButtonIndex:(self.coins.activeCoinButtonIndex-1)];
             [alert dismissViewControllerAnimated:YES completion:nil];
         }]];
         [alert addAction:[UIAlertAction actionWithTitle:@"Restart Calibration" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
@@ -388,9 +410,8 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         [self presentViewController:alert animated:YES completion:nil];
     }
     
-    // HACK
     if (coinIndex == ([self.coins numCoins] - 1)) {
-        [self setCalibrationStep:CalibrationStepFinish];
+        [self setCalibrationStep:CalibrationStepRemoveSpoon];
     }
 }
 
