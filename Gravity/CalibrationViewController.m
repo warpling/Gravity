@@ -279,10 +279,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         case CalibrationStepRemoveSpoon:
         {
             NSLog(@">> Remove Spoon");
-            
-            [self.nextButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
-            [self.nextButton addTarget:self action:@selector(spoonHasBeenRemoved) forControlEvents:UIControlEventTouchUpInside];
-            
+                        
             [self.buttonBar removeAllArrangedSubviewsFromSuperView];
             [self.buttonBar addArrangedSubview:self.resetButton];
             

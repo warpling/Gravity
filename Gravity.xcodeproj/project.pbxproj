@@ -10,6 +10,7 @@
 		014ADECA89824FD76824F95C /* libPods-GravityUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C27E1C97FD4D12D70540DE4A /* libPods-GravityUITests.a */; };
 		184EFB99B2DB4A8756CD293B /* libPods-Gravity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B925554E87C962CED6C12B /* libPods-Gravity.a */; };
 		8EFE43BF64FDF919A37869C4 /* libPods-GravityTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04027853D8458B91E8E80992 /* libPods-GravityTests.a */; };
+		DC094F941BB9E4680071BADA /* ScaleDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F931BB9E4680071BADA /* ScaleDisplay.m */; settings = {ASSET_TAGS = (); }; };
 		DC0CE8B31BB8729600C479E3 /* SpoonView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0CE8B21BB8729600C479E3 /* SpoonView.m */; settings = {ASSET_TAGS = (); }; };
 		DC18284E1BB1D01300997DD2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18284D1BB1D01300997DD2 /* main.m */; };
 		DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828501BB1D01300997DD2 /* AppDelegate.m */; };
@@ -68,6 +69,8 @@
 		8A4C67706398C13C2E405B4B /* Pods-Gravity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gravity.release.xcconfig"; path = "Pods/Target Support Files/Pods-Gravity/Pods-Gravity.release.xcconfig"; sourceTree = "<group>"; };
 		AEA7947AD685A68618C1FB6D /* Pods-GravityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GravityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GravityTests/Pods-GravityTests.release.xcconfig"; sourceTree = "<group>"; };
 		C27E1C97FD4D12D70540DE4A /* libPods-GravityUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GravityUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC094F921BB9E4680071BADA /* ScaleDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleDisplay.h; sourceTree = "<group>"; };
+		DC094F931BB9E4680071BADA /* ScaleDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleDisplay.m; sourceTree = "<group>"; };
 		DC0CE8B11BB8729600C479E3 /* SpoonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpoonView.h; sourceTree = "<group>"; };
 		DC0CE8B21BB8729600C479E3 /* SpoonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpoonView.m; sourceTree = "<group>"; };
 		DC1828491BB1D01300997DD2 /* Gravity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gravity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -179,6 +182,48 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		DC094F8F1BB9E3490071BADA /* CoinHolder */ = {
+			isa = PBXGroup;
+			children = (
+				DC1CDB2C1BB76B0500E52F8B /* CoinHolder.h */,
+				DC1CDB2D1BB76B0500E52F8B /* CoinHolder.m */,
+				DC1CDB2F1BB76CE900E52F8B /* CoinButton.h */,
+				DC1CDB301BB76CE900E52F8B /* CoinButton.m */,
+			);
+			name = CoinHolder;
+			sourceTree = "<group>";
+		};
+		DC094F901BB9E3590071BADA /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				DCB9D7021BB8DE6800CED19F /* CoinInfo.h */,
+				DCB9D7031BB8DE6800CED19F /* CoinInfo.m */,
+				DC1CDB241BB746B900E52F8B /* Spoon.h */,
+				DC1CDB251BB746B900E52F8B /* Spoon.m */,
+				DC1CDB271BB74E7000E52F8B /* LinearFunction.h */,
+				DC1CDB281BB74E7000E52F8B /* LinearFunction.m */,
+				DC866CE71BB34A730031EF44 /* Scale.h */,
+				DC866CE81BB34A730031EF44 /* Scale.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		DC094F911BB9E3C50071BADA /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				DC094F921BB9E4680071BADA /* ScaleDisplay.h */,
+				DC094F931BB9E4680071BADA /* ScaleDisplay.m */,
+				DC1828941BB229EB00997DD2 /* GhostButton.h */,
+				DC1828951BB229EB00997DD2 /* GhostButton.m */,
+				DC0CE8B11BB8729600C479E3 /* SpoonView.h */,
+				DC0CE8B21BB8729600C479E3 /* SpoonView.m */,
+				DC18289A1BB263BC00997DD2 /* WeighArea.h */,
+				DC18289B1BB263BC00997DD2 /* WeighArea.m */,
+				DC094F8F1BB9E3490071BADA /* CoinHolder */,
+			);
+			name = "Custom Views";
+			sourceTree = "<group>";
+		};
 		DC1828401BB1D01200997DD2 = {
 			isa = PBXGroup;
 			children = (
@@ -209,23 +254,11 @@
 				DC18288A1BB1D5DB00997DD2 /* Utilities */,
 				DC18284F1BB1D01300997DD2 /* AppDelegate.h */,
 				DC1828501BB1D01300997DD2 /* AppDelegate.m */,
+				DC094F901BB9E3590071BADA /* Models */,
 				DC1828931BB1DEA200997DD2 /* Instructions */,
 				DC1828521BB1D01300997DD2 /* MainViewController.h */,
 				DC1828531BB1D01300997DD2 /* MainViewController.m */,
-				DC1CDB2C1BB76B0500E52F8B /* CoinHolder.h */,
-				DC1CDB2D1BB76B0500E52F8B /* CoinHolder.m */,
-				DC1CDB2F1BB76CE900E52F8B /* CoinButton.h */,
-				DC1CDB301BB76CE900E52F8B /* CoinButton.m */,
-				DCB9D7021BB8DE6800CED19F /* CoinInfo.h */,
-				DCB9D7031BB8DE6800CED19F /* CoinInfo.m */,
-				DC1CDB241BB746B900E52F8B /* Spoon.h */,
-				DC1CDB251BB746B900E52F8B /* Spoon.m */,
-				DC1CDB271BB74E7000E52F8B /* LinearFunction.h */,
-				DC1CDB281BB74E7000E52F8B /* LinearFunction.m */,
-				DC866CE71BB34A730031EF44 /* Scale.h */,
-				DC866CE81BB34A730031EF44 /* Scale.m */,
-				DC18289A1BB263BC00997DD2 /* WeighArea.h */,
-				DC18289B1BB263BC00997DD2 /* WeighArea.m */,
+				DC094F911BB9E3C50071BADA /* Custom Views */,
 				DC1828551BB1D01300997DD2 /* Main.storyboard */,
 				DC1828581BB1D01300997DD2 /* Assets.xcassets */,
 				DC18285A1BB1D01300997DD2 /* LaunchScreen.storyboard */,
@@ -290,8 +323,6 @@
 				DC1828901BB1DE3E00997DD2 /* InstructionViewController.h */,
 				DC1828911BB1DE3E00997DD2 /* InstructionViewController.m */,
 				DC1CDB231BB7465A00E52F8B /* Instruction VCs */,
-				DC1828941BB229EB00997DD2 /* GhostButton.h */,
-				DC1828951BB229EB00997DD2 /* GhostButton.m */,
 			);
 			name = Instructions;
 			sourceTree = "<group>";
@@ -301,8 +332,6 @@
 			children = (
 				DC7B38CA1BB86A620013936B /* CalibrationViewController.h */,
 				DC7B38CB1BB86A620013936B /* CalibrationViewController.m */,
-				DC0CE8B11BB8729600C479E3 /* SpoonView.h */,
-				DC0CE8B21BB8729600C479E3 /* SpoonView.m */,
 			);
 			name = "Instruction VCs";
 			sourceTree = "<group>";
@@ -554,6 +583,7 @@
 				DC1CDB291BB74E7000E52F8B /* LinearFunction.m in Sources */,
 				DC1828921BB1DE3E00997DD2 /* InstructionViewController.m in Sources */,
 				DC1828991BB256AF00997DD2 /* UIImage+ImageWithColor.m in Sources */,
+				DC094F941BB9E4680071BADA /* ScaleDisplay.m in Sources */,
 				DC3C34181BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m in Sources */,
 				DC7B38CC1BB86A620013936B /* CalibrationViewController.m in Sources */,
 				DC1CDB341BB76D9700E52F8B /* CKShapeView.m in Sources */,

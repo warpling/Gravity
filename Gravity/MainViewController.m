@@ -14,6 +14,7 @@
 #import "Masonry.h"
 #import "UIColor+Additions.h"
 #import "CoinHolder.h"
+#import "ScaleDisplay.h"
 
 @interface MainViewController ()
 
@@ -22,7 +23,7 @@
 
 @property (strong, nonatomic) WeighArea *weighArea;
 @property (strong, nonatomic) UILabel *debugLabel;
-@property (strong, nonatomic) UILabel *outputLabel;
+@property (strong, nonatomic) ScaleDisplay *scaleDisplay;
 @property (strong, nonatomic) UIButton *tareButton;
 @property (strong, nonatomic) UIButton *unitsButton;
 @property (strong, nonatomic) UIView *buttonDivider;
@@ -44,7 +45,6 @@ static const CGFloat buttonsMaxHeight = 60;
     [super viewDidLoad];
     
     self.scale = [[Scale alloc] initWithSpoon:nil];
-    [self.scale setScaleDisplayDelegate:self];
     
     [self.view setBackgroundColor:[UIColor gravityPurple]];
 
@@ -72,16 +72,11 @@ static const CGFloat buttonsMaxHeight = 60;
     [self.view addSubview:self.debugLabel];
     #endif
     
-    UILabel *outputLabel = [UILabel new];
-    [outputLabel setBackgroundColor:[UIColor gravityPurpleDark]];
-    [outputLabel setFont:[UIFont fontWithName:AvenirNextBold size:46]];
-    [outputLabel setTextColor:[UIColor whiteColor]];
-    [outputLabel setTextAlignment:NSTextAlignmentCenter];
-    [outputLabel setNumberOfLines:1];
-    [outputLabel setAdjustsFontSizeToFitWidth:YES];
-    self.outputLabel = outputLabel;
-    [self.outputLabel setText:@"––––"];
-    [self.view addSubview:self.outputLabel];
+    ScaleDisplay *scaleDisplay = [ScaleDisplay new];
+    [scaleDisplay setBackgroundColor:[UIColor gravityPurpleDark]];
+    self.scaleDisplay = scaleDisplay;
+    [self.scale setScaleOutputDelegate:self.scaleDisplay];
+    [self.view addSubview:self.scaleDisplay];
     
     UIButton *tareButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [tareButton setBackgroundImage:[UIImage imageWithColor:[UIColor gravityPurple]] forState:UIControlStateNormal];
@@ -90,7 +85,7 @@ static const CGFloat buttonsMaxHeight = 60;
     [tareButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [tareButton setTitleColor:[UIColor gravityPurpleDark] forState:UIControlStateNormal];
     [tareButton setTitle:@"zero" forState:UIControlStateNormal];
-    [tareButton addTarget:self.scale action:@selector(tare) forControlEvents:UIControlEventTouchUpInside];
+    [tareButton addTarget:self action:@selector(tare) forControlEvents:UIControlEventTouchUpInside];
     self.tareButton = tareButton;
     [self.view addSubview:tareButton];
     
@@ -101,7 +96,7 @@ static const CGFloat buttonsMaxHeight = 60;
     [unitsButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [unitsButton setTitleColor:[UIColor gravityPurpleDark] forState:UIControlStateNormal];
     [unitsButton setTitle:@"units" forState:UIControlStateNormal];
-    [unitsButton addTarget:self.scale action:@selector(switchUnits) forControlEvents:UIControlEventTouchUpInside];
+    [unitsButton addTarget:self action:@selector(switchUnits) forControlEvents:UIControlEventTouchUpInside];
     self.unitsButton = unitsButton;
     [self.view addSubview:unitsButton];
     
@@ -126,7 +121,7 @@ static const CGFloat buttonsMaxHeight = 60;
     [self.weighArea makeConstraints:^(MASConstraintMaker *make) {
         UIView *topLayoutGuide = (UIView*)self.topLayoutGuide;
         make.top.equalTo(topLayoutGuide.bottom);
-        make.bottom.equalTo(self.outputLabel.top);
+        make.bottom.equalTo(self.scaleDisplay.top);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
     }];
@@ -151,7 +146,7 @@ static const CGFloat buttonsMaxHeight = 60;
         make.height.greaterThanOrEqualTo(@(buttonsMinHeight));
     }];
     
-    [self.outputLabel makeConstraints:^(MASConstraintMaker *make) {
+    [self.scaleDisplay makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
         make.bottom.equalTo(self.tareButton.top);
@@ -174,7 +169,7 @@ static const CGFloat buttonsMaxHeight = 60;
     [self.debugLabel makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
-        make.bottom.equalTo(self.outputLabel.top);
+        make.bottom.equalTo(self.scaleDisplay.top);
     }];
     #endif
 }
@@ -186,12 +181,6 @@ static const CGFloat buttonsMaxHeight = 60;
     }
     
     [self setDebugInfoBarEnabled:NO];
-}
-
-#pragma mark ScaleDisplayDelegate
-
-- (void) displayStringDidChange:(NSString*)displayString {
-    [self.outputLabel setText:displayString];
 }
 
 #pragma mark WeighAreaEventsDelegate
@@ -213,20 +202,27 @@ static const CGFloat buttonsMaxHeight = 60;
     [self.debugLabel setText:debugData];
 }
 
+#pragma UI Events
+
+- (void) tare {
+    [self.scale tare];
+}
+
+- (void) switchUnits {
+    if ([self.scaleDisplay massUnit] == NSMassFormatterUnitGram) {
+        [self.scaleDisplay setMassUnit:NSMassFormatterUnitOunce];
+    }
+    else {
+        [self.scaleDisplay setMassUnit:NSMassFormatterUnitGram];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setValue:@([self.scaleDisplay massUnit]) forKey:DefaultUnits];
+}
+
 #pragma mark UI Updating
 
 - (void) setCurrentWeight:(CGFloat)grams {
-    static NSMassFormatter *massFormatter = nil;
-    
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
-        massFormatter = [NSMassFormatter new];
-        [massFormatter setUnitStyle:NSFormattingUnitStyleShort];
-    });
-    
-    NSString *massString = [massFormatter stringFromValue:grams unit:NSMassFormatterUnitGram];
-    
-    [self.outputLabel setText:massString];
+    [self.scaleDisplay setWeight:grams];
 }
 
 - (void) setDebugInfoBarEnabled:(BOOL)debugInfoBarEnabled {

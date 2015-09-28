@@ -13,9 +13,9 @@
 #pragma mark - ScaleDisplayDelegate
 // -----------------------------------------------
 
-@protocol ScaleDisplayDelegate <NSObject>
+@protocol ScaleOutputDelegate <NSObject>
 
-- (void) displayStringDidChange:(NSString*)displayString;
+- (void) currentWeightDidChange:(CGFloat)grams;
 
 @end
 
@@ -37,12 +37,11 @@
 // The current estimated mass in grams.
 @property (nonatomic, readonly) CGFloat currentMass;
 
-@property (weak, nonatomic) id<ScaleDisplayDelegate> scaleDisplayDelegate;
+@property (weak, nonatomic) id<ScaleOutputDelegate> scaleOutputDelegate;
 
 
 - (instancetype) initWithSpoon:(Spoon*)spoon;
 
 - (void) tare;
-- (void) switchUnits;
 
 @end
