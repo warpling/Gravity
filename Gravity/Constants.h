@@ -31,7 +31,7 @@ extern const float CoinWeightUSQuarter;
 
 // Flags
 extern NSString * const InstructionsCompleted;
-extern NSString * const DefaultUnits;
+extern NSString * const DefaultMassDisplayUnits;
 
 // Fonts
 extern NSString * const AvenirNextMedium;

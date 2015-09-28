@@ -73,7 +73,6 @@ static const CGFloat buttonsMaxHeight = 60;
     #endif
     
     ScaleDisplay *scaleDisplay = [ScaleDisplay new];
-    [scaleDisplay setBackgroundColor:[UIColor gravityPurpleDark]];
     self.scaleDisplay = scaleDisplay;
     [self.scale setScaleOutputDelegate:self.scaleDisplay];
     [self.view addSubview:self.scaleDisplay];
@@ -219,7 +218,7 @@ static const CGFloat buttonsMaxHeight = 60;
         [self.scaleDisplay setMassUnit:NSMassFormatterUnitGram];
     }
     
-    [[NSUserDefaults standardUserDefaults] setValue:@([self.scaleDisplay massUnit]) forKey:DefaultUnits];
+    [[NSUserDefaults standardUserDefaults] setValue:@([self.scaleDisplay massUnit]) forKey:DefaultMassDisplayUnits];
 }
 
 #pragma mark UI Updating

@@ -43,7 +43,6 @@
 
 - (void) sendOutWeightChange {
     
-    
     // Maximum weight reached, display MAX and get out
     if ((self.maximumPossibleForce - self.currentForce) <= 0.001) {
         [self.scaleOutputDelegate currentWeightAtMaximum];
@@ -55,9 +54,10 @@
     if ([self.spoon isCalibrated]) {
         rawWeight   = [self.spoon weightFromForce:self.currentForce];
         tareWeight  = [self.spoon weightFromForce:self.tareForce];
+        
+        [self.scaleOutputDelegate currentWeightDidChange:(rawWeight - tareWeight)];
     }
     
-    [self.scaleOutputDelegate currentWeightDidChange:(rawWeight - tareWeight)];
 }
 
 @end

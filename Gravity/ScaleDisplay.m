@@ -15,8 +15,10 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.massUnit = (NSMassFormatterUnit)[[[NSUserDefaults standardUserDefaults] valueForKey:DefaultUnits] intValue];
+        self.massUnit = (NSMassFormatterUnit)[[[NSUserDefaults standardUserDefaults] valueForKey:DefaultMassDisplayUnits] intValue];
         
+        [self setBackgroundColor:[UIColor gravityPurpleDark]];
+
         [self setFont:[UIFont fontWithName:AvenirNextBold size:46]];
         [self setTextColor:[UIColor whiteColor]];
         [self setTextAlignment:NSTextAlignmentCenter];
@@ -61,10 +63,12 @@
 
 - (void) currentWeightDidChange:(CGFloat)grams {
     [self setWeight:grams];
+    [self setBackgroundColor:[UIColor gravityPurpleDark]];
 }
 
 - (void) currentWeightAtMaximum {
     [self setText:@"MAX"];
+    [self setBackgroundColor:[UIColor roverRed]];
 }
 
 @end

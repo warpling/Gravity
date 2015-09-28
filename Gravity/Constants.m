@@ -17,7 +17,7 @@ const float CoinWeightUSQuarter = 5.670;
 
 
 NSString * const InstructionsCompleted = @"InstructionsCompleted";
-NSString * const DefaultUnits = @"DefaultUnits";
+NSString * const DefaultMassDisplayUnits = @"DefaultUnits";
 
 NSString * const AvenirNextRegular = @"AvenirNext-Regular";
 NSString * const AvenirNextMedium = @"AvenirNext-Medium";

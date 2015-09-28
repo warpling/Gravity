@@ -24,7 +24,7 @@
     // User Defaults
     NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
                                           [NSNumber numberWithBool:NO], InstructionsCompleted,
-                                          [NSNumber numberWithInt:NSMassFormatterUnitGram], DefaultUnits,
+                                          [NSNumber numberWithInt:NSMassFormatterUnitGram], DefaultMassDisplayUnits,
                                           nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
     
