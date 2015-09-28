@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.massUnit = NSMassFormatterUnitGram;
+        self.massUnit = (NSMassFormatterUnit)[[[NSUserDefaults standardUserDefaults] valueForKey:DefaultUnits] intValue];
         
         [self setFont:[UIFont fontWithName:AvenirNextBold size:46]];
         [self setTextColor:[UIColor whiteColor]];
