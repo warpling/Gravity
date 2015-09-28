@@ -41,10 +41,32 @@ static const CGFloat outputLabelMaxHeight = 90;
 static const CGFloat buttonsMinHeight = 50;
 static const CGFloat buttonsMaxHeight = 60;
 
+// Note: This requires the VC to be loaded from a nib
+- (id) initWithCoder:(NSCoder *)aDecoder {
+    self = [super initWithCoder:aDecoder];
+    if (self) {
+        [self loadSavedScale];
+    }
+    return self;
+}
+
+- (void) loadSavedScale {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSData *encodedScale;
+    if ((encodedScale = [defaults objectForKey:Gravity_ScaleKey])) {
+        Scale *scale = [NSKeyedUnarchiver unarchiveObjectWithData:encodedScale];
+        self.scale = scale;
+        NSLog(@"Scale restored from saved scale");
+    }
+    else {
+        self.scale = [[Scale alloc] initWithSpoon:nil];
+        NSLog(@"New scale created");
+    }
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    self.scale = [[Scale alloc] initWithSpoon:nil];
     
     [self.view setBackgroundColor:[UIColor gravityPurple]];
 
@@ -54,9 +76,6 @@ static const CGFloat buttonsMaxHeight = 60;
     [self.weighArea setBackgroundColor:[UIColor moonGrey]];
     [self.view addSubview:self.weighArea];
     
-//    self.coinHolder = [[CoinHolder alloc] initWithFrame:CGRectMake(0, 30, self.view.bounds.size.width, 50) coinType:CoinTypeUSQuarter numCoins:4];
-//    self.coinHolder.coinSelectionDelegate = self;
-//    [self.view addSubview:self.coinHolder];
     
     #ifdef DEBUG
     UILabel *debugLabel = [UILabel new];
@@ -175,7 +194,7 @@ static const CGFloat buttonsMaxHeight = 60;
 
 - (void) viewDidAppear:(BOOL)animated {
     [[NSUserDefaults standardUserDefaults] synchronize];
-    if (![[[NSUserDefaults standardUserDefaults] objectForKey:InstructionsCompleted] boolValue]) {
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:Gravity_InstructionsCompleted] boolValue]) {
         [self showIntroAnimated:NO];
     }
     
@@ -218,7 +237,7 @@ static const CGFloat buttonsMaxHeight = 60;
         [self.scaleDisplay setMassUnit:NSMassFormatterUnitGram];
     }
     
-    [[NSUserDefaults standardUserDefaults] setValue:@([self.scaleDisplay massUnit]) forKey:DefaultMassDisplayUnits];
+    [[NSUserDefaults standardUserDefaults] setValue:@([self.scaleDisplay massUnit]) forKey:Gravity_DefaultMassDisplayUnits];
 }
 
 #pragma mark UI Updating

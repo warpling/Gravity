@@ -23,8 +23,8 @@
     
     // User Defaults
     NSDictionary *userDefaultsDefaults = [NSDictionary dictionaryWithObjectsAndKeys:
-                                          [NSNumber numberWithBool:NO], InstructionsCompleted,
-                                          [NSNumber numberWithInt:NSMassFormatterUnitGram], DefaultMassDisplayUnits,
+                                          [NSNumber numberWithBool:NO], Gravity_InstructionsCompleted,
+                                          [NSNumber numberWithInt:NSMassFormatterUnitGram], Gravity_DefaultMassDisplayUnits,
                                           nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
     

@@ -15,7 +15,7 @@
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.massUnit = (NSMassFormatterUnit)[[[NSUserDefaults standardUserDefaults] valueForKey:DefaultMassDisplayUnits] intValue];
+        self.massUnit = (NSMassFormatterUnit)[[[NSUserDefaults standardUserDefaults] valueForKey:Gravity_DefaultMassDisplayUnits] intValue];
         
         [self setBackgroundColor:[UIColor gravityPurpleDark]];
 

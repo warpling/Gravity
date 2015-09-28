@@ -40,7 +40,7 @@
 
 
 - (instancetype) initWithSpoon:(Spoon*)spoon;
-
+- (BOOL) isCalibrated;
 - (void) tare;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "Spoon.h"
 #import "LinearFunction.h"
+#import "Constants.h"
 
 @interface Spoon ()
 @property (nonatomic, readwrite) CGFloat spoonForce;
@@ -39,11 +40,11 @@
     [self calculateBestFit];
 }
 
-- (CGFloat) spoonWeight {
-    NSAssert(([self.calibrationForces count] > 2), @"Spoon weight prediction will be innacurate/impossible with 2 or fewer calibration points.");
-    
-    return 0;
-}
+//- (CGFloat) spoonWeight {
+//    NSAssert(([self.calibrationForces count] > 2), @"Spoon weight prediction will be innacurate/impossible with 2 or fewer calibration points.");
+//    
+//    return 0;
+//}
 
 // Based on http://stackoverflow.com/a/19040841/522498
 - (void) calculateBestFit {
@@ -63,6 +64,20 @@
 
 - (BOOL) isCalibrated {
     return ([self.calibrationForces count] >= 4);
+}
+
+#pragma mark - NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:self.calibrationForces forKey:Gravity_CalibrationForcesKey];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        self.calibrationForces = [decoder decodeObjectForKey:Gravity_CalibrationForcesKey];
+        [self calculateBestFit];
+    }
+    return self;
 }
 
 @end

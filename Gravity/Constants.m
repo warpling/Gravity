@@ -16,8 +16,11 @@ const float CoinWeightUSDime    = 2.268;
 const float CoinWeightUSQuarter = 5.670;
 
 
-NSString * const InstructionsCompleted = @"InstructionsCompleted";
-NSString * const DefaultMassDisplayUnits = @"DefaultUnits";
+NSString * const Gravity_ScaleKey = @"Scale";
+NSString * const Gravity_SpoonKey = @"Spoon";
+NSString * const Gravity_CalibrationForcesKey = @"CalibrationForces";
+NSString * const Gravity_InstructionsCompleted = @"InstructionsCompleted";
+NSString * const Gravity_DefaultMassDisplayUnits = @"DefaultUnits";
 
 NSString * const AvenirNextRegular = @"AvenirNext-Regular";
 NSString * const AvenirNextMedium = @"AvenirNext-Medium";

@@ -72,7 +72,7 @@
     [thirdView setBottomButtonText:@"Let's weigh!"];
     [thirdView setButtonAction:^{
         [self dismissViewControllerAnimated:YES completion:^{
-            [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:InstructionsCompleted];
+            [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:Gravity_InstructionsCompleted];
             [[NSUserDefaults standardUserDefaults] synchronize];
         }];
     }];

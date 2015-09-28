@@ -26,6 +26,27 @@
     return self;
 }
 
+- (void) setSpoon:(Spoon *)spoon {
+    _spoon = spoon;
+    
+    // Only keep good spoons
+    if ([spoon isCalibrated]) {
+        [self save];
+    }
+}
+
+- (BOOL) isCalibrated {
+    return [self.spoon isCalibrated];
+}
+
+- (void) save {
+    NSData *encodedScale = [NSKeyedArchiver archivedDataWithRootObject:self];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:encodedScale forKey:Gravity_ScaleKey];
+    [defaults synchronize];
+    NSLog(@"Scale saved");
+}
+
 /**
  @param currentForce
         A force value from a 3D touch.
@@ -51,13 +72,25 @@
     
     // Go about business as usual
     CGFloat rawWeight, tareWeight;
-    if ([self.spoon isCalibrated]) {
+    if ([self isCalibrated]) {
         rawWeight   = [self.spoon weightFromForce:self.currentForce];
         tareWeight  = [self.spoon weightFromForce:self.tareForce];
         
         [self.scaleOutputDelegate currentWeightDidChange:(rawWeight - tareWeight)];
     }
-    
+}
+
+#pragma mark - NSCoding
+
+- (void)encodeWithCoder:(NSCoder *)encoder {
+    [encoder encodeObject:self.spoon forKey:Gravity_SpoonKey];
+}
+
+- (id)initWithCoder:(NSCoder *)decoder {
+    if((self = [super init])) {
+        self.spoon = [decoder decodeObjectForKey:Gravity_SpoonKey];
+    }
+    return self;
 }
 
 @end
