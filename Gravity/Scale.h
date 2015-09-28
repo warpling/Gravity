@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Constants.h"
+#import "Spoon.h"
 
 #pragma mark - ScaleDisplayDelegate
 // -----------------------------------------------
@@ -23,6 +24,9 @@
 
 @interface Scale : NSObject
 
+// Currently calibrated spoon
+@property (strong, nonatomic) Spoon *spoon;
+
 // The system reported force maximum value
 @property (nonatomic) CGFloat maximumPossibleForce;
 // TODO: hide behind recordCurrentForce: method
@@ -35,11 +39,10 @@
 
 @property (weak, nonatomic) id<ScaleDisplayDelegate> scaleDisplayDelegate;
 
+
+- (instancetype) initWithSpoon:(Spoon*)spoon;
+
 - (void) tare;
 - (void) switchUnits;
-
-
-
-- (void) recordCalibrationForCountNum:(NSUInteger)coinNum;
 
 @end

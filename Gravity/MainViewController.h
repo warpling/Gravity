@@ -11,8 +11,9 @@
 #import "WeighArea.h"
 #import "Scale.h"
 #import "CoinHolder.h"
+#import "CalibrationViewController.h"
 
-@interface MainViewController : UIViewController <ScaleDisplayDelegate, WeighAreaEventsDelegate, UITraitEnvironment, CoinSelectionDelegate>
+@interface MainViewController : UIViewController <ScaleDisplayDelegate, WeighAreaEventsDelegate, UITraitEnvironment, SpoonCalibrationDelegate>
 
 @property (strong, nonatomic) Scale *scale;
 

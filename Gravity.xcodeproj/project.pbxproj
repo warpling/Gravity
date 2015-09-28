@@ -35,8 +35,10 @@
 		DC1CDB2E1BB76B0500E52F8B /* CoinHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB2D1BB76B0500E52F8B /* CoinHolder.m */; settings = {ASSET_TAGS = (); }; };
 		DC1CDB311BB76CE900E52F8B /* CoinButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB301BB76CE900E52F8B /* CoinButton.m */; settings = {ASSET_TAGS = (); }; };
 		DC1CDB341BB76D9700E52F8B /* CKShapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB331BB76D9700E52F8B /* CKShapeView.m */; settings = {ASSET_TAGS = (); }; };
+		DC3C34181BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3C34171BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m */; settings = {ASSET_TAGS = (); }; };
 		DC7B38CC1BB86A620013936B /* CalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7B38CB1BB86A620013936B /* CalibrationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		DC866CE91BB34A730031EF44 /* Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = DC866CE81BB34A730031EF44 /* Scale.m */; settings = {ASSET_TAGS = (); }; };
+		DCB9D7041BB8DE6800CED19F /* CoinInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB9D7031BB8DE6800CED19F /* CoinInfo.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,10 +116,14 @@
 		DC1CDB301BB76CE900E52F8B /* CoinButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinButton.m; sourceTree = "<group>"; };
 		DC1CDB321BB76D9700E52F8B /* CKShapeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CKShapeView.h; sourceTree = "<group>"; };
 		DC1CDB331BB76D9700E52F8B /* CKShapeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKShapeView.m; sourceTree = "<group>"; };
+		DC3C34161BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStackView+RemoveAllArrangedSubviews.h"; sourceTree = "<group>"; };
+		DC3C34171BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStackView+RemoveAllArrangedSubviews.m"; sourceTree = "<group>"; };
 		DC7B38CA1BB86A620013936B /* CalibrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalibrationViewController.h; sourceTree = "<group>"; };
 		DC7B38CB1BB86A620013936B /* CalibrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalibrationViewController.m; sourceTree = "<group>"; };
 		DC866CE71BB34A730031EF44 /* Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scale.h; sourceTree = "<group>"; };
 		DC866CE81BB34A730031EF44 /* Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scale.m; sourceTree = "<group>"; };
+		DCB9D7021BB8DE6800CED19F /* CoinInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinInfo.h; sourceTree = "<group>"; };
+		DCB9D7031BB8DE6800CED19F /* CoinInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +216,8 @@
 				DC1CDB2D1BB76B0500E52F8B /* CoinHolder.m */,
 				DC1CDB2F1BB76CE900E52F8B /* CoinButton.h */,
 				DC1CDB301BB76CE900E52F8B /* CoinButton.m */,
+				DCB9D7021BB8DE6800CED19F /* CoinInfo.h */,
+				DCB9D7031BB8DE6800CED19F /* CoinInfo.m */,
 				DC1CDB241BB746B900E52F8B /* Spoon.h */,
 				DC1CDB251BB746B900E52F8B /* Spoon.m */,
 				DC1CDB271BB74E7000E52F8B /* LinearFunction.h */,
@@ -260,6 +268,8 @@
 		DC18288A1BB1D5DB00997DD2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				DC3C34161BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.h */,
+				DC3C34171BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m */,
 				DC1CDB321BB76D9700E52F8B /* CKShapeView.h */,
 				DC1CDB331BB76D9700E52F8B /* CKShapeView.m */,
 				DC1CDB201BB605F600E52F8B /* CircularTextView.h */,
@@ -544,6 +554,7 @@
 				DC1CDB291BB74E7000E52F8B /* LinearFunction.m in Sources */,
 				DC1828921BB1DE3E00997DD2 /* InstructionViewController.m in Sources */,
 				DC1828991BB256AF00997DD2 /* UIImage+ImageWithColor.m in Sources */,
+				DC3C34181BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m in Sources */,
 				DC7B38CC1BB86A620013936B /* CalibrationViewController.m in Sources */,
 				DC1CDB341BB76D9700E52F8B /* CKShapeView.m in Sources */,
 				DC1CDB221BB605F600E52F8B /* CircularTextView.m in Sources */,
@@ -552,6 +563,7 @@
 				DC1828541BB1D01300997DD2 /* MainViewController.m in Sources */,
 				DC18289C1BB263BC00997DD2 /* WeighArea.m in Sources */,
 				DC866CE91BB34A730031EF44 /* Scale.m in Sources */,
+				DCB9D7041BB8DE6800CED19F /* CoinInfo.m in Sources */,
 				DC1CDB2E1BB76B0500E52F8B /* CoinHolder.m in Sources */,
 				DC0CE8B31BB8729600C479E3 /* SpoonView.m in Sources */,
 				DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */,

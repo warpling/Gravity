@@ -9,10 +9,10 @@
 #import "CoinButton.h"
 #import "Constants.h"
 #import "UIImage+ImageWithColor.h"
+#import "CoinInfo.h"
 
 @implementation CoinButton
 
-static const CGFloat coinSize = 44;
 static const CGFloat coinBorderWidth = 3;
 
 + (instancetype) buttonWithCoinType:(CoinType)coinType color:(UIColor*)color highlightColor:(UIColor*)highlightColor {
@@ -36,7 +36,7 @@ static const CGFloat coinBorderWidth = 3;
         
         [[button titleLabel] setTextAlignment:NSTextAlignmentCenter];
         [[button titleLabel] setFont:[UIFont fontWithName:AvenirNextDemiBold size:18]];
-        [button setTitle:[CoinButton labelString:coinType] forState:UIControlStateNormal];
+        [button setTitle:[CoinInfo priceStringForCoinType:coinType] forState:UIControlStateNormal];
         
         [button addTarget:button action:@selector(touchUpInside) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -53,19 +53,6 @@ static const CGFloat coinBorderWidth = 3;
 - (void) layoutSubviews {
     [super layoutSubviews];
     self.layer.cornerRadius = self.bounds.size.width/2.f;
-}
-
-+ (NSString*) labelString:(CoinType)coinType {
-    switch (coinType) {
-        case CoinTypeUSPenny:
-            return @"1¢";
-        case CoinTypeUSNickel:
-            return @"5¢";
-        case CoinTypeUSDime:
-            return @"10¢";
-        case CoinTypeUSQuarter:
-            return @"25¢";
-    }
 }
 
 - (void) touchUpInside {

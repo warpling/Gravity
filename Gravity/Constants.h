@@ -24,10 +24,10 @@ typedef NS_ENUM(NSInteger, CoinType) {
 };
 
 // Coin Weights
-extern const float coinWeightUSPenny;
-extern const float coinWeightUSNickel;
-extern const float coinWeightUSDime;
-extern const float coinWeightUSQuarter;
+extern const float CoinWeightUSPenny;
+extern const float CoinWeightUSNickel;
+extern const float CoinWeightUSDime;
+extern const float CoinWeightUSQuarter;
 
 // Flags
 extern NSString * const InstructionsCompleted;

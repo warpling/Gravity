@@ -10,10 +10,10 @@
 
 const float gramToOzMultiplier = 0.035274;
 
-const float coinWeightUSPenny   = 2.500;
-const float coinWeightUSNickel  = 5.000;
-const float coinWeightUSDime    = 2.268;
-const float coinWeightUSQuarter = 5.670;
+const float CoinWeightUSPenny   = 2.500;
+const float CoinWeightUSNickel  = 5.000;
+const float CoinWeightUSDime    = 2.268;
+const float CoinWeightUSQuarter = 5.670;
 
 
 NSString * const InstructionsCompleted = @"InstructionsCompleted";

@@ -16,13 +16,14 @@
 
 @implementation CoinHolder
 
-static const CGFloat minCoinSize = 88;
-static const CGFloat maxCoinSize = 88;
 static const CGFloat coinSpacing = 20;
 
 - (instancetype) initWithFrame:(CGRect)frame coinType:(CoinType)coinType numCoins:(NSUInteger)numCoins {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        _coinType = coinType;
+        _numCoins = numCoins;
         
         [self setAxis:UILayoutConstraintAxisHorizontal];
         [self setAlignment:UIStackViewAlignmentCenter];
@@ -38,11 +39,7 @@ static const CGFloat coinSpacing = 20;
         for (int ctr = 0; ctr < numCoins; ctr++) {
             CoinButton *coinButton = [CoinButton buttonWithCoinType:CoinTypeUSQuarter color:[UIColor whiteColor] highlightColor:[UIColor gravityPurple]];
             
-            // TODO: Make Coin Constraints here
             [coinButton makeConstraints:^(MASConstraintMaker *make) {
-//                make.width.greaterThanOrEqualTo(@(minCoinSize));
-//                make.width.lessThanOrEqualTo(@(maxCoinSize));
-//                make.width.equalTo(@(100)).priorityLow();
                 make.height.equalTo(coinButton.width);
             }];
             

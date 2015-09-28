@@ -7,11 +7,9 @@
 //
 
 #import "Scale.h"
-#import "Spoon.h"
 
 @interface Scale ()
 
-@property (strong, nonatomic) Spoon *spoon;
 @property (nonatomic, readwrite) CGFloat tareMass;
 @property (nonatomic, readwrite) CGFloat currentMass;
 @property (nonatomic, assign) NSMassFormatterUnit currentMassUnit;
@@ -21,10 +19,10 @@
 
 @implementation Scale
 
-- (instancetype) init {
+- (instancetype) initWithSpoon:(Spoon*)spoon {
     self = [super init];
     if (self) {
-        self.spoon = [Spoon new];
+        self.spoon = spoon;
         // TODO: refactor into scaleDisplayView
         self.currentMassUnit = (NSMassFormatterUnit)[[[NSUserDefaults standardUserDefaults] objectForKey:DefaultUnits] intValue];
     }
@@ -99,10 +97,5 @@
     [self recomputeDisplayValue];
 }
 
-#pragma mark temp
-
-- (void) recordCalibrationForCountNum:(NSUInteger)coinNum {
-    [self.spoon recordCalibrationForce:self.currentForce forKnownWeight:((coinNum+1) * coinWeightUSQuarter)];
-}
 
 @end

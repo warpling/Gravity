@@ -11,16 +11,21 @@
 #import "SpoonView.h"
 #import "Masonry.h"
 #import "GhostButton.h"
+#import "UIStackView+RemoveAllArrangedSubviews.h"
+#import "CoinInfo.h"
 
 @interface CalibrationViewController ()
 
 typedef NS_ENUM(NSInteger, CalibrationStep) {
+    CalibrationStepLayFlat,
     CalibrationStepWeighSpoon,
     CalibrationStepAddCoins,
     CalibrationStepDone
 };
 
 @property (nonatomic) CalibrationStep calibrationStep;
+
+@property (strong, nonatomic) Spoon *spoon;
 
 @property (strong, nonatomic) UIView *statusBarBackground;
 @property (strong, nonatomic) UILabel *headerLabel;
@@ -29,7 +34,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 @property (strong, nonatomic) UILabel *bottomLabel;
 @property (strong, nonatomic) CoinHolder *coins;
 
-@property (strong, nonatomic) UIView *buttonBar;
+@property (strong, nonatomic) UIStackView *buttonBar;
 @property (strong, nonatomic) UIView *buttonSpacer1;
 @property (strong, nonatomic) UIView *buttonSpacer2;
 @property (strong, nonatomic) GhostButton *nextButton;
@@ -43,6 +48,8 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 
 - (void) viewDidLoad {
     [super viewDidLoad];
+    
+    self.spoon = [Spoon new];
     
     [self.view setBackgroundColor:[UIColor gravityPurple]];
     
@@ -84,6 +91,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     
     
     self.coins = [[CoinHolder alloc] initWithFrame:CGRectZero coinType:CoinTypeUSQuarter numCoins:4];
+    self.coins.coinSelectionDelegate = self;
     [self.view addSubview:self.coins];
     
     [self setupButtonBar];
@@ -97,9 +105,19 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     [self setupViewConstraints];
 }
 
+- (void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [self resetCalibration];
+    [self setCalibrationStep:CalibrationStepLayFlat];
+}
+
 - (void) setupButtonBar {
-    UIView *buttonBar = [UIView new];
-    [self.buttonBar setBackgroundColor:[UIColor redColor]];
+    UIStackView *buttonBar = [UIStackView new];
+    [buttonBar setAlignment:UIStackViewAlignmentCenter];
+    [buttonBar setAxis:UILayoutConstraintAxisHorizontal];
+    [buttonBar setDistribution:UIStackViewDistributionEqualSpacing];
+    [buttonBar setSpacing:30];
     self.buttonBar = buttonBar;
 
     GhostButton *nextButton = [GhostButton new];
@@ -120,14 +138,11 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     [doneButton setTitle:@"Finish" forState:UIControlStateNormal];
     self.doneButton = doneButton;
     
-    self.buttonSpacer1 = [UIView new];
-    self.buttonSpacer2 = [UIView new];
-
-    [self.buttonBar addSubview:self.nextButton];
-    [self.buttonBar addSubview:self.buttonSpacer1];
-    [self.buttonBar addSubview:self.resetButton];
-    [self.buttonBar addSubview:self.buttonSpacer2];
-    [self.buttonBar addSubview:self.doneButton];
+//    self.buttonSpacer1 = [UIView new];
+//    self.buttonSpacer2 = [UIView new];
+//
+//    [self.buttonBar addArrangedSubview:self.resetButton];
+//    [self.buttonBar addArrangedSubview:self.doneButton];
     [self.view addSubview:self.buttonBar];
 }
 
@@ -178,80 +193,189 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         make.width.equalTo(self.view).with.offset(-20);
     }];
     
-
-    CGFloat buttonSpacerMinWidth = 15;
-    CGFloat buttonSpacerWidth = 35;
     
     [self.buttonBar makeConstraints:^(MASConstraintMaker *make) {
         make.bottom.equalTo(self.view).priorityHigh();
         make.centerX.equalTo(self.view);
         make.height.lessThanOrEqualTo(@100);
-        make.width.greaterThanOrEqualTo(@200);
+//        make.width.greaterThanOrEqualTo(@200);
     }];
     
-    [self.nextButton makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.buttonBar.leading);
-        make.trailing.equalTo(self.buttonSpacer1.leading);
-        make.centerY.equalTo(self.buttonBar);
-    }];
-    
-    [self.buttonSpacer1 makeConstraints:^(MASConstraintMaker *make) {
-        make.width.greaterThanOrEqualTo(@(buttonSpacerMinWidth));
-        make.width.equalTo(@(buttonSpacerWidth));
-        make.centerY.equalTo(self.buttonBar);
-        make.leading.equalTo(self.nextButton.trailing);
-        make.trailing.equalTo(self.resetButton.leading);
-    }];
-    
-    [self.resetButton makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.buttonSpacer1.trailing);
-        make.trailing.equalTo(self.buttonSpacer2.leading);
-        make.centerY.equalTo(self.buttonBar);
-    }];
-    
-    [self.buttonSpacer2 makeConstraints:^(MASConstraintMaker *make) {
-        make.width.equalTo(self.buttonSpacer1);
-        make.centerY.equalTo(self.buttonBar);
-        make.leading.equalTo(self.resetButton.trailing);
-        make.trailing.equalTo(self.doneButton.leading);
-    }];
-    
-    [self.doneButton makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.equalTo(self.buttonBar.trailing);
-        make.centerY.equalTo(self.buttonBar);
-    }];
+//    [self.nextButton makeConstraints:^(MASConstraintMaker *make) {
+//        make.leading.equalTo(self.buttonBar.leading);
+//        make.trailing.equalTo(self.buttonSpacer1.leading);
+//        make.centerY.equalTo(self.buttonBar);
+//    }];
+//    
+//    [self.buttonSpacer1 makeConstraints:^(MASConstraintMaker *make) {
+//        make.width.greaterThanOrEqualTo(@(buttonSpacerMinWidth));
+//        make.width.equalTo(@(buttonSpacerWidth));
+//        make.centerY.equalTo(self.buttonBar);
+//        make.leading.equalTo(self.nextButton.trailing);
+//        make.trailing.equalTo(self.resetButton.leading);
+//    }];
+//    
+//    [self.resetButton makeConstraints:^(MASConstraintMaker *make) {
+//        make.leading.equalTo(self.buttonSpacer1.trailing);
+//        make.trailing.equalTo(self.buttonSpacer2.leading);
+//        make.centerY.equalTo(self.buttonBar);
+//    }];
+//    
+//    [self.buttonSpacer2 makeConstraints:^(MASConstraintMaker *make) {
+//        make.width.equalTo(self.buttonSpacer1);
+//        make.centerY.equalTo(self.buttonBar);
+//        make.leading.equalTo(self.resetButton.trailing);
+//        make.trailing.equalTo(self.doneButton.leading);
+//    }];
+//    
+//    [self.doneButton makeConstraints:^(MASConstraintMaker *make) {
+//        make.trailing.equalTo(self.buttonBar.trailing);
+//        make.centerY.equalTo(self.buttonBar);
+//    }];
     
 
 }
 
-#
+#pragma mark - Calibration State
 
 - (void) setCalibrationStep:(CalibrationStep)calibrationStep {
     _calibrationStep = calibrationStep;
 
     switch (calibrationStep) {
+            
+        case CalibrationStepLayFlat:
+        {
+            NSLog(@">> Lay Flat");
+            
+            [self.headerLabel setTextColor:[UIColor whiteColor]];
+            
+            [self.buttonBar removeAllArrangedSubviewsFromSuperView];
+            [self.buttonBar addArrangedSubview:self.nextButton];
+
+            [self.nextButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+            [self.nextButton addTarget:self action:@selector(phoneHasBeenLayedFlat) forControlEvents:UIControlEventTouchUpInside];
+            
+            [self.topLabel setText:@""];
+            [self.coins setHidden:YES];
+            [self.bottomLabel setText:@""];
+            
+            break;
+        }
+            
         case CalibrationStepWeighSpoon:
         {
+            NSLog(@">> Weigh Spoon");
+            
+            [self.headerLabel setTextColor:[UIColor gravityPurple]];
+
+            [self.nextButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+            [self.nextButton addTarget:self action:@selector(recordSpoonForce) forControlEvents:UIControlEventTouchUpInside];
+            
+            [self.buttonBar removeAllArrangedSubviewsFromSuperView];
+            [self.buttonBar addArrangedSubview:self.nextButton];
+            
+            [self.topLabel setText:@"Gently place spoon below"];
+            [self.coins setHidden:YES];
+            [self.bottomLabel setText:@""];
             
             break;
         }
+            
         case CalibrationStepAddCoins:
         {
+            NSLog(@">> Add Coins");
             
+            [self.headerLabel setTextColor:[UIColor gravityPurple]];
+
+            [self.resetButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+            [self.resetButton addTarget:self action:@selector(resetCalibration) forControlEvents:UIControlEventTouchUpInside];
+
+            [self.buttonBar removeAllArrangedSubviewsFromSuperView];
+            [self.buttonBar addArrangedSubview:self.resetButton];
+            
+            [self.topLabel setText:@""];
+            [self.coins setHidden:NO];
+            [self.bottomLabel setText:@"Place one quarter into the spoon and press the icon below"];
+//            [self.bottomLabel setText:@"Place another quarter into the spoon and press the next icon"];
+//            [self.bottomLabel setText:@"Do that again!"];
+//            [self.bottomLabel setText:@"One last time!"];
+//            
+//            if ([self.coins allCoinsSelected]) {
+//                [self setCalibrationStep:CalibrationStepDone];;
+//            }
+
             break;
         }
+            
         case CalibrationStepDone:
         {
+            NSLog(@">> Done");
             
+            [self.headerLabel setTextColor:[UIColor gravityPurple]];
+
+            [self.resetButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+            [self.resetButton addTarget:self action:@selector(resetCalibration) forControlEvents:UIControlEventTouchUpInside];
+
+            [self.doneButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
+            [self.doneButton addTarget:self action:@selector(done) forControlEvents:UIControlEventTouchUpInside];
+
+            [self.buttonBar removeAllArrangedSubviewsFromSuperView];
+            [self.buttonBar addArrangedSubview:self.resetButton];
+            [self.buttonBar addArrangedSubview:self.doneButton];
+            
+            [self.topLabel setText:@""];
+            [self.coins setHidden:NO];
+            [self.bottomLabel setText:@"Very good"];
+
             break;
         }
     }
 }
 
+#pragma mark - Button actions
+
+- (void) phoneHasBeenLayedFlat {
+    [self setCalibrationStep:CalibrationStepWeighSpoon];
+}
+
+- (void) resetCalibration {
+    self.spoon = [Spoon new];
+    [self.coins reset];
+    [self setCalibrationStep:CalibrationStepLayFlat];
+}
+
+#pragma mark - Calibration actions
+
+- (void) recordSpoonForce {
+    
+    // record it
+    [self.spoon recordBaseForce:0];
+//    [self.spoon recordCalibrationForce:0 forKnownWeight:0];
+
+    
+    [self setCalibrationStep:CalibrationStepAddCoins];
+}
+
+
+
+- (void) done {
+    [self dismissViewControllerAnimated:YES completion:^{
+        //
+    }];
+}
+
 #pragma mark CoinSelectionDelegate
 
 - (void) coinSelected:(NSUInteger)coinIndex {
-    //
+    
+    // record it
+    CGFloat knownWeight = (coinIndex+1) * [CoinInfo knownWeightForCoinType:[self.coins coinType]];
+    [self.spoon recordCalibrationForce:0 forKnownWeight:knownWeight];
+    
+    // HACK
+    if (coinIndex == ([self.coins numCoins] - 1)) {
+        [self setCalibrationStep:CalibrationStepDone];
+    }
 }
 
 #pragma mark Status Bar

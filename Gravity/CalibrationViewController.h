@@ -8,7 +8,15 @@
 
 #import <UIKit/UIKit.h>
 #import "CoinHolder.h"
+#import "Spoon.h"
+
+@protocol SpoonCalibrationDelegate <NSObject>
+- (void) newSpoonCalibrated:(Spoon*)spoon;
+@end
+
 
 @interface CalibrationViewController : UIViewController <CoinSelectionDelegate>
+
+@property (weak, nonatomic) id<SpoonCalibrationDelegate> spoonCalibrationDelegate;
 
 @end

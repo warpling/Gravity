@@ -42,7 +42,7 @@ static const CGFloat buttonsMaxHeight = 60;
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.scale = [Scale new];
+    self.scale = [[Scale alloc] initWithSpoon:nil];
     [self.scale setScaleDisplayDelegate:self];
     
 
@@ -104,6 +104,7 @@ static const CGFloat buttonsMaxHeight = 60;
     self.instructionsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InstructionsViewController"];
 
     self.calibrationVC = [CalibrationViewController new];
+    self.calibrationVC.spoonCalibrationDelegate = self;
     self.calibrationVC.modalPresentationStyle = UIModalPresentationFullScreen;
     self.calibrationVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     
@@ -214,6 +215,7 @@ static const CGFloat buttonsMaxHeight = 60;
 }
 
 - (void) showCalibrationScreenAnimated:(BOOL)animated {
+    
     [self presentViewController:self.calibrationVC animated:animated completion:nil];
 }
 
@@ -233,6 +235,7 @@ static const CGFloat buttonsMaxHeight = 60;
 }
 
 #pragma mark Shaking
+
 -(BOOL)canBecomeFirstResponder {
     return YES;
 }
@@ -245,10 +248,9 @@ static const CGFloat buttonsMaxHeight = 60;
     }
 }
 
-#pragma mark Temporary
-
-- (void) coinSelected:(NSUInteger)coinIndex {
-    [self.scale recordCalibrationForCountNum:coinIndex];
+#pragma mark SpoonCalibrationDelegate
+- (void) newSpoonCalibrated:(Spoon *)spoon {
+    [self.scale setSpoon:spoon];
 }
 
 #pragma mark Trait Collection
