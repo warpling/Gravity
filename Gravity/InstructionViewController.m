@@ -7,7 +7,6 @@
 //
 
 #import "InstructionViewController.h"
-#define MAS_SHORTHAND
 #import "Masonry.h"
 #import "GhostButton.h"
 

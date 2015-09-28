@@ -28,10 +28,11 @@
                                           nil];
     [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
     
-    // TODO: Is this actually doing anything 
-    self.window.tintColor = [UIColor gravityPurple];
-    [[UIWindow appearance] setTintColor:[UIColor gravityPurple]];
-    [[UIView appearance] setTintColor:[UIColor gravityPurple]];
+    // TODO: Is this actually doing anything
+//    [self.window setBackgroundColor:[UIColor redColor]];
+//    [self.window setTintColor:[UIColor redColor]];
+    [[UIWindow appearance] setTintColor:[UIColor gravityPurpleDark]];
+    [[UIView appearance] setTintColor:[UIColor gravityPurpleDark]];
 
     // Fabric
     [Fabric with:@[[Crashlytics class]]];

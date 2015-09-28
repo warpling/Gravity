@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CoinHolder.h"
 
-@interface CalibrationViewController : UIViewController
+@interface CalibrationViewController : UIViewController <CoinSelectionDelegate>
 
 @end

@@ -12,8 +12,8 @@
 @implementation GhostButton
 
 static const CGFloat borderWidth = 2;
-static const CGFloat horizontalInsets = 24;
-static const CGFloat verticalInsets = 8;
+static const CGFloat horizontalInsets = 32;
+static const CGFloat verticalInsets = 9;
 
 - (instancetype) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
@@ -29,6 +29,11 @@ static const CGFloat verticalInsets = 8;
         [self setTitleEdgeInsets:UIEdgeInsetsMake(-verticalInsets, -horizontalInsets, -verticalInsets, -horizontalInsets)];     
     }
     return self;
+}
+
+- (void) setTitle:(NSString *)title forState:(UIControlState)state {
+    [super setTitle:title forState:state];
+//    [self invalidateIntrinsicContentSize];
 }
 
 - (void) setFillColor:(UIColor *)fillColor {
@@ -51,5 +56,9 @@ static const CGFloat verticalInsets = 8;
     [super layoutSubviews];
     self.layer.cornerRadius = self.bounds.size.height/2.f;
 }
+
+//- (CGSize) intrinsicContentSize {
+//    return [super intrinsicContentSize];
+//}
 
 @end

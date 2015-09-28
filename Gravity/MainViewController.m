@@ -8,16 +8,17 @@
 
 #import "MainViewController.h"
 #import "InstructionsViewController.h"
+#import "CalibrationViewController.h"
 #import "WeighArea.h"
 #import "UIImage+ImageWithColor.h"
-#define MAS_SHORTHAND
 #import "Masonry.h"
 #import "UIColor+Additions.h"
 #import "CoinHolder.h"
 
 @interface MainViewController ()
 
-@property (strong, nonatomic) InstructionsViewController *instructions;
+@property (strong, nonatomic) InstructionsViewController *instructionsVC;
+@property (strong, nonatomic) CalibrationViewController *calibrationVC;
 
 @property (strong, nonatomic) WeighArea *weighArea;
 @property (strong, nonatomic) UILabel *debugLabel;
@@ -49,9 +50,9 @@ static const CGFloat buttonsMaxHeight = 60;
     self.weighArea.weightAreaDelegate = self;
     [self.view addSubview:self.weighArea];
     
-    self.coinHolder = [[CoinHolder alloc] initWithFrame:CGRectMake(0, 30, self.view.bounds.size.width, 50) coinType:CoinTypeUSQuarter numCoins:4];
-    self.coinHolder.coinSelectionDelegate = self;
-    [self.view addSubview:self.coinHolder];
+//    self.coinHolder = [[CoinHolder alloc] initWithFrame:CGRectMake(0, 30, self.view.bounds.size.width, 50) coinType:CoinTypeUSQuarter numCoins:4];
+//    self.coinHolder.coinSelectionDelegate = self;
+//    [self.view addSubview:self.coinHolder];
     
     #ifdef DEBUG
     UILabel *debugLabel = [UILabel new];
@@ -100,7 +101,11 @@ static const CGFloat buttonsMaxHeight = 60;
     [self.view addSubview:unitsButton];
     
     
-    self.instructions = [self.storyboard instantiateViewControllerWithIdentifier:@"InstructionsViewController"];
+    self.instructionsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InstructionsViewController"];
+
+    self.calibrationVC = [CalibrationViewController new];
+    self.calibrationVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    self.calibrationVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     
     [self createConstraints];
 }
@@ -205,14 +210,19 @@ static const CGFloat buttonsMaxHeight = 60;
 #pragma mark Intro
 
 - (void) showIntroAnimated:(BOOL)animated {
-    [self presentViewController:self.instructions animated:animated completion:nil];
+    [self presentViewController:self.instructionsVC animated:animated completion:nil];
+}
+
+- (void) showCalibrationScreenAnimated:(BOOL)animated {
+    [self presentViewController:self.calibrationVC animated:animated completion:nil];
 }
 
 - (void) resetIntro {
-    [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:InstructionsCompleted];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-
-    [self showIntroAnimated:YES];
+//    [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:InstructionsCompleted];
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//    [self showIntroAnimated:YES];
+    
+    [self showCalibrationScreenAnimated:YES];
 }
 
 #pragma mark Memory
@@ -220,12 +230,6 @@ static const CGFloat buttonsMaxHeight = 60;
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-#pragma mark Status Bar
-
-- (UIStatusBarStyle) preferredStatusBarStyle {
-    return UIStatusBarStyleDefault;
 }
 
 #pragma mark Shaking
@@ -267,6 +271,12 @@ static const CGFloat buttonsMaxHeight = 60;
     } else {
         [self.weighArea setForceAvailable:NO];
     }
+}
+
+#pragma mark Status Bar
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 @end

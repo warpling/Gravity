@@ -10,6 +10,7 @@
 		014ADECA89824FD76824F95C /* libPods-GravityUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C27E1C97FD4D12D70540DE4A /* libPods-GravityUITests.a */; };
 		184EFB99B2DB4A8756CD293B /* libPods-Gravity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B925554E87C962CED6C12B /* libPods-Gravity.a */; };
 		8EFE43BF64FDF919A37869C4 /* libPods-GravityTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04027853D8458B91E8E80992 /* libPods-GravityTests.a */; };
+		DC0CE8B31BB8729600C479E3 /* SpoonView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0CE8B21BB8729600C479E3 /* SpoonView.m */; settings = {ASSET_TAGS = (); }; };
 		DC18284E1BB1D01300997DD2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18284D1BB1D01300997DD2 /* main.m */; };
 		DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828501BB1D01300997DD2 /* AppDelegate.m */; };
 		DC1828541BB1D01300997DD2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828531BB1D01300997DD2 /* MainViewController.m */; };
@@ -65,6 +66,8 @@
 		8A4C67706398C13C2E405B4B /* Pods-Gravity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gravity.release.xcconfig"; path = "Pods/Target Support Files/Pods-Gravity/Pods-Gravity.release.xcconfig"; sourceTree = "<group>"; };
 		AEA7947AD685A68618C1FB6D /* Pods-GravityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GravityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GravityTests/Pods-GravityTests.release.xcconfig"; sourceTree = "<group>"; };
 		C27E1C97FD4D12D70540DE4A /* libPods-GravityUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GravityUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC0CE8B11BB8729600C479E3 /* SpoonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpoonView.h; sourceTree = "<group>"; };
+		DC0CE8B21BB8729600C479E3 /* SpoonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpoonView.m; sourceTree = "<group>"; };
 		DC1828491BB1D01300997DD2 /* Gravity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gravity.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC18284D1BB1D01300997DD2 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DC18284F1BB1D01300997DD2 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -288,6 +291,8 @@
 			children = (
 				DC7B38CA1BB86A620013936B /* CalibrationViewController.h */,
 				DC7B38CB1BB86A620013936B /* CalibrationViewController.m */,
+				DC0CE8B11BB8729600C479E3 /* SpoonView.h */,
+				DC0CE8B21BB8729600C479E3 /* SpoonView.m */,
 			);
 			name = "Instruction VCs";
 			sourceTree = "<group>";
@@ -548,6 +553,7 @@
 				DC18289C1BB263BC00997DD2 /* WeighArea.m in Sources */,
 				DC866CE91BB34A730031EF44 /* Scale.m in Sources */,
 				DC1CDB2E1BB76B0500E52F8B /* CoinHolder.m in Sources */,
+				DC0CE8B31BB8729600C479E3 /* SpoonView.m in Sources */,
 				DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */,
 				DC18284E1BB1D01300997DD2 /* main.m in Sources */,
 				DC1CDB311BB76CE900E52F8B /* CoinButton.m in Sources */,

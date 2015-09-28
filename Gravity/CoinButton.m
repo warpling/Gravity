@@ -75,4 +75,9 @@ static const CGFloat coinBorderWidth = 3;
     }
 }
 
+- (void) setSelected:(BOOL)selected {
+    [super setSelected:selected];
+    [self setUserInteractionEnabled:NO];
+}
+
 @end

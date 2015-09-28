@@ -8,7 +8,6 @@
 
 #import "CoinHolder.h"
 #import "CoinButton.h"
-#define MAS_SHORTHAND
 #import "Masonry.h"
 
 @interface CoinHolder ()
@@ -19,7 +18,7 @@
 
 static const CGFloat minCoinSize = 88;
 static const CGFloat maxCoinSize = 88;
-static const CGFloat coinSpacing = 10;
+static const CGFloat coinSpacing = 20;
 
 - (instancetype) initWithFrame:(CGRect)frame coinType:(CoinType)coinType numCoins:(NSUInteger)numCoins {
     self = [super initWithFrame:frame];
@@ -27,20 +26,22 @@ static const CGFloat coinSpacing = 10;
         
         [self setAxis:UILayoutConstraintAxisHorizontal];
         [self setAlignment:UIStackViewAlignmentCenter];
-        [self setDistribution:UIStackViewDistributionEqualSpacing];
+        [self setDistribution:UIStackViewDistributionFillEqually];
 
         [self setLayoutMarginsRelativeArrangement:YES];
         [self setLayoutMargins:UIEdgeInsetsMake(0, coinSpacing, 0, coinSpacing)];
 
         [self setSpacing:coinSpacing];
         
+        self.coinButtons = [NSArray new];
+        
         for (int ctr = 0; ctr < numCoins; ctr++) {
             CoinButton *coinButton = [CoinButton buttonWithCoinType:CoinTypeUSQuarter color:[UIColor whiteColor] highlightColor:[UIColor gravityPurple]];
             
             // TODO: Make Coin Constraints here
             [coinButton makeConstraints:^(MASConstraintMaker *make) {
-                make.width.greaterThanOrEqualTo(@(minCoinSize));
-                make.width.lessThanOrEqualTo(@(maxCoinSize));
+//                make.width.greaterThanOrEqualTo(@(minCoinSize));
+//                make.width.lessThanOrEqualTo(@(maxCoinSize));
 //                make.width.equalTo(@(100)).priorityLow();
                 make.height.equalTo(coinButton.width);
             }];
@@ -49,6 +50,7 @@ static const CGFloat coinSpacing = 10;
                 [self coinSelected:ctr];
             }];
             
+            self.coinButtons = [self.coinButtons arrayByAddingObject:coinButton];
             [self addArrangedSubview:coinButton];
         }
     }
@@ -58,6 +60,13 @@ static const CGFloat coinSpacing = 10;
 - (void) coinSelected:(NSUInteger)coinIndex {
     NSLog(@"Coin Selected: %ld", coinIndex);
     [self.coinSelectionDelegate coinSelected:coinIndex];
+}
+
+- (void) reset {
+    for (CoinButton *coinButton in self.coinButtons) {
+        [coinButton setSelected:NO];
+        [coinButton setUserInteractionEnabled:YES];
+    }
 }
 
 @end
