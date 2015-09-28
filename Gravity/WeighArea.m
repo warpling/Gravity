@@ -10,7 +10,7 @@
 #import "CircularTextView.h"
 
 @interface WeighArea ()
-@property (strong, nonatomic) NSMutableDictionary *activeTouches;
+@property (strong, nonatomic) NSMapTable *activeTouches;
 @property (nonatomic, readwrite) UITouch *lastActiveTouch;
 @property (nonatomic) BOOL forceAvailable;
 @end
@@ -25,7 +25,7 @@ static CGFloat const touchCircleSize = 120;
     if (self) {
         
         self.multipleTouchEnabled = YES;
-        self.activeTouches = [NSMutableDictionary dictionary];
+        self.activeTouches = [NSMapTable mapTableWithKeyOptions:NSPointerFunctionsStrongMemory valueOptions:NSPointerFunctionsStrongMemory];
         
         UIForceTouchCapability forceTouchCapability = [self.traitCollection forceTouchCapability];
         self.forceAvailable = (forceTouchCapability == UIForceTouchCapabilityAvailable);
@@ -59,11 +59,11 @@ static CGFloat const touchCircleSize = 120;
     circularLabel.backgroundColor = [UIColor clearColor];
     circularLabel.hidden = !self.debugLabelsEnabled;
     
-    [self.activeTouches setObject:circle forKey:[NSValue valueWithNonretainedObject:touch]];
+    [self.activeTouches setObject:circle forKey:touch];
 }
 
 - (void) updateTouch:(UITouch*)touch {
-    UIView *circle = [self.activeTouches objectForKey:[NSValue valueWithNonretainedObject:touch]];
+    UIView *circle = [self.activeTouches objectForKey:touch];
     circle.center = [touch locationInView:self];
     
     
@@ -92,8 +92,8 @@ static CGFloat const touchCircleSize = 120;
 }
 
 - (void) deregisterTouch:(UITouch*)touch {
-    [[self.activeTouches objectForKey:[NSValue valueWithNonretainedObject:touch]] removeFromSuperview];
-    [self.activeTouches removeObjectForKey:[NSValue valueWithNonretainedObject:touch]];
+    [[self.activeTouches objectForKey:touch] removeFromSuperview];
+    [self.activeTouches removeObjectForKey:touch];
 }
 
 #pragma mark Touch Events
@@ -140,7 +140,7 @@ static CGFloat const touchCircleSize = 120;
             [self.weightAreaDelegate multipleTouchesDetected];
         }
         else if ([self.activeTouches count] == 1) {
-            UITouch *touch = [[[self.activeTouches allKeys] firstObject] nonretainedObjectValue];
+            UITouch *touch = [[[self.activeTouches keyEnumerator] allObjects] firstObject];
             self.lastActiveTouch = touch;
             [self.weightAreaDelegate singleTouchDetectedWithForce:touch.force maximumPossibleForce:touch.maximumPossibleForce];
         }
@@ -151,9 +151,8 @@ static CGFloat const touchCircleSize = 120;
     
     NSMutableString *debugString = [NSMutableString new];
     
-    for (NSValue *touchValue in [self.activeTouches allKeys]) {
+    for (UITouch *touch in [[self.activeTouches keyEnumerator] allObjects]) {
         if (self.forceAvailable) {
-            UITouch *touch = [touchValue nonretainedObjectValue];
             [debugString appendString:[NSString stringWithFormat:@"Force: %f\t (max: %f)\n", touch.force, touch.maximumPossibleForce]];
         } else {
             [debugString appendString:@"Force Touch not available\n"];
