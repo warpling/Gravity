@@ -18,6 +18,8 @@
 #import "SpoonView.h"
 #import "RecalibrateBar.h"
 #import "Track.h"
+#import "DeviceUnsupportedViewController.h"
+#import "UIDevice+Platform.h"
 
 @interface MainViewController ()
 
@@ -330,6 +332,11 @@ static const CGFloat buttonsMaxHeight = 60;
 //    [self showCalibrationScreenAnimated:YES];
 }
 
+- (void) showDeviceNotSupportedWarning {
+    DeviceUnsupportedViewController *deviceUnsupportedVC = [DeviceUnsupportedViewController new];
+    [self presentViewController:deviceUnsupportedVC animated:NO completion:nil];
+}
+
 #pragma mark Memory
 
 - (void)didReceiveMemoryWarning {
@@ -349,7 +356,8 @@ static const CGFloat buttonsMaxHeight = 60;
     if (motion == UIEventSubtypeMotionShake)
     {
 //        [self setDebugInfoBarEnabled:!self.debugInfoBarEnabled];
-        [self resetIntro];
+//        [self resetIntro];
+        [self showDeviceNotSupportedWarning];
     }
     #endif
 }
@@ -376,12 +384,33 @@ static const CGFloat buttonsMaxHeight = 60;
     switch (forceTouchCapability) {
         case UIForceTouchCapabilityUnknown:
             NSLog(@"Force Touch support unknown");
+            [[NSNotificationCenter defaultCenter] postNotificationName:Gravity_ForceTouchCapabilityBecameUnknown object:nil];
             break;
         case UIForceTouchCapabilityUnavailable:
             NSLog(@"Force Touch unavailable");
+            [[NSNotificationCenter defaultCenter] postNotificationName:Gravity_ForceTouchCapabilityBecameUnavailable object:nil];
+
+            if ([UIDevice has3DTouch]) {
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"3D Touch is Disabled" message:@"It looks like you've disabled 3D Touch in Settings. You'll need to enable it in order to use Gravity.\n\nYou can find this Setting under:\nGeneral > Accessibility > 3D Touch" preferredStyle:UIAlertControllerStyleAlert];
+//                [alert addAction:[UIAlertAction actionWithTitle:@"Take me to Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                
+//                    NSURL *settingsURL = [NSURL URLWithString:@"prefs:root=General"];
+//                    if ([[UIApplication sharedApplication] canOpenURL:settingsURL]) {
+//                        [[UIApplication sharedApplication] openURL:settingsURL];
+//                    }
+//                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=General&path=Accessibility"]];
+//                }]];
+                [alert addAction:[UIAlertAction actionWithTitle:@"Got it" style:UIAlertActionStyleCancel handler:nil]];
+
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            else {
+                [self showDeviceNotSupportedWarning];
+            }
             break;
         case UIForceTouchCapabilityAvailable:
             NSLog(@"Force Touch enabled");
+            [[NSNotificationCenter defaultCenter] postNotificationName:Gravity_ForceTouchCapabilityBecameAvailable object:nil];
             break;
     }
 }

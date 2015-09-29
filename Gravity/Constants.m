@@ -27,3 +27,8 @@ NSString * const AvenirNextMedium = @"AvenirNext-Medium";
 NSString * const AvenirNextDemiBold = @"AvenirNext-DemiBold";
 NSString * const AvenirNextBold = @"AvenirNext-Bold";
 NSString * const AvenirNextHeavy = @"AvenirNext-Heavy";
+
+NSString * const Gravity_ForceTouchCapabilityBecameUnknown = @"ForceTouchCapabilityBecameUnknown";
+NSString * const Gravity_ForceTouchCapabilityBecameUnavailable = @"ForceTouchCapabilityBecameUnavailable";
+NSString * const Gravity_ForceTouchCapabilityBecameAvailable = @"ForceTouchCapabilityBecameAvailable";
+

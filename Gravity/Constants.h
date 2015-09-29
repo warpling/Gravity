@@ -29,6 +29,12 @@ extern const float CoinWeightUSNickel;
 extern const float CoinWeightUSDime;
 extern const float CoinWeightUSQuarter;
 
+// Notifications
+extern NSString * const Gravity_ForceTouchCapabilityBecameUnknown;
+extern NSString * const Gravity_ForceTouchCapabilityBecameUnavailable;
+extern NSString * const Gravity_ForceTouchCapabilityBecameAvailable;
+
+
 // NSUserDefaultsKeys
 extern NSString * const Gravity_ScaleKey;
 extern NSString * const Gravity_SpoonKey;

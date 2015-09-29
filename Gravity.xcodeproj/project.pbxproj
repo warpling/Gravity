@@ -43,6 +43,8 @@
 		DC3C34181BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3C34171BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m */; settings = {ASSET_TAGS = (); }; };
 		DC7B38CC1BB86A620013936B /* CalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7B38CB1BB86A620013936B /* CalibrationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		DC866CE91BB34A730031EF44 /* Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = DC866CE81BB34A730031EF44 /* Scale.m */; settings = {ASSET_TAGS = (); }; };
+		DC9B8AA91BBB2DF5007750D5 /* DeviceUnsupportedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9B8AA81BBB2DF5007750D5 /* DeviceUnsupportedViewController.m */; settings = {ASSET_TAGS = (); }; };
+		DC9B8AAC1BBB3589007750D5 /* UIDevice+Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9B8AAB1BBB3589007750D5 /* UIDevice+Platform.m */; settings = {ASSET_TAGS = (); }; };
 		DCB9D7041BB8DE6800CED19F /* CoinInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB9D7031BB8DE6800CED19F /* CoinInfo.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -137,6 +139,10 @@
 		DC7B38CB1BB86A620013936B /* CalibrationViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalibrationViewController.m; sourceTree = "<group>"; };
 		DC866CE71BB34A730031EF44 /* Scale.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scale.h; sourceTree = "<group>"; };
 		DC866CE81BB34A730031EF44 /* Scale.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Scale.m; sourceTree = "<group>"; };
+		DC9B8AA71BBB2DF5007750D5 /* DeviceUnsupportedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceUnsupportedViewController.h; sourceTree = "<group>"; };
+		DC9B8AA81BBB2DF5007750D5 /* DeviceUnsupportedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceUnsupportedViewController.m; sourceTree = "<group>"; };
+		DC9B8AAA1BBB3589007750D5 /* UIDevice+Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Platform.h"; sourceTree = "<group>"; };
+		DC9B8AAB1BBB3589007750D5 /* UIDevice+Platform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Platform.m"; sourceTree = "<group>"; };
 		DCB9D7021BB8DE6800CED19F /* CoinInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinInfo.h; sourceTree = "<group>"; };
 		DCB9D7031BB8DE6800CED19F /* CoinInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -274,6 +280,8 @@
 				DC1828931BB1DEA200997DD2 /* Instructions */,
 				DC1828521BB1D01300997DD2 /* MainViewController.h */,
 				DC1828531BB1D01300997DD2 /* MainViewController.m */,
+				DC9B8AA71BBB2DF5007750D5 /* DeviceUnsupportedViewController.h */,
+				DC9B8AA81BBB2DF5007750D5 /* DeviceUnsupportedViewController.m */,
 				DC094F911BB9E3C50071BADA /* Custom Views */,
 				DC1828551BB1D01300997DD2 /* Main.storyboard */,
 				DC1828581BB1D01300997DD2 /* Assets.xcassets */,
@@ -317,6 +325,8 @@
 		DC18288A1BB1D5DB00997DD2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				DC9B8AAA1BBB3589007750D5 /* UIDevice+Platform.h */,
+				DC9B8AAB1BBB3589007750D5 /* UIDevice+Platform.m */,
 				DC3C34161BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.h */,
 				DC3C34171BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m */,
 				DC1CDB321BB76D9700E52F8B /* CKShapeView.h */,
@@ -618,7 +628,9 @@
 				DCB9D7041BB8DE6800CED19F /* CoinInfo.m in Sources */,
 				DC1CDB2E1BB76B0500E52F8B /* CoinHolder.m in Sources */,
 				DC0CE8B31BB8729600C479E3 /* SpoonView.m in Sources */,
+				DC9B8AA91BBB2DF5007750D5 /* DeviceUnsupportedViewController.m in Sources */,
 				DC094F9A1BBA5B330071BADA /* RecalibrateBar.m in Sources */,
+				DC9B8AAC1BBB3589007750D5 /* UIDevice+Platform.m in Sources */,
 				DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */,
 				DC18284E1BB1D01300997DD2 /* main.m in Sources */,
 				DC094FA31BBA8F570071BADA /* TitleViewController.m in Sources */,

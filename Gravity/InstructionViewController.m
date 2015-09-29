@@ -26,6 +26,8 @@
         _contentTextView.textAlignment = NSTextAlignmentCenter;
         _contentTextView.textColor = [UIColor colorWithWhite:1 alpha:0.925];
         _contentTextView.backgroundColor = [UIColor clearColor];
+        _contentTextView.editable = NO;
+        _contentTextView.selectable = NO;
         [_contentTextView setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisVertical];
         
         [self.view addSubview:_contentTextView];
