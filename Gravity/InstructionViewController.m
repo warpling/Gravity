@@ -8,11 +8,9 @@
 
 #import "InstructionViewController.h"
 #import "Masonry.h"
-#import "GhostButton.h"
 
 @interface InstructionViewController ()
 
-@property (strong, nonatomic, readwrite) UILabel *stepNumberLabel;
 @property (strong, nonatomic, readwrite) UITextView *contentTextView;
 @property (strong, nonatomic, readwrite) GhostButton *continueButton;
 
@@ -34,7 +32,7 @@
         
         [_contentTextView makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view);
-            make.centerY.equalTo(self.view);
+            make.centerY.equalTo(self.view).with.offset(-30);
             make.width.lessThanOrEqualTo(@230);
             make.height.greaterThanOrEqualTo(@100).priorityHigh();
         }];

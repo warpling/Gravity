@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Constants.h"
+#import "GhostButton.h"
 
 @interface InstructionViewController : UIViewController
 
@@ -17,5 +18,6 @@
 @property (copy,   nonatomic) VoidBlock continueButtonAction;
 
 @property (strong, nonatomic, readonly) UITextView *contentTextView;
+@property (strong, nonatomic, readonly) GhostButton *continueButton;
 
 @end

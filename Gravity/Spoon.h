@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "LinearFunction.h"
 
 @interface Spoon : NSObject
 
 //@property (nonatomic, readonly) CGFloat spoonForce;
 @property (strong, nonatomic, readonly) NSDictionary *calibrationForces;
+@property (strong, nonatomic, readonly) LinearFunction *bestFit;
 
 - (void) recordBaseForce:(CGFloat)force;
 - (void) recordCalibrationForce:(CGFloat)force forKnownWeight:(CGFloat)knownWeight;

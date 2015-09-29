@@ -8,6 +8,7 @@
 
 #import "WeighArea.h"
 #import "CircularTextView.h"
+#import "Track.h"
 
 @interface WeighArea ()
 @property (strong, nonatomic) NSMapTable *activeTouches;
@@ -84,7 +85,7 @@ static CGFloat const touchCircleSize = 120;
     NSString *infoString = @"Non-force touch";
     if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
         infoString = [NSString stringWithFormat:@"%f", touch.force];
-        NSLog(@"Force: %f", touch.force);
+//        NSLog(@"Force: %f", touch.force);
     }
     
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:infoString attributes:attributes];
@@ -142,10 +143,19 @@ static CGFloat const touchCircleSize = 120;
 #pragma mark Debug Stats
 - (void) touchesDidChange {
     
+    // Clean-up: ended/cancelled touches should all be removed by this point in time, but sometimes
+    //           when views transition they can be orphaned. This is where they breathe their last breath.
+    for (UITouch *touch in [[self.activeTouches keyEnumerator] allObjects]) {
+        if (([touch phase] == UITouchPhaseEnded) || ([touch phase] == UITouchPhaseCancelled)) {
+            [self deregisterTouch:touch];
+        }
+    }
+    
     if (self.forceAvailable) {
         if ([self.activeTouches count] > 1) {
             self.lastActiveTouch = nil;
             [self.weightAreaDelegate multipleTouchesDetected];
+//            [Track scaleMultitouched];
         }
         else if ([self.activeTouches count] == 1) {
             UITouch *touch = [[[self.activeTouches keyEnumerator] allObjects] firstObject];

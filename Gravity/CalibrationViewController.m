@@ -13,6 +13,7 @@
 #import "GhostButton.h"
 #import "UIStackView+RemoveAllArrangedSubviews.h"
 #import "CoinInfo.h"
+#import "Track.h"
 
 @interface CalibrationViewController ()
 
@@ -107,20 +108,38 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     self.weighArea.weightAreaDelegate = self;
     [self.view addSubview:self.weighArea];
     
-
-
-    
     [self setupViewConstraints];
 }
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    [self resetCalibration];
+    self.spoon = [Spoon new];
+    [self.coins reset];
+    
     [self setCalibrationStep:CalibrationStepLayFlat];
     
     [self.headerLabel setText:@"Set device on flat surface"];
 }
+
+- (void) viewDidAppear:(BOOL)animated {
+    [Track calibrationViewed];
+    [Track calibrationBegan];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationWillTerminate:) name:UIApplicationWillTerminateNotification object:nil];
+}
+
+- (void) dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationWillTerminateNotification object:nil];
+}
+
+#pragma mark - The only way out
+
+- (void) applicationWillTerminate:(NSNotification*)notification {
+    [Track calibrationInterupted];
+}
+
+#pragma mark - Views
 
 - (void) setupButtonBar {
     UIStackView *buttonBar = [UIStackView new];
@@ -153,6 +172,8 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 
 - (void) setupViewConstraints {
     
+    CGFloat labelHorizontalMargin = 15;
+    
     [self.statusBarBackground makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.view);
         make.bottom.equalTo(self.mas_topLayoutGuideBottom);
@@ -171,8 +192,8 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     [self.topLabel makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.headerLabel.bottom);
         make.bottom.equalTo(self.spoonView.top);
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
+        make.left.equalTo(self.view).with.offset(labelHorizontalMargin);
+        make.right.equalTo(self.view).with.offset(-labelHorizontalMargin);
     }];
     
     [self.spoonView makeConstraints:^(MASConstraintMaker *make) {
@@ -185,8 +206,8 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     [self.bottomLabel makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.spoonView.bottom);
         make.bottom.equalTo(self.coins.top);
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
+        make.left.equalTo(self.view).with.offset(labelHorizontalMargin);
+        make.right.equalTo(self.view).with.offset(-labelHorizontalMargin);
     }];
     
     [self.coins makeConstraints:^(MASConstraintMaker *make) {
@@ -337,6 +358,8 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     self.spoon = [Spoon new];
     [self.coins reset];
     [self setCalibrationStep:CalibrationStepLayFlat];
+    
+    [Track calibrationReset];
 }
 
 #pragma mark - Calibration actions
@@ -360,6 +383,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         [alert addAction:[UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
         }]];
         [self presentViewController:alert animated:YES completion:nil];
+        [Track calibrationErrorNoSpoonDetected];
     }
 }
 
@@ -383,6 +407,9 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     // TODO: touches could potentially end before CalibrationStepRemoveSpoon and then the user would never be able to advance without resetting
     if (self.calibrationStep == CalibrationStepRemoveSpoon) {
         [self setCalibrationStep:CalibrationStepFinish];
+        
+        LinearFunction *bestFit = [self.spoon bestFit];
+        [Track calibrationEndedWithSlope:bestFit.slope yIntercept:bestFit.yIntercept rSquared:bestFit.rSquared];
     }
 }
 
@@ -421,6 +448,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             [self resetCalibration];
         }]];
         [self presentViewController:alert animated:YES completion:nil];
+        [Track calibrationErrorNoSpoonDetected];
     }
     
     if (coinIndex == ([self.coins numCoins] - 1)) {

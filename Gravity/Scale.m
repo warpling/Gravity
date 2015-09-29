@@ -7,6 +7,7 @@
 //
 
 #import "Scale.h"
+#import "Track.h"
 
 @interface Scale ()
 
@@ -70,6 +71,7 @@
     if (!self.currentForceIsDirty) {
         self.tareForce = self.currentForce;
         
+        [Track scaleTared];
         [self sendOutWeightChange];
     }
 }
@@ -83,6 +85,7 @@
     // Maximum weight reached, display MAX and get out
     if ((self.maximumPossibleForce - self.currentForce) <= 0.001) {
         [self sendDelegatesCurrentWeightAtMaximum];
+//        [Track scaleMaxedOut];
         return;
     }
     

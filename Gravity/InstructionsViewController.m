@@ -8,6 +8,8 @@
 
 #import "InstructionsViewController.h"
 #import "InstructionViewController.h"
+#import "TitleViewController.h"
+#import "Track.h"
 
 @interface InstructionsViewController ()
 
@@ -38,14 +40,22 @@
     [[UIPageControl appearance] setBackgroundColor:[UIColor clearColor]];
 }
 
+- (void) viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [Track instructionsViewed];
+}
+
 - (void) setupWithCalibrationViewController:(CalibrationViewController*)calibrationViewController {
+    InstructionViewController *preView   = [self titleInstructionViewController];
     InstructionViewController *firstView = [self firstInstructionViewController];
+    InstructionViewController *thirdView = [self thirdInstructionViewController];
+    
     [calibrationViewController setOnCalibrationFinished:^{
         [self advancePage];
     }];
-    InstructionViewController *thirdView = [self thirdInstructionViewController];
+
     
-    self.instructionViews = @[firstView, calibrationViewController, thirdView];
+    self.instructionViews = @[preView, firstView, calibrationViewController, thirdView];
 
     NSArray *initialInstructionView = @[self.instructionViews.firstObject];
     [self.pageController setViewControllers:initialInstructionView direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
@@ -56,9 +66,17 @@
     [self.pageController didMoveToParentViewController:self];
 }
 
+- (InstructionViewController*) titleInstructionViewController {
+    TitleViewController *titleView = [TitleViewController new];
+    [titleView setContinueButtonAction:^{
+        [self advancePage];
+    }];
+    return titleView;
+}
+
 - (InstructionViewController*) firstInstructionViewController {
-    UIFont *normalCaptionFont = [UIFont fontWithName:AvenirNextMedium size:20];
-    UIFont *boldCaptionFont = [UIFont fontWithName:AvenirNextDemiBold size:20];
+    UIFont *normalCaptionFont = [UIFont fontWithName:AvenirNextMedium size:22];
+    UIFont *boldCaptionFont = [UIFont fontWithName:AvenirNextDemiBold size:22];
     
     NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
     paragraphStyle.alignment = NSTextAlignmentCenter;
@@ -73,7 +91,7 @@
                                                                                                             NSForegroundColorAttributeName: [UIColor whiteColor]
                                                                                                             }];
     
-    [attributedTextCaption1 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"You'll need:\n\n• Flat surface\n• Metal spoon\n• 4 quarters\n\n"
+    [attributedTextCaption1 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"You'll need:\n\n• A flat surface\n• A metal spoon\n• 4 quarters\n\n"
                                                                                           attributes:@{
                                                                                                        NSFontAttributeName: normalCaptionFont,
                                                                                                        NSParagraphStyleAttributeName: paragraphStyle,
@@ -91,7 +109,7 @@
 
 - (InstructionViewController*) thirdInstructionViewController {
     UIFont *smallerCaptionFont = [UIFont fontWithName:AvenirNextRegular size:18];
-    UIFont *boldCaptionFont = [UIFont fontWithName:AvenirNextDemiBold size:20];
+    UIFont *boldCaptionFont = [UIFont fontWithName:AvenirNextDemiBold size:22];
     
     NSMutableParagraphStyle *paragraphStyle = [NSMutableParagraphStyle new];
     paragraphStyle.alignment = NSTextAlignmentCenter;
@@ -99,7 +117,7 @@
     
     
     InstructionViewController *thirdView = [InstructionViewController new];
-    NSMutableAttributedString *attributedTextCaption3 = [[NSMutableAttributedString alloc] initWithString:@"Nice work!\n\nYou're ready to start weighing objects on your phone.\n\nIf you use a different spoon don't forget to recalibrate.\n\n"
+    NSMutableAttributedString *attributedTextCaption3 = [[NSMutableAttributedString alloc] initWithString:@"Nice work!\n\nYou're ready to start weighing objects on your phone.\n\nIf you use a different spoon don't forget to recalibrate!\n\n"
                                                                                                attributes:@{
                                                                                                             NSFontAttributeName: boldCaptionFont,
                                                                                                             NSParagraphStyleAttributeName: paragraphStyle,

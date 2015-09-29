@@ -15,6 +15,4 @@
 @property (nonatomic, assign) CGFloat weight; // grams
 @property (nonatomic, assign) NSMassFormatterUnit massUnit;
 
-- (void) clear;
-
 @end

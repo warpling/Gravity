@@ -7,13 +7,12 @@
 //
 
 #import "Spoon.h"
-#import "LinearFunction.h"
 #import "Constants.h"
 
 @interface Spoon ()
 @property (nonatomic, readwrite) CGFloat spoonForce;
 @property (strong, nonatomic, readwrite) NSDictionary *calibrationForces;
-@property (strong, nonatomic) LinearFunction *bestFit;
+@property (strong, nonatomic, readwrite) LinearFunction *bestFit;
 
 @end
 

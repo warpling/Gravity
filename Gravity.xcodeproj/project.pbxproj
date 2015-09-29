@@ -13,6 +13,8 @@
 		DC094F941BB9E4680071BADA /* ScaleDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F931BB9E4680071BADA /* ScaleDisplay.m */; settings = {ASSET_TAGS = (); }; };
 		DC094F9A1BBA5B330071BADA /* RecalibrateBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F991BBA5B330071BADA /* RecalibrateBar.m */; settings = {ASSET_TAGS = (); }; };
 		DC094F9D1BBA5E590071BADA /* UIColor+Adjust.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F9C1BBA5E590071BADA /* UIColor+Adjust.m */; settings = {ASSET_TAGS = (); }; };
+		DC094FA01BBA7E7C0071BADA /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F9F1BBA7E7C0071BADA /* Track.m */; settings = {ASSET_TAGS = (); }; };
+		DC094FA31BBA8F570071BADA /* TitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094FA21BBA8F570071BADA /* TitleViewController.m */; settings = {ASSET_TAGS = (); }; };
 		DC0CE8B31BB8729600C479E3 /* SpoonView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0CE8B21BB8729600C479E3 /* SpoonView.m */; settings = {ASSET_TAGS = (); }; };
 		DC18284E1BB1D01300997DD2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18284D1BB1D01300997DD2 /* main.m */; };
 		DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828501BB1D01300997DD2 /* AppDelegate.m */; };
@@ -77,6 +79,10 @@
 		DC094F991BBA5B330071BADA /* RecalibrateBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecalibrateBar.m; sourceTree = "<group>"; };
 		DC094F9B1BBA5E590071BADA /* UIColor+Adjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Adjust.h"; sourceTree = "<group>"; };
 		DC094F9C1BBA5E590071BADA /* UIColor+Adjust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Adjust.m"; sourceTree = "<group>"; };
+		DC094F9E1BBA7E7C0071BADA /* Track.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Track.h; sourceTree = "<group>"; };
+		DC094F9F1BBA7E7C0071BADA /* Track.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Track.m; sourceTree = "<group>"; };
+		DC094FA11BBA8F570071BADA /* TitleViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleViewController.h; sourceTree = "<group>"; };
+		DC094FA21BBA8F570071BADA /* TitleViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleViewController.m; sourceTree = "<group>"; };
 		DC0CE8B11BB8729600C479E3 /* SpoonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpoonView.h; sourceTree = "<group>"; };
 		DC0CE8B21BB8729600C479E3 /* SpoonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpoonView.m; sourceTree = "<group>"; };
 		DC1828491BB1D01300997DD2 /* Gravity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gravity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -210,6 +216,8 @@
 				DC1CDB281BB74E7000E52F8B /* LinearFunction.m */,
 				DC866CE71BB34A730031EF44 /* Scale.h */,
 				DC866CE81BB34A730031EF44 /* Scale.m */,
+				DC094F9E1BBA7E7C0071BADA /* Track.h */,
+				DC094F9F1BBA7E7C0071BADA /* Track.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -332,6 +340,8 @@
 				DC1828851BB1D54400997DD2 /* InstructionsViewController.m */,
 				DC1828901BB1DE3E00997DD2 /* InstructionViewController.h */,
 				DC1828911BB1DE3E00997DD2 /* InstructionViewController.m */,
+				DC094FA11BBA8F570071BADA /* TitleViewController.h */,
+				DC094FA21BBA8F570071BADA /* TitleViewController.m */,
 				DC1CDB231BB7465A00E52F8B /* Instruction VCs */,
 			);
 			name = Instructions;
@@ -603,6 +613,7 @@
 				DC1828891BB1D5B000997DD2 /* UIColor+AppColors.m in Sources */,
 				DC1828541BB1D01300997DD2 /* MainViewController.m in Sources */,
 				DC18289C1BB263BC00997DD2 /* WeighArea.m in Sources */,
+				DC094FA01BBA7E7C0071BADA /* Track.m in Sources */,
 				DC866CE91BB34A730031EF44 /* Scale.m in Sources */,
 				DCB9D7041BB8DE6800CED19F /* CoinInfo.m in Sources */,
 				DC1CDB2E1BB76B0500E52F8B /* CoinHolder.m in Sources */,
@@ -610,6 +621,7 @@
 				DC094F9A1BBA5B330071BADA /* RecalibrateBar.m in Sources */,
 				DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */,
 				DC18284E1BB1D01300997DD2 /* main.m in Sources */,
+				DC094FA31BBA8F570071BADA /* TitleViewController.m in Sources */,
 				DC1CDB311BB76CE900E52F8B /* CoinButton.m in Sources */,
 				DC1828861BB1D54400997DD2 /* InstructionsViewController.m in Sources */,
 				DC18288E1BB1D6B700997DD2 /* Constants.m in Sources */,
@@ -754,6 +766,7 @@
 			baseConfigurationReference = 0B063946473B63D1BC0D7D31 /* Pods-Gravity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
@@ -777,6 +790,7 @@
 			baseConfigurationReference = 8A4C67706398C13C2E405B4B /* Pods-Gravity.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (

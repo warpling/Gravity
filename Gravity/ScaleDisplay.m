@@ -9,14 +9,21 @@
 #import "ScaleDisplay.h"
 #import "Constants.h"
 
+@interface ScaleDisplay ()
+@property (nonatomic) BOOL weightIsDirty;
+@end
+
 @implementation ScaleDisplay
+
+static NSString * const dirtyString = @"----";
 
 - (instancetype) initWithFrame:(CGRect)frame {
     self = [super initWithFrame:frame];
     if (self) {
         
-        self.massUnit = (NSMassFormatterUnit)[[[NSUserDefaults standardUserDefaults] valueForKey:Gravity_DefaultMassDisplayUnits] intValue];
-        
+        _massUnit = (NSMassFormatterUnit)[[[NSUserDefaults standardUserDefaults] valueForKey:Gravity_DefaultMassDisplayUnits] intValue];
+        _weightIsDirty = YES;
+
         [self setBackgroundColor:[UIColor gravityPurpleDark]];
 
         [self setFont:[UIFont fontWithName:AvenirNextBold size:46]];
@@ -25,13 +32,9 @@
         [self setNumberOfLines:1];
         [self setAdjustsFontSizeToFitWidth:YES];
         
-        [self clear];
+        [self refreshDisplay];
     }
     return self;
-}
-
-- (void) clear {
-    [self setText:@"----"];
 }
 
 - (void) setWeight:(CGFloat)grams {
@@ -53,26 +56,33 @@
         [massFormatter setUnitStyle:NSFormattingUnitStyleShort];
     });
     
-    CGFloat convertedWeight = (self.massUnit == NSMassFormatterUnitGram) ? self.weight : (gramToOzMultiplier * self.weight);
+    NSString *outputString = dirtyString;
     
-    NSString *massString = [massFormatter stringFromValue:convertedWeight unit:self.massUnit];
-    [self setText:massString];
+    if (![self weightIsDirty]) {
+        CGFloat convertedWeight = (self.massUnit == NSMassFormatterUnitGram) ? self.weight : (gramToOzMultiplier * self.weight);
+        outputString = [massFormatter stringFromValue:convertedWeight unit:self.massUnit];
+    }
+    
+    [self setText:outputString];
 }
 
 #pragma mark - ScaleDisplayDelegate
 
 - (void) currentWeightDidChange:(CGFloat)grams {
     [self setWeight:grams];
+    [self setWeightIsDirty:NO];
     [self setBackgroundColor:[UIColor gravityPurpleDark]];
 }
 
 - (void) currentWeightAtMaximum {
     [self setText:@"MAX"];
+    [self setWeightIsDirty:NO];
     [self setBackgroundColor:[UIColor roverRedDark]];
 }
 
 - (void) currentWeightIsDirty {
-    [self setText:@"----"];
+    [self setText:dirtyString];
+    [self setWeightIsDirty:YES];
     [self setBackgroundColor:[UIColor gravityPurpleDark]];
 }
 

@@ -17,6 +17,7 @@
 #import "ScaleDisplay.h"
 #import "SpoonView.h"
 #import "RecalibrateBar.h"
+#import "Track.h"
 
 @interface MainViewController ()
 
@@ -273,6 +274,7 @@ static const CGFloat buttonsMaxHeight = 60;
         [self.scaleDisplay setMassUnit:NSMassFormatterUnitGram];
     }
     
+    [Track scaleSwitchedUnits:self.scaleDisplay.massUnit];
     [[NSUserDefaults standardUserDefaults] setValue:@([self.scaleDisplay massUnit]) forKey:Gravity_DefaultMassDisplayUnits];
 }
 
