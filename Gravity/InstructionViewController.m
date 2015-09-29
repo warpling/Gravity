@@ -12,96 +12,105 @@
 
 @interface InstructionViewController ()
 
-@property (strong, nonatomic) UILabel *titleLabel;
-@property (strong, nonatomic) UILabel *captionLabel;
-@property (strong, nonatomic) GhostButton *bottomButton;
+@property (strong, nonatomic, readwrite) UILabel *stepNumberLabel;
+@property (strong, nonatomic, readwrite) UITextView *contentTextView;
+@property (strong, nonatomic, readwrite) GhostButton *continueButton;
 
 @end
 
 
 @implementation InstructionViewController
 
-- (UILabel*) titleLabel {
-    if (!_titleLabel) {
-        _titleLabel = [UILabel new];
-        _titleLabel.textAlignment = NSTextAlignmentCenter;
-        _titleLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:24];
-        _titleLabel.adjustsFontSizeToFitWidth = YES;
-        _titleLabel.textColor = [UIColor whiteColor];
-        _titleLabel.numberOfLines = 0;
-        _titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        _titleLabel.preferredMaxLayoutWidth = self.view.bounds.size.width;
-                
-        [self.view addSubview:_titleLabel];
+//static const CGFloat stepNumberSize = 50;
+
+//- (UILabel*) stepNumberLabel {
+//    if (!_stepNumberLabel) {
+//        _stepNumberLabel = [UILabel new];
+//        _stepNumberLabel.textAlignment = NSTextAlignmentCenter;
+//        _stepNumberLabel.font = [UIFont fontWithName:@"AvenirNext-DemiBold" size:28];
+//        _stepNumberLabel.adjustsFontSizeToFitWidth = YES;
+//        _stepNumberLabel.textColor = [UIColor gravityPurple];
+//        _stepNumberLabel.backgroundColor = [UIColor gravityPurpleDark];
+//        _stepNumberLabel.numberOfLines = 1;
+//        _stepNumberLabel.layer.cornerRadius = stepNumberSize/2.f;
+//        _stepNumberLabel.layer.masksToBounds = YES;
+//        
+//        _stepNumberLabel.hidden = YES;
+//        
+//        [self.view addSubview:_stepNumberLabel];
+//        
+//        [_stepNumberLabel makeConstraints:^(MASConstraintMaker *make) {
+//            make.centerX.equalTo(self.view);
+//            make.width.equalTo(@(stepNumberSize));
+//            make.height.equalTo(_stepNumberLabel.width);
+//            make.top.equalTo(self.view).with.offset(80);
+//        }];
+//    }
+//    
+//    return _stepNumberLabel;
+//}
+
+- (UITextView*) contentTextView {
+    if (!_contentTextView) {
+        _contentTextView = [UITextView new];
+        _contentTextView.scrollEnabled = NO;
+        _contentTextView.textAlignment = NSTextAlignmentCenter;
+        _contentTextView.textColor = [UIColor colorWithWhite:1 alpha:0.925];
+        _contentTextView.backgroundColor = [UIColor clearColor];
+        [_contentTextView setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisVertical];
         
-        [_titleLabel makeConstraints:^(MASConstraintMaker *make) {
+        [self.view addSubview:_contentTextView];
+        
+        [_contentTextView makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view);
-            make.width.lessThanOrEqualTo(@280);
-            make.top.greaterThanOrEqualTo(self.view).with.offset(80);
-            make.height.greaterThanOrEqualTo(@20).priorityHigh();
+            make.centerY.equalTo(self.view);
+            make.width.lessThanOrEqualTo(@230);
+            make.height.greaterThanOrEqualTo(@100).priorityHigh();
         }];
     }
     
-    return _titleLabel;
+    return _contentTextView;
 }
 
-- (UILabel*) captionLabel {
-    if (!_captionLabel) {
-        _captionLabel = [UILabel new];
-        _captionLabel.textAlignment = NSTextAlignmentCenter;
-        _captionLabel.font = [UIFont fontWithName:@"AvenirNext-Regular" size:18];
-        _captionLabel.textColor = [UIColor colorWithWhite:1 alpha:0.925];
-        _captionLabel.numberOfLines = 0;
-        _captionLabel.lineBreakMode = NSLineBreakByWordWrapping;
-        _captionLabel.preferredMaxLayoutWidth = self.view.bounds.size.width;
+- (UIButton*) continueButton {
+    if (!_continueButton) {
+        _continueButton = [GhostButton new];
+        _continueButton.fillColor = [UIColor gravityPurple];
+        _continueButton.borderColor = [UIColor whiteColor];
+        _continueButton.invertedStyle = YES;
+        _continueButton.fontSize = 22;
         
-        [self.view addSubview:_captionLabel];
+        [_continueButton addTarget:self action:@selector(runButtonAction) forControlEvents:UIControlEventTouchUpInside];
         
-        [_captionLabel makeConstraints:^(MASConstraintMaker *make) {
+        [self.view addSubview:_continueButton];
+        
+        [_continueButton makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view);
-            make.width.lessThanOrEqualTo(@280);
-            make.top.greaterThanOrEqualTo(self.titleLabel).with.offset(40);
-            make.height.greaterThanOrEqualTo(@20).priorityHigh();
+            make.bottom.greaterThanOrEqualTo(self.contentTextView.bottom).with.offset(35);
+            make.bottom.lessThanOrEqualTo(self.view).with.offset(-35);
         }];
     }
     
-    return _captionLabel;
+    return _continueButton;
 }
 
-- (UIButton*) bottomButton {
-    if (!_bottomButton) {
-        _bottomButton = [GhostButton new];
-        _bottomButton.fillColor = [UIColor gravityPurple];
-        _bottomButton.borderColor = [UIColor whiteColor];
-        
-        [_bottomButton addTarget:self action:@selector(runButtonAction) forControlEvents:UIControlEventTouchUpInside];
-        
-        [self.view addSubview:_bottomButton];
-        
-        [_bottomButton makeConstraints:^(MASConstraintMaker *make) {
-            make.centerX.equalTo(self.view);
-            make.bottom.greaterThanOrEqualTo(self.view).with.offset(-40);
-        }];
-    }
-    
-    return _bottomButton;
+//- (void) setStepNumber:(NSUInteger)stepNumber {
+//    [self.stepNumberLabel setText:[NSString stringWithFormat:@"%d", (int)stepNumber]];
+//}
+
+- (void) setContentText:(NSString *)contentText {
+    [self.contentTextView setText:contentText];
+    // Set the font if we're not using attributed strings
+    [self.contentTextView setFont:[UIFont fontWithName:AvenirNextRegular size:20]];
 }
 
-- (void) setTitleText:(NSString *)titleText {
-    [self.titleLabel setText:titleText];
-}
-
-- (void) setCaptionText:(NSString *)captionText {
-    [self.captionLabel setText:captionText];
-}
-
-- (void) setBottomButtonText:(NSString *)bottomButtonText {
-    [self.bottomButton setTitle:bottomButtonText forState:UIControlStateNormal];
+- (void) setContinueButtonText:(NSString *)continueButtonText {
+    [self.continueButton setTitle:continueButtonText forState:UIControlStateNormal];
 }
 
 - (void) runButtonAction {
-    if (self.buttonAction) {
-        self.buttonAction();
+    if (self.continueButtonAction) {
+        self.continueButtonAction();
     }
 }
 

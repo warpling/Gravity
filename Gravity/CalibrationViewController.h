@@ -18,6 +18,7 @@
 
 @interface CalibrationViewController : UIViewController <CoinSelectionDelegate, WeighAreaEventsDelegate>
 
+@property (copy, nonatomic) VoidBlock onCalibrationFinished;
 @property (weak, nonatomic) id<SpoonCalibrationDelegate> spoonCalibrationDelegate;
 
 @end

@@ -10,11 +10,15 @@
 
 @interface GhostButton : UIButton
 
+// The button is filled in it's normal state
+@property (nonatomic) BOOL invertedStyle;
 // The button border color in it's normal state
 @property (strong, nonatomic) UIColor *borderColor;
 // The button fill color in it's normal state
 @property (strong, nonatomic) UIColor *fillColor;
 // Used for the text color when selected
 //@property (strong, nonatomic) UIColor *highlightColor;
+
+@property (nonatomic) CGFloat fontSize;
 
 @end

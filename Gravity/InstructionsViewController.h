@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CalibrationViewController.h"
 
 @interface InstructionsViewController : UIViewController <UIPageViewControllerDataSource>
+
+- (void) setupWithCalibrationViewController:(CalibrationViewController*)calibrationViewController;
 
 @end

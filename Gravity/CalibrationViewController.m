@@ -313,7 +313,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             [self.resetButton addTarget:self action:@selector(resetCalibration) forControlEvents:UIControlEventTouchUpInside];
 
             [self.finishButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
-            [self.finishButton addTarget:self action:@selector(dismiss) forControlEvents:UIControlEventTouchUpInside];
+            [self.finishButton addTarget:self action:@selector(calibrationFinished) forControlEvents:UIControlEventTouchUpInside];
 
             [self.buttonBar removeAllArrangedSubviewsFromSuperView];
             [self.buttonBar addArrangedSubview:self.resetButton];
@@ -362,18 +362,20 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         }]];
         [self presentViewController:alert animated:YES completion:nil];
     }
-
-    
 }
 
 
 
-- (void) dismiss {
+- (void) calibrationFinished {
     [self.spoonCalibrationDelegate spoonCalibrated:self.spoon];
     
-    [self dismissViewControllerAnimated:YES completion:^{
-        //
-    }];
+    if (self.onCalibrationFinished) {
+        self.onCalibrationFinished();
+    }
+    
+//    [self dismissViewControllerAnimated:YES completion:^{
+//        //
+//    }];
 }
 
 #pragma mark - WeighAreaEventDelegate
@@ -419,7 +421,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             [self.coins setActiveCoinButtonIndex:(self.coins.activeCoinButtonIndex-1)];
             [alert dismissViewControllerAnimated:YES completion:nil];
         }]];
-        [alert addAction:[UIAlertAction actionWithTitle:@"Restart Calibration" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+        [alert addAction:[UIAlertAction actionWithTitle:@"Reset Calibration" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
 //            [alert dismissViewControllerAnimated:YES completion:nil];
             [self resetCalibration];
         }]];

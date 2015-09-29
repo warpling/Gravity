@@ -37,6 +37,7 @@ extern NSString * const Gravity_InstructionsCompleted;
 extern NSString * const Gravity_DefaultMassDisplayUnits;
 
 // Fonts
+extern NSString * const AvenirNextRegular;
 extern NSString * const AvenirNextMedium;
 extern NSString * const AvenirNextDemiBold;
 extern NSString * const AvenirNextBold;

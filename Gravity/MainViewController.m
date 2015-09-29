@@ -41,7 +41,6 @@ static const CGFloat scaleDisplayMaxHeight = 90;
 static const CGFloat buttonsMinHeight = 50;
 static const CGFloat buttonsMaxHeight = 60;
 
-// Note: This requires the VC to be loaded from a nib
 - (id) initWithCoder:(NSCoder *)aDecoder {
     self = [super initWithCoder:aDecoder];
     if (self) {
@@ -129,12 +128,7 @@ static const CGFloat buttonsMaxHeight = 60;
     [self.view addSubview:buttonDivider];
     
     
-    self.instructionsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InstructionsViewController"];
 
-    self.calibrationVC = [CalibrationViewController new];
-    self.calibrationVC.spoonCalibrationDelegate = self;
-    self.calibrationVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    self.calibrationVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
     
     [self createConstraints];
 }
@@ -204,10 +198,10 @@ static const CGFloat buttonsMaxHeight = 60;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    if (![[[NSUserDefaults standardUserDefaults] objectForKey:Gravity_InstructionsCompleted] boolValue]) {
+//    [[NSUserDefaults standardUserDefaults] synchronize];
+//    if (![[[NSUserDefaults standardUserDefaults] objectForKey:Gravity_InstructionsCompleted] boolValue]) {
         [self showIntroAnimated:NO];
-    }
+//    }
     
     [self setDebugInfoBarEnabled:NO];
 }
@@ -268,21 +262,42 @@ static const CGFloat buttonsMaxHeight = 60;
 #pragma mark Intro
 
 - (void) showIntroAnimated:(BOOL)animated {
+    
+    self.instructionsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"InstructionsViewController"];
+    self.instructionsVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    self.instructionsVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+
+    self.calibrationVC = [CalibrationViewController new];
+    self.calibrationVC.spoonCalibrationDelegate = self;
+    
+    [self.instructionsVC setupWithCalibrationViewController:self.calibrationVC];
+
     [self presentViewController:self.instructionsVC animated:animated completion:nil];
 }
 
 - (void) showCalibrationScreenAnimated:(BOOL)animated {
+
+    self.calibrationVC = [CalibrationViewController new];
+    self.calibrationVC.spoonCalibrationDelegate = self;
+    self.calibrationVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    self.calibrationVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
+
+    __weak __typeof__(self) weakSelf = self;
+    [self.calibrationVC setOnCalibrationFinished:^{
+        [weakSelf.calibrationVC dismissViewControllerAnimated:YES completion:nil];
+    }];
+    
     if (![[self.presentedViewController class] isSubclassOfClass:[CalibrationViewController class]]) {
         [self presentViewController:self.calibrationVC animated:animated completion:nil];
     }
 }
 
 - (void) resetIntro {
-//    [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:InstructionsCompleted];
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//    [self showIntroAnimated:YES];
+    [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:Gravity_InstructionsCompleted];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [self showIntroAnimated:YES];
     
-    [self showCalibrationScreenAnimated:YES];
+//    [self showCalibrationScreenAnimated:YES];
 }
 
 #pragma mark Memory

@@ -11,9 +11,11 @@
 
 @interface InstructionViewController : UIViewController
 
-@property (strong, nonatomic) NSString *titleText;
-@property (strong, nonatomic) NSString *captionText;
-@property (strong, nonatomic) NSString *bottomButtonText;
-@property (copy,   nonatomic) VoidBlock buttonAction;
+@property (nonatomic) NSUInteger stepNumber;
+@property (strong, nonatomic) NSString *contentText;
+@property (strong, nonatomic) NSString *continueButtonText;
+@property (copy,   nonatomic) VoidBlock continueButtonAction;
+
+@property (strong, nonatomic, readonly) UITextView *contentTextView;
 
 @end
