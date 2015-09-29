@@ -9,6 +9,7 @@
 #import "WeighArea.h"
 #import "CircularTextView.h"
 #import "Track.h"
+#import "TouchCircle.h"
 
 @interface WeighArea ()
 @property (strong, nonatomic) NSMapTable *activeTouches;
@@ -44,27 +45,19 @@ static CGFloat const touchCircleSize = 120;
 #pragma mark - Touch Management
 
 - (void) registerTouch:(UITouch*)touch {
-    UIView *circle = [[UIView alloc] initWithFrame:CGRectMake(0, 0, touchCircleSize, touchCircleSize)];
-    circle.backgroundColor = [UIColor clearColor];
-    circle.layer.backgroundColor = [[UIColor clearColor] CGColor];
-    circle.layer.borderColor = [[UIColor colorWithWhite:1 alpha:0.8] CGColor];
-    circle.layer.borderWidth = 3;
-    circle.layer.cornerRadius = touchCircleSize/2.f;
-    circle.center = [touch locationInView:self];
+    TouchCircle *circle = [[TouchCircle alloc] initWithFrame:CGRectMake(0, 0, touchCircleSize, touchCircleSize)];
     circle.hidden = !self.touchCirclesEnabled;
-    [self addSubview:circle];
+    circle.circularLabel.hidden = !self.debugLabelsEnabled;
+    self.center = [touch locationInView:self];
     
-    CGFloat inset = -30;
-    CircularTextView *circularLabel = [[CircularTextView alloc] initWithFrame:CGRectInset(circle.bounds, inset, inset)];
-    [circle addSubview:circularLabel];
-    circularLabel.backgroundColor = [UIColor clearColor];
-    circularLabel.hidden = !self.debugLabelsEnabled;
+    [self addSubview:circle];
+    [circle expand];
     
     [self.activeTouches setObject:circle forKey:touch];
 }
 
 - (void) updateTouch:(UITouch*)touch {
-    UIView *circle = [self.activeTouches objectForKey:touch];
+    TouchCircle *circle = [self.activeTouches objectForKey:touch];
     circle.center = [touch locationInView:self];
     
     
@@ -89,12 +82,16 @@ static CGFloat const touchCircleSize = 120;
     }
     
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:infoString attributes:attributes];
-    [((CircularTextView*)circle.subviews.firstObject) setAttributedText:attrString];
+    [circle.circularLabel setAttributedText:attrString];
 }
 
 - (void) deregisterTouch:(UITouch*)touch {
-    [[self.activeTouches objectForKey:touch] removeFromSuperview];
+    TouchCircle *touchCircle = [self.activeTouches objectForKey:touch];
     [self.activeTouches removeObjectForKey:touch];
+    
+    [touchCircle contractOnCompletion:^{
+        [touchCircle removeFromSuperview];
+    }];
 }
 
 #pragma mark Touch Events

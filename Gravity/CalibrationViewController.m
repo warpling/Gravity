@@ -82,10 +82,6 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     self.topLabel = topLabel;
     [self.view addSubview:self.topLabel];
     
-    self.spoonView = [SpoonView new];
-    [self.spoonView setUserInteractionEnabled:NO];
-    [self.view addSubview:self.spoonView];
-    
     UILabel *bottomLabel = [UILabel new];
     [bottomLabel setTextColor:[UIColor whiteColor]];
     [bottomLabel setFont:[UIFont fontWithName:AvenirNextDemiBold size:22]];
@@ -106,7 +102,13 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     // Weigh area
     self.weighArea = [WeighArea new];
     self.weighArea.weightAreaDelegate = self;
+    [self.weighArea setTouchCirclesEnabled:YES];
     [self.view addSubview:self.weighArea];
+    
+    self.spoonView = [SpoonView new];
+    [self.spoonView setUserInteractionEnabled:NO];
+    [self.view addSubview:self.spoonView];
+
     
     [self setupViewConstraints];
 }
