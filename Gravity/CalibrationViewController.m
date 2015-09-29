@@ -33,7 +33,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 @property (strong, nonatomic) UIView *statusBarBackground;
 @property (strong, nonatomic) UILabel *headerLabel;
 @property (strong, nonatomic) UILabel *topLabel;
-@property (strong, nonatomic) CKShapeView *spoonView;
+@property (strong, nonatomic) SpoonView *spoonView;
 @property (strong, nonatomic) UILabel *bottomLabel;
 @property (strong, nonatomic) CoinHolder *coins;
 
@@ -81,8 +81,8 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     self.topLabel = topLabel;
     [self.view addSubview:self.topLabel];
     
-    CKShapeView *spoonView = [SpoonView new];
-    self.spoonView = spoonView;
+    self.spoonView = [SpoonView new];
+    [self.spoonView setUserInteractionEnabled:NO];
     [self.view addSubview:self.spoonView];
     
     UILabel *bottomLabel = [UILabel new];
@@ -271,7 +271,23 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             [self.buttonBar addArrangedSubview:self.resetButton];
             
             [self.coins setHidden:NO];
-            [self.bottomLabel setText:@"Place one quarter into the spoon and press the icon below"];
+            
+            switch ([self.coins activeCoinButtonIndex]) {
+                case 0:
+                    [self.bottomLabel setText:@"Place one quarter into the spoon and press the icon below"];
+                    break;
+                case 1:
+                    [self.bottomLabel setText:@"Place another quarter into the spoon and press the next icon"];
+                    break;
+                case 2:
+                    [self.bottomLabel setText:@"Another one!"];
+                    break;
+                case 3:
+                    [self.bottomLabel setText:@"One last time!"];
+                    break;
+                default:
+                    [self.bottomLabel setText:@"Place one quarter into the spoon and press the icon below"];
+            }
 
             break;
         }
@@ -304,7 +320,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             [self.buttonBar addArrangedSubview:self.finishButton];
             
             [self.coins setHidden:YES];
-            [self.bottomLabel setText:@"Very good"];
+            [self.bottomLabel setText:@"Calibrated and good to go"];
 
             break;
         }
@@ -381,14 +397,18 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 
 - (void) coinSelected:(NSUInteger)coinIndex {
     
+    // We call this again so the coin specific text refreshes
+    [self setCalibrationStep:CalibrationStepAddCoins];
+    
     // record it
     CGFloat knownWeight = (coinIndex+1) * [CoinInfo knownWeightForCoinType:[self.coins coinType]];
     
     UITouch *lastActiveTouch = self.weighArea.lastActiveTouch;
+
 //    CGFloat systemUptime = [[NSProcessInfo processInfo] systemUptime];
 //    if ((systemUptime - touch.timestamp) < staleTimestampThreshold) {
     if (lastActiveTouch) {
-            [self.spoon recordCalibrationForce:lastActiveTouch.force forKnownWeight:knownWeight];
+        [self.spoon recordCalibrationForce:lastActiveTouch.force forKnownWeight:knownWeight];
     }
     else {
 //        NSLog(@"Record coin %d: touch was stale by %fs", (int)(coinIndex+1), (systemUptime - touch.timestamp));

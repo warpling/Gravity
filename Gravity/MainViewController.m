@@ -15,6 +15,7 @@
 #import "UIColor+Additions.h"
 #import "CoinHolder.h"
 #import "ScaleDisplay.h"
+#import "SpoonView.h"
 
 @interface MainViewController ()
 
@@ -22,21 +23,20 @@
 @property (strong, nonatomic) CalibrationViewController *calibrationVC;
 
 @property (strong, nonatomic) WeighArea *weighArea;
+@property (strong, nonatomic) SpoonView *spoonView;
 @property (strong, nonatomic) UILabel *debugLabel;
 @property (strong, nonatomic) ScaleDisplay *scaleDisplay;
 @property (strong, nonatomic) UIButton *tareButton;
 @property (strong, nonatomic) UIButton *unitsButton;
 @property (strong, nonatomic) UIView *buttonDivider;
 
-@property (strong, nonatomic) CoinHolder *coinHolder;
-
 @end
 
 
 @implementation MainViewController
 
-static const CGFloat outputLabelMinHeight = 65;
-static const CGFloat outputLabelMaxHeight = 90;
+static const CGFloat scaleDisplayMinHeight = 65;
+static const CGFloat scaleDisplayMaxHeight = 90;
 
 static const CGFloat buttonsMinHeight = 50;
 static const CGFloat buttonsMaxHeight = 60;
@@ -78,6 +78,9 @@ static const CGFloat buttonsMaxHeight = 60;
     [self.weighArea setBackgroundColor:[UIColor moonGrey]];
     [self.view addSubview:self.weighArea];
     
+    self.spoonView = [SpoonView new];
+    [self.spoonView setUserInteractionEnabled:NO];
+    [self.view addSubview:self.spoonView];
     
     #ifdef DEBUG
     UILabel *debugLabel = [UILabel new];
@@ -146,6 +149,12 @@ static const CGFloat buttonsMaxHeight = 60;
         make.right.equalTo(self.view);
     }];
     
+    [self.spoonView makeConstraints:^(MASConstraintMaker *make) {
+        // Try to guarantee that the center of the spoon bowl is in the center of the screen
+        make.left.equalTo(self.view.centerX).with.offset(-132);
+        make.centerY.equalTo(self.weighArea);
+    }];
+    
     [self.tareButton makeConstraints:^(MASConstraintMaker *make) {
         make.left.equalTo(self.view);
         make.bottom.equalTo(self.view);
@@ -172,8 +181,8 @@ static const CGFloat buttonsMaxHeight = 60;
         make.bottom.equalTo(self.tareButton.top);
         
         make.height.equalTo(self.view.height).priorityHigh();
-        make.height.lessThanOrEqualTo(@(outputLabelMaxHeight));
-        make.height.greaterThanOrEqualTo(@(outputLabelMinHeight));
+        make.height.lessThanOrEqualTo(@(scaleDisplayMaxHeight));
+        make.height.greaterThanOrEqualTo(@(scaleDisplayMinHeight));
     }];
     
     [self.buttonDivider makeConstraints:^(MASConstraintMaker *make) {
