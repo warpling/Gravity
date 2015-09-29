@@ -10,6 +10,7 @@
 
 @interface Scale ()
 
+@property (nonatomic) BOOL currentForceIsDirty;
 @property (nonatomic, readwrite) CGFloat tareForce;
 @property (nonatomic, assign) NSMassFormatterUnit currentMassUnit;
 @property (nonatomic, strong) NSHashTable *scaleOutputDelegates;
@@ -54,17 +55,31 @@
  */
 - (void) recordNewForce:(CGFloat)currentForce {
     _currentForce = currentForce;
+    self.currentForceIsDirty = NO;
 
+    [self sendOutWeightChange];
+}
+
+- (void) invalidateCurrentForce {
+    self.currentForceIsDirty = YES;
+    
     [self sendOutWeightChange];
 }
 
 - (void) tare {
-    self.tareForce = self.currentForce;
-    [self sendOutWeightChange];
+    if (!self.currentForceIsDirty) {
+        self.tareForce = self.currentForce;
+        
+        [self sendOutWeightChange];
+    }
 }
 
 - (void) sendOutWeightChange {
     
+    if (self.currentForceIsDirty) {
+        [self sendDelegatesCurrentWeightIsDirty];
+        return;
+    }
     // Maximum weight reached, display MAX and get out
     if ((self.maximumPossibleForce - self.currentForce) <= 0.001) {
         [self sendDelegatesCurrentWeightAtMaximum];
@@ -92,6 +107,8 @@
     [_scaleOutputDelegates removeObject: delegate];
 }
 
+// TODO: DRY
+
 - (void) sendDelegatesCurrentWeightDidChange:(CGFloat)currentWeight {
     for (id<ScaleOutputDelegate> scaleOutputDelegate in [self.scaleOutputDelegates allObjects]) {
         if ([scaleOutputDelegate respondsToSelector:@selector(currentWeightDidChange:)]) {
@@ -107,6 +124,15 @@
         }
     }
 }
+
+- (void) sendDelegatesCurrentWeightIsDirty {
+    for (id<ScaleOutputDelegate> scaleOutputDelegate in [self.scaleOutputDelegates allObjects]) {
+        if ([scaleOutputDelegate respondsToSelector:@selector(currentWeightIsDirty)]) {
+            [scaleOutputDelegate currentWeightIsDirty];
+        }
+    }
+}
+
 
 #pragma mark - NSCoding
 

@@ -17,6 +17,7 @@
 @optional
 - (void) currentWeightDidChange:(CGFloat)grams;
 - (void) currentWeightAtMaximum;
+- (void) currentWeightIsDirty;
 @end
 
 #pragma mark - Scale
@@ -37,6 +38,8 @@
 
 - (void) addScaleOutputDelegate: (id<ScaleOutputDelegate>) delegate;
 - (void) removeScaleOutputDelegate: (id<ScaleOutputDelegate>) delegate;
+
+- (void) invalidateCurrentForce;
 
 - (BOOL) isCalibrated;
 - (void) tare;

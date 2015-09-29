@@ -220,7 +220,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     _calibrationStep = calibrationStep;
     
     // Defaults
-    [self.headerLabel setText:@""];
+//    [self.headerLabel setText:@""];
     [self.topLabel setText:@""];
     [self.bottomLabel setText:@""];
     [self.headerLabel setTextColor:[UIColor gravityPurple]];
@@ -320,7 +320,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             [self.buttonBar addArrangedSubview:self.finishButton];
             
             [self.coins setHidden:YES];
-            [self.bottomLabel setText:@"Calibrated and good to go"];
+            [self.bottomLabel setText:@"You're calibrated and ready to go!"];
 
             break;
         }
@@ -356,9 +356,8 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     else {
 //        NSLog(@"Record spoon weight: touch was stale by %fs", (systemUptime - lastActiveTouch.timestamp));
 
-        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No spoon?" message:@"Gravity isn't detecting a metal spoon on the screen. Try slightly dampening the back of the spoon or trying a new spoon!" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"No spoon?" message:@"Gravity isn't detecting a metal spoon on the screen. Try slightly dampening the back of the spoon or using a different spoon." preferredStyle:UIAlertControllerStyleAlert];
         [alert addAction:[UIAlertAction actionWithTitle:@"Okay" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-//            [alert dismissViewControllerAnimated:YES completion:^{}];
         }]];
         [self presentViewController:alert animated:YES completion:nil];
     }
@@ -372,10 +371,6 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     if (self.onCalibrationFinished) {
         self.onCalibrationFinished();
     }
-    
-//    [self dismissViewControllerAnimated:YES completion:^{
-//        //
-//    }];
 }
 
 #pragma mark - WeighAreaEventDelegate

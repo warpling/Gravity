@@ -145,7 +145,7 @@ static const CGFloat buttonsMaxHeight = 60;
     
     [self.recalibrateBar makeConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self.mas_topLayoutGuideTop);
-        make.bottom.equalTo(self.mas_topLayoutGuideBottom).with.offset(20);
+        make.bottom.equalTo(self.mas_topLayoutGuideBottom).with.offset(4);
         make.left.equalTo(self.view);
         make.right.equalTo(self.view);
     }];
@@ -231,10 +231,12 @@ static const CGFloat buttonsMaxHeight = 60;
 
 - (void) multipleTouchesDetected {
     [self setVisualsToErrorState:YES];
+    [self.scale invalidateCurrentForce];
 }
 
 - (void) allTouchesEnded {
     [self setVisualsToErrorState:NO];
+    [self.scale invalidateCurrentForce];
 }
 
 - (void) debugDataUpdated:(NSString*)debugData {

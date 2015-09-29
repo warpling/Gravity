@@ -71,4 +71,9 @@
     [self setBackgroundColor:[UIColor roverRedDark]];
 }
 
+- (void) currentWeightIsDirty {
+    [self setText:@"----"];
+    [self setBackgroundColor:[UIColor gravityPurpleDark]];
+}
+
 @end
