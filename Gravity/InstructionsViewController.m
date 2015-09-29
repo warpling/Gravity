@@ -91,7 +91,7 @@
                                                                                                             NSForegroundColorAttributeName: [UIColor whiteColor]
                                                                                                             }];
     
-    [attributedTextCaption1 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"You'll need:\n\n• A flat surface\n• A metal spoon\n• 4 quarters\n\n"
+    [attributedTextCaption1 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"You'll need:\n\n• a flat surface\n• a metal spoon\n• 4 quarters\n\n"
                                                                                           attributes:@{
                                                                                                        NSFontAttributeName: normalCaptionFont,
                                                                                                        NSParagraphStyleAttributeName: paragraphStyle,

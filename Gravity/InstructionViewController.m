@@ -33,7 +33,7 @@
         [_contentTextView makeConstraints:^(MASConstraintMaker *make) {
             make.centerX.equalTo(self.view);
             make.centerY.equalTo(self.view).with.offset(-30);
-            make.width.lessThanOrEqualTo(@230);
+            make.width.lessThanOrEqualTo(@260);
             make.height.greaterThanOrEqualTo(@100).priorityHigh();
         }];
     }
