@@ -46,20 +46,31 @@
 - (void) viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
+    self.continueButton.alpha = 0;
+    
     POPBasicAnimation *fadeIn = [POPBasicAnimation animationWithPropertyNamed:kPOPViewAlpha];
     fadeIn.toValue = @(1);
-    fadeIn.duration = 1.5;
+    fadeIn.duration = 1.0;
     fadeIn.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
-    fadeIn.beginTime = CACurrentMediaTime() + 1.5;
+    fadeIn.beginTime = CACurrentMediaTime() + 1.2;
     
-    POPBasicAnimation *scaleIn = [POPBasicAnimation animationWithPropertyNamed:kPOPViewScaleXY];
+    POPSpringAnimation *moveUp = [POPSpringAnimation animationWithPropertyNamed:kPOPLayerTranslationY];
+    moveUp.fromValue = @(10);
+    moveUp.toValue = @(0);
+    moveUp.springSpeed = 1;
+    moveUp.springBounciness = 4;
+    moveUp.beginTime = fadeIn.beginTime;
+
+    
+    POPSpringAnimation *scaleIn = [POPSpringAnimation animationWithPropertyNamed:kPOPViewScaleXY];
     scaleIn.fromValue = [NSValue valueWithCGSize:CGSizeMake(0.9, 0.9)];
     scaleIn.toValue = [NSValue valueWithCGSize:CGSizeMake(1, 1)];
-    scaleIn.duration = fadeIn.duration;
-    scaleIn.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    scaleIn.springSpeed = 1;
+    scaleIn.springBounciness = 4;
     scaleIn.beginTime = fadeIn.beginTime;
 
     [self.continueButton pop_addAnimation:fadeIn forKey:@"fadeIn"];
+    [self.continueButton.layer pop_addAnimation:moveUp forKey:@"moveUp"];
     [self.continueButton pop_addAnimation:scaleIn forKey:@"scaleIn"];
 }
 

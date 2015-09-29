@@ -356,8 +356,8 @@ static const CGFloat buttonsMaxHeight = 60;
     if (motion == UIEventSubtypeMotionShake)
     {
 //        [self setDebugInfoBarEnabled:!self.debugInfoBarEnabled];
-//        [self resetIntro];
-        [self showDeviceNotSupportedWarning];
+        [self resetIntro];
+//        [self showDeviceNotSupportedWarning];
     }
     #endif
 }
