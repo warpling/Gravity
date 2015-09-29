@@ -16,11 +16,14 @@
 #import "CoinHolder.h"
 #import "ScaleDisplay.h"
 #import "SpoonView.h"
+#import "RecalibrateButton.h"
 
 @interface MainViewController ()
 
 @property (strong, nonatomic) InstructionsViewController *instructionsVC;
 @property (strong, nonatomic) CalibrationViewController *calibrationVC;
+
+@property (strong, nonatomic) RecalibrateButton *recalibrateButton;
 
 @property (strong, nonatomic) WeighArea *weighArea;
 @property (strong, nonatomic) SpoonView *spoonView;
@@ -74,7 +77,6 @@ static const CGFloat buttonsMaxHeight = 60;
     self.weighArea = [WeighArea new];
     [self.weighArea setWeightAreaDelegate:self];
     [self.weighArea setTouchCirclesEnabled:YES];
-    [self.weighArea setBackgroundColor:[UIColor moonGrey]];
     [self.view addSubview:self.weighArea];
     
     self.spoonView = [SpoonView new];
@@ -126,11 +128,20 @@ static const CGFloat buttonsMaxHeight = 60;
     self.buttonDivider = buttonDivider;
     [self.view addSubview:buttonDivider];
     
+    self.recalibrateButton = [RecalibrateButton new];
+    [self.view addSubview:self.recalibrateButton];
+    
+    [self setVisualsToErrorState:NO];
 
     [self createConstraints];
 }
 
 - (void) createConstraints {
+    
+    [self.recalibrateButton makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.view);
+        make.centerX.equalTo(self.view);
+    }];
     
     [self.weighArea makeConstraints:^(MASConstraintMaker *make) {
         UIView *topLayoutGuide = (UIView*)self.topLayoutGuide;
@@ -204,22 +215,19 @@ static const CGFloat buttonsMaxHeight = 60;
 #pragma mark WeighAreaEventsDelegate
 
 - (void) singleTouchDetectedWithForce:(CGFloat)force maximumPossibleForce:(CGFloat)maxiumPossibleForce {
-    [self.view setBackgroundColor:[UIColor gravityPurple]];
-    [self.weighArea setBackgroundColor:[UIColor moonGrey]];
-
+    [self setVisualsToErrorState:NO];
+    
     // TODO: It's unclear if this value ever changes, so we'll just record it everytime
     [self.scale setMaximumPossibleForce:maxiumPossibleForce];
     [self.scale recordNewForce:force];
 }
 
 - (void) multipleTouchesDetected {
-    [self.view setBackgroundColor:[UIColor roverRedDark]];
-    [self.weighArea setBackgroundColor:[UIColor roverRed]];
+    [self setVisualsToErrorState:YES];
 }
 
 - (void) allTouchesEnded {
-    [self.view setBackgroundColor:[UIColor gravityPurple]];
-    [self.weighArea setBackgroundColor:[UIColor moonGrey]];
+    [self setVisualsToErrorState:NO];
 }
 
 - (void) debugDataUpdated:(NSString*)debugData {
@@ -227,6 +235,22 @@ static const CGFloat buttonsMaxHeight = 60;
 }
 
 #pragma UI Events
+
+- (void) setVisualsToErrorState:(BOOL)errorState {
+    if (errorState) {
+        [self.view setBackgroundColor:[UIColor roverRedDark]];
+        [self.weighArea setBackgroundColor:[UIColor roverRed]];
+
+        [self.recalibrateButton setFillColor:[UIColor roverRedDark]];
+        [self.recalibrateButton setTextColor:[UIColor roverRed]];
+    } else {
+        [self.view setBackgroundColor:[UIColor gravityPurple]];
+        [self.weighArea setBackgroundColor:[UIColor moonGrey]];
+
+        [self.recalibrateButton setFillColor:[UIColor gravityPurple]];
+        [self.recalibrateButton setTextColor:[UIColor moonGrey]];
+    }
+}
 
 - (void) tare {
     [self.scale tare];

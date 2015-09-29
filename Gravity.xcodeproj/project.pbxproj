@@ -11,6 +11,8 @@
 		184EFB99B2DB4A8756CD293B /* libPods-Gravity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B925554E87C962CED6C12B /* libPods-Gravity.a */; };
 		8EFE43BF64FDF919A37869C4 /* libPods-GravityTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04027853D8458B91E8E80992 /* libPods-GravityTests.a */; };
 		DC094F941BB9E4680071BADA /* ScaleDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F931BB9E4680071BADA /* ScaleDisplay.m */; settings = {ASSET_TAGS = (); }; };
+		DC094F9A1BBA5B330071BADA /* RecalibrateButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F991BBA5B330071BADA /* RecalibrateButton.m */; settings = {ASSET_TAGS = (); }; };
+		DC094F9D1BBA5E590071BADA /* UIColor+Adjust.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F9C1BBA5E590071BADA /* UIColor+Adjust.m */; settings = {ASSET_TAGS = (); }; };
 		DC0CE8B31BB8729600C479E3 /* SpoonView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0CE8B21BB8729600C479E3 /* SpoonView.m */; settings = {ASSET_TAGS = (); }; };
 		DC18284E1BB1D01300997DD2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18284D1BB1D01300997DD2 /* main.m */; };
 		DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828501BB1D01300997DD2 /* AppDelegate.m */; };
@@ -71,6 +73,10 @@
 		C27E1C97FD4D12D70540DE4A /* libPods-GravityUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GravityUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC094F921BB9E4680071BADA /* ScaleDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleDisplay.h; sourceTree = "<group>"; };
 		DC094F931BB9E4680071BADA /* ScaleDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleDisplay.m; sourceTree = "<group>"; };
+		DC094F981BBA5B330071BADA /* RecalibrateButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecalibrateButton.h; sourceTree = "<group>"; };
+		DC094F991BBA5B330071BADA /* RecalibrateButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecalibrateButton.m; sourceTree = "<group>"; };
+		DC094F9B1BBA5E590071BADA /* UIColor+Adjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Adjust.h"; sourceTree = "<group>"; };
+		DC094F9C1BBA5E590071BADA /* UIColor+Adjust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Adjust.m"; sourceTree = "<group>"; };
 		DC0CE8B11BB8729600C479E3 /* SpoonView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpoonView.h; sourceTree = "<group>"; };
 		DC0CE8B21BB8729600C479E3 /* SpoonView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpoonView.m; sourceTree = "<group>"; };
 		DC1828491BB1D01300997DD2 /* Gravity.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Gravity.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -211,6 +217,8 @@
 		DC094F911BB9E3C50071BADA /* Custom Views */ = {
 			isa = PBXGroup;
 			children = (
+				DC094F981BBA5B330071BADA /* RecalibrateButton.h */,
+				DC094F991BBA5B330071BADA /* RecalibrateButton.m */,
 				DC094F921BB9E4680071BADA /* ScaleDisplay.h */,
 				DC094F931BB9E4680071BADA /* ScaleDisplay.m */,
 				DC1828941BB229EB00997DD2 /* GhostButton.h */,
@@ -311,6 +319,8 @@
 				DC1828981BB256AF00997DD2 /* UIImage+ImageWithColor.m */,
 				DC1828871BB1D5B000997DD2 /* UIColor+AppColors.h */,
 				DC1828881BB1D5B000997DD2 /* UIColor+AppColors.m */,
+				DC094F9B1BBA5E590071BADA /* UIColor+Adjust.h */,
+				DC094F9C1BBA5E590071BADA /* UIColor+Adjust.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -586,6 +596,7 @@
 				DC094F941BB9E4680071BADA /* ScaleDisplay.m in Sources */,
 				DC3C34181BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m in Sources */,
 				DC7B38CC1BB86A620013936B /* CalibrationViewController.m in Sources */,
+				DC094F9D1BBA5E590071BADA /* UIColor+Adjust.m in Sources */,
 				DC1CDB341BB76D9700E52F8B /* CKShapeView.m in Sources */,
 				DC1CDB221BB605F600E52F8B /* CircularTextView.m in Sources */,
 				DC1828961BB229EB00997DD2 /* GhostButton.m in Sources */,
@@ -596,6 +607,7 @@
 				DCB9D7041BB8DE6800CED19F /* CoinInfo.m in Sources */,
 				DC1CDB2E1BB76B0500E52F8B /* CoinHolder.m in Sources */,
 				DC0CE8B31BB8729600C479E3 /* SpoonView.m in Sources */,
+				DC094F9A1BBA5B330071BADA /* RecalibrateButton.m in Sources */,
 				DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */,
 				DC18284E1BB1D01300997DD2 /* main.m in Sources */,
 				DC1CDB311BB76CE900E52F8B /* CoinButton.m in Sources */,
