@@ -16,14 +16,14 @@
 #import "CoinHolder.h"
 #import "ScaleDisplay.h"
 #import "SpoonView.h"
-#import "RecalibrateButton.h"
+#import "RecalibrateBar.h"
 
 @interface MainViewController ()
 
 @property (strong, nonatomic) InstructionsViewController *instructionsVC;
 @property (strong, nonatomic) CalibrationViewController *calibrationVC;
 
-@property (strong, nonatomic) RecalibrateButton *recalibrateButton;
+@property (strong, nonatomic) RecalibrateBar *recalibrateBar;
 
 @property (strong, nonatomic) WeighArea *weighArea;
 @property (strong, nonatomic) SpoonView *spoonView;
@@ -128,8 +128,13 @@ static const CGFloat buttonsMaxHeight = 60;
     self.buttonDivider = buttonDivider;
     [self.view addSubview:buttonDivider];
     
-    self.recalibrateButton = [RecalibrateButton new];
-    [self.view addSubview:self.recalibrateButton];
+    self.recalibrateBar = [RecalibrateBar new];
+    [self.recalibrateBar setUserInteractionEnabled:YES];
+    __weak __typeof__(self) weakSelf = self;
+    [self.recalibrateBar setButtonAction:^{
+        [weakSelf showCalibrationScreenAnimated:YES];
+    }];
+    [self.view addSubview:self.recalibrateBar];
     
     [self setVisualsToErrorState:NO];
 
@@ -138,9 +143,11 @@ static const CGFloat buttonsMaxHeight = 60;
 
 - (void) createConstraints {
     
-    [self.recalibrateButton makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.view);
-        make.centerX.equalTo(self.view);
+    [self.recalibrateBar makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.mas_topLayoutGuideTop);
+        make.bottom.equalTo(self.mas_topLayoutGuideBottom).with.offset(20);
+        make.left.equalTo(self.view);
+        make.right.equalTo(self.view);
     }];
     
     [self.weighArea makeConstraints:^(MASConstraintMaker *make) {
@@ -241,14 +248,14 @@ static const CGFloat buttonsMaxHeight = 60;
         [self.view setBackgroundColor:[UIColor roverRedDark]];
         [self.weighArea setBackgroundColor:[UIColor roverRed]];
 
-        [self.recalibrateButton setFillColor:[UIColor roverRedDark]];
-        [self.recalibrateButton setTextColor:[UIColor roverRed]];
+        [self.recalibrateBar setFillColor:[UIColor roverRedDark]];
+        [self.recalibrateBar setTextColor:[UIColor roverRed]];
     } else {
         [self.view setBackgroundColor:[UIColor gravityPurple]];
         [self.weighArea setBackgroundColor:[UIColor moonGrey]];
 
-        [self.recalibrateButton setFillColor:[UIColor gravityPurple]];
-        [self.recalibrateButton setTextColor:[UIColor moonGrey]];
+        [self.recalibrateBar setFillColor:[UIColor gravityPurple]];
+        [self.recalibrateBar setTextColor:[UIColor moonGrey]];
     }
 }
 
@@ -337,8 +344,8 @@ static const CGFloat buttonsMaxHeight = 60;
     #ifdef DEBUG
     if (motion == UIEventSubtypeMotionShake)
     {
-        [self setDebugInfoBarEnabled:!self.debugInfoBarEnabled];
-//        [self resetIntro];
+//        [self setDebugInfoBarEnabled:!self.debugInfoBarEnabled];
+        [self resetIntro];
     }
     #endif
 }

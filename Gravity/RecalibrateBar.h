@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Constants.h"
 
-@interface RecalibrateButton : UIButton
+@interface RecalibrateBar : UIControl
 
+@property (copy, nonatomic) VoidBlock buttonAction;
 @property (strong, nonatomic) UIColor *fillColor;
 @property (strong, nonatomic) UIColor *textColor;
 

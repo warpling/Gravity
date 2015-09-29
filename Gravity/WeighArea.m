@@ -99,6 +99,8 @@ static CGFloat const touchCircleSize = 120;
 #pragma mark Touch Events
 
 - (void) touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesBegan:touches withEvent:event];
+    
     for (UITouch *touch in touches) {
         [self registerTouch:touch];
         [self updateTouch:touch];
@@ -108,6 +110,8 @@ static CGFloat const touchCircleSize = 120;
 }
 
 - (void) touchesMoved:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesMoved:touches withEvent:event];
+
     for (UITouch *touch in touches) {
         [self updateTouch:touch];
     }
@@ -116,6 +120,8 @@ static CGFloat const touchCircleSize = 120;
 }
 
 - (void) touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesEnded:touches withEvent:event];
+    
     for (UITouch *touch in touches) {
         [self deregisterTouch:touch];
     }
@@ -124,6 +130,8 @@ static CGFloat const touchCircleSize = 120;
 }
 
 - (void) touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    [super touchesCancelled:touches withEvent:event];
+
     for (UITouch *touch in touches) {
         [self deregisterTouch:touch];
     }
