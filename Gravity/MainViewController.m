@@ -83,9 +83,8 @@ static const CGFloat buttonsMaxHeight = 60;
     
     #ifdef DEBUG
     UILabel *debugLabel = [UILabel new];
-    [debugLabel setBackgroundColor:[[UIColor gravityPurple] colorWithAlphaComponent:0.9]];
-    [debugLabel setFont:[UIFont fontWithName:AvenirNextDemiBold size:14]];
-    [debugLabel setTextColor:[UIColor colorWithWhite:1 alpha:0.8]];
+    [debugLabel setFont:[UIFont systemFontOfSize:14]];
+    [debugLabel setTextColor:[UIColor gravityPurpleDark]];
     [debugLabel setTextAlignment:NSTextAlignmentLeft];
     [debugLabel setNumberOfLines:0];
     [debugLabel setAdjustsFontSizeToFitWidth:YES];
@@ -127,9 +126,7 @@ static const CGFloat buttonsMaxHeight = 60;
     self.buttonDivider = buttonDivider;
     [self.view addSubview:buttonDivider];
     
-    
 
-    
     [self createConstraints];
 }
 
@@ -198,12 +195,10 @@ static const CGFloat buttonsMaxHeight = 60;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
-//    [[NSUserDefaults standardUserDefaults] synchronize];
-//    if (![[[NSUserDefaults standardUserDefaults] objectForKey:Gravity_InstructionsCompleted] boolValue]) {
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    if (![[[NSUserDefaults standardUserDefaults] objectForKey:Gravity_InstructionsCompleted] boolValue]) {
         [self showIntroAnimated:NO];
-//    }
-    
-    [self setDebugInfoBarEnabled:NO];
+    }
 }
 
 #pragma mark WeighAreaEventsDelegate
@@ -315,10 +310,13 @@ static const CGFloat buttonsMaxHeight = 60;
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
+    #ifdef DEBUG
     if (motion == UIEventSubtypeMotionShake)
     {
-        [self resetIntro];
+        [self setDebugInfoBarEnabled:!self.debugInfoBarEnabled];
+//        [self resetIntro];
     }
+    #endif
 }
 
 #pragma mark ScaleOutputDelegate {
