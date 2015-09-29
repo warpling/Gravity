@@ -60,9 +60,11 @@ static const CGFloat buttonsMaxHeight = 60;
         NSLog(@"Scale restored from saved scale");
     }
     else {
-        self.scale = [[Scale alloc] initWithSpoon:nil];
+        self.scale = [Scale new];
         NSLog(@"New scale created");
     }
+    
+    [self.scale addScaleOutputDelegate:self];
 }
 
 - (void)viewDidLoad {
@@ -93,7 +95,7 @@ static const CGFloat buttonsMaxHeight = 60;
     
     ScaleDisplay *scaleDisplay = [ScaleDisplay new];
     self.scaleDisplay = scaleDisplay;
-    [self.scale setScaleOutputDelegate:self.scaleDisplay];
+    [self.scale addScaleOutputDelegate:self.scaleDisplay];
     [self.view addSubview:self.scaleDisplay];
     
     UIButton *tareButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -261,8 +263,9 @@ static const CGFloat buttonsMaxHeight = 60;
 }
 
 - (void) showCalibrationScreenAnimated:(BOOL)animated {
-    
-    [self presentViewController:self.calibrationVC animated:animated completion:nil];
+    if (![[self.presentedViewController class] isSubclassOfClass:[CalibrationViewController class]]) {
+        [self presentViewController:self.calibrationVC animated:animated completion:nil];
+    }
 }
 
 - (void) resetIntro {
@@ -292,6 +295,17 @@ static const CGFloat buttonsMaxHeight = 60;
     {
         [self resetIntro];
     }
+}
+
+#pragma mark ScaleOutputDelegate {
+- (void) currentWeightAtMaximum {
+    [self.view setBackgroundColor:[UIColor roverRedDark]];
+    [self.weighArea setBackgroundColor:[UIColor roverRed]];
+}
+
+- (void) currentWeightDidChange:(CGFloat)grams {
+    [self.view setBackgroundColor:[UIColor gravityPurple]];
+    [self.weighArea setBackgroundColor:[UIColor moonGrey]];
 }
 
 #pragma mark SpoonCalibrationDelegate

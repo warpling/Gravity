@@ -14,10 +14,9 @@
 // -----------------------------------------------
 
 @protocol ScaleOutputDelegate <NSObject>
-
+@optional
 - (void) currentWeightDidChange:(CGFloat)grams;
 - (void) currentWeightAtMaximum;
-
 @end
 
 #pragma mark - Scale
@@ -36,10 +35,9 @@
 // The recorded tare force
 @property (nonatomic, readonly) CGFloat tareForce;
 
-@property (weak, nonatomic) id<ScaleOutputDelegate> scaleOutputDelegate;
+- (void) addScaleOutputDelegate: (id<ScaleOutputDelegate>) delegate;
+- (void) removeScaleOutputDelegate: (id<ScaleOutputDelegate>) delegate;
 
-
-- (instancetype) initWithSpoon:(Spoon*)spoon;
 - (BOOL) isCalibrated;
 - (void) tare;
 

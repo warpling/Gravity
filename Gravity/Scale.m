@@ -12,16 +12,17 @@
 
 @property (nonatomic, readwrite) CGFloat tareForce;
 @property (nonatomic, assign) NSMassFormatterUnit currentMassUnit;
+@property (nonatomic, strong) NSHashTable *scaleOutputDelegates;
 
 @end
 
 
 @implementation Scale
 
-- (instancetype) initWithSpoon:(Spoon*)spoon {
+- (instancetype) init {
     self = [super init];
     if (self) {
-        self.spoon = spoon;
+        self.scaleOutputDelegates = [NSHashTable weakObjectsHashTable];
     }
     return self;
 }
@@ -66,7 +67,7 @@
     
     // Maximum weight reached, display MAX and get out
     if ((self.maximumPossibleForce - self.currentForce) <= 0.001) {
-        [self.scaleOutputDelegate currentWeightAtMaximum];
+        [self sendDelegatesCurrentWeightAtMaximum];
         return;
     }
     
@@ -76,7 +77,34 @@
         rawWeight   = [self.spoon weightFromForce:self.currentForce];
         tareWeight  = [self.spoon weightFromForce:self.tareForce];
         
-        [self.scaleOutputDelegate currentWeightDidChange:(rawWeight - tareWeight)];
+        [self sendDelegatesCurrentWeightDidChange:(rawWeight - tareWeight)];
+    }
+}
+
+#pragma mark - Delegation
+
+- (void) addScaleOutputDelegate: (id<ScaleOutputDelegate>) delegate {
+    [_scaleOutputDelegates addObject: delegate];
+}
+
+// calling this method is optional, because the hash table will automatically remove the delegate when it gets released
+- (void) removeScaleOutputDelegate: (id<ScaleOutputDelegate>) delegate {
+    [_scaleOutputDelegates removeObject: delegate];
+}
+
+- (void) sendDelegatesCurrentWeightDidChange:(CGFloat)currentWeight {
+    for (id<ScaleOutputDelegate> scaleOutputDelegate in [self.scaleOutputDelegates allObjects]) {
+        if ([scaleOutputDelegate respondsToSelector:@selector(currentWeightDidChange:)]) {
+            [scaleOutputDelegate currentWeightDidChange:currentWeight];
+        }
+    }
+}
+
+- (void) sendDelegatesCurrentWeightAtMaximum {
+    for (id<ScaleOutputDelegate> scaleOutputDelegate in [self.scaleOutputDelegates allObjects]) {
+        if ([scaleOutputDelegate respondsToSelector:@selector(currentWeightAtMaximum)]) {
+            [scaleOutputDelegate currentWeightAtMaximum];
+        }
     }
 }
 
@@ -87,7 +115,7 @@
 }
 
 - (id)initWithCoder:(NSCoder *)decoder {
-    if((self = [super init])) {
+    if((self = [self init])) {
         self.spoon = [decoder decodeObjectForKey:Gravity_SpoonKey];
     }
     return self;

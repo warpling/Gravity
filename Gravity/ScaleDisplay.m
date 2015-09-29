@@ -68,7 +68,7 @@
 
 - (void) currentWeightAtMaximum {
     [self setText:@"MAX"];
-    [self setBackgroundColor:[UIColor roverRed]];
+    [self setBackgroundColor:[UIColor roverRedDark]];
 }
 
 @end
