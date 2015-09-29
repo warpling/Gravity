@@ -124,7 +124,7 @@
                                                                                                             NSForegroundColorAttributeName: [UIColor whiteColor]
                                                                                                             }];
     
-    [attributedTextCaption3 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"(accuracy can be ±5g)"
+    [attributedTextCaption3 appendAttributedString:[[NSMutableAttributedString alloc] initWithString:@"(accuracy up to ±3g)"
                                                                                           attributes:@{
                                                                                                        NSFontAttributeName: smallerCaptionFont,
                                                                                                        NSParagraphStyleAttributeName: paragraphStyle,

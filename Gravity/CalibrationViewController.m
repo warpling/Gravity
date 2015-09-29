@@ -39,8 +39,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 @property (strong, nonatomic) CoinHolder *coins;
 
 @property (strong, nonatomic) UIStackView *buttonBar;
-@property (strong, nonatomic) UIView *buttonSpacer1;
-@property (strong, nonatomic) UIView *buttonSpacer2;
+@property (strong, nonatomic) GhostButton *cancelButton;
 @property (strong, nonatomic) GhostButton *nextButton;
 @property (strong, nonatomic) GhostButton *resetButton;
 @property (strong, nonatomic) GhostButton *finishButton;
@@ -151,6 +150,13 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     [buttonBar setSpacing:30];
     self.buttonBar = buttonBar;
 
+    GhostButton *cancelButton = [GhostButton new];
+    cancelButton.fillColor = [UIColor gravityPurple];
+    cancelButton.borderColor = [UIColor gravityPurpleDark];
+    [cancelButton setTitle:@"Cancel" forState:UIControlStateNormal];
+    [cancelButton addTarget:self action:@selector(calibrationCancelled) forControlEvents:UIControlEventTouchUpInside];
+    self.cancelButton = cancelButton;
+    
     GhostButton *nextButton = [GhostButton new];
     nextButton.fillColor = [UIColor gravityPurple];
     nextButton.borderColor = [UIColor whiteColor];
@@ -257,6 +263,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             [self.headerLabel setTextColor:[UIColor whiteColor]];
             
             [self.buttonBar removeAllArrangedSubviewsFromSuperView];
+            [self.buttonBar addArrangedSubview:self.cancelButton];
             [self.buttonBar addArrangedSubview:self.nextButton];
 
             [self.nextButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
@@ -271,11 +278,12 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         {
             NSLog(@">> Weigh Spoon");
             
+            [self.buttonBar removeAllArrangedSubviewsFromSuperView];
+//            [self.buttonBar addArrangedSubview:self.cancelButton];
+            [self.buttonBar addArrangedSubview:self.nextButton];
+            
             [self.nextButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
             [self.nextButton addTarget:self action:@selector(recordSpoonForce) forControlEvents:UIControlEventTouchUpInside];
-            
-            [self.buttonBar removeAllArrangedSubviewsFromSuperView];
-            [self.buttonBar addArrangedSubview:self.nextButton];
             
             [self.topLabel setText:@"Gently place spoon below"];
             [self.coins setHidden:YES];
@@ -390,10 +398,15 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 }
 
 
-
 - (void) calibrationFinished {
     [self.spoonCalibrationDelegate spoonCalibrated:self.spoon];
     
+    if (self.onCalibrationFinished) {
+        self.onCalibrationFinished();
+    }
+}
+
+- (void) calibrationCancelled {
     if (self.onCalibrationFinished) {
         self.onCalibrationFinished();
     }
