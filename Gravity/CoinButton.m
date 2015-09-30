@@ -45,7 +45,7 @@ static const CGFloat coinBorderWidth = 3;
         [[button titleLabel] setFont:[UIFont fontWithName:AvenirNextDemiBold size:18]];
         [button setTitle:[CoinInfo priceStringForCoinType:coinType] forState:UIControlStateNormal];
         
-        [button addTarget:button action:@selector(touchUpInside) forControlEvents:UIControlEventTouchUpInside];
+        [button addTarget:button action:@selector(touchUpInside) forControlEvents:UIControlEventTouchDown];
     }
     return button;
 }

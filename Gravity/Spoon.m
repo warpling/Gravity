@@ -53,7 +53,6 @@
     NSArray *yValues = [self.calibrationForces allKeys];
     
     self.bestFit = [LinearFunction bestFitWithXValues:xValues yValues:yValues];
-    NSLog(@"New Best Fit: y = %.3fx + %.3f (r: %f)", self.bestFit.slope, self.bestFit.yIntercept, self.bestFit.rSquared);
 }
 
 // Returns weight in grams

@@ -78,7 +78,9 @@ static CGFloat const touchCircleSize = 120;
     NSString *infoString = @"Non-force touch";
     if (self.traitCollection.forceTouchCapability == UIForceTouchCapabilityAvailable) {
         infoString = [NSString stringWithFormat:@"%f", touch.force];
-//        NSLog(@"Force: %f", touch.force);
+        #ifdef DEBUG
+        NSLog(@"Force: %f", touch.force);
+        #endif
     }
     
     NSAttributedString *attrString = [[NSAttributedString alloc] initWithString:infoString attributes:attributes];

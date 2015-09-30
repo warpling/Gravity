@@ -136,6 +136,7 @@
 		DC1CDB331BB76D9700E52F8B /* CKShapeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CKShapeView.m; sourceTree = "<group>"; };
 		DC26DEFB1BBB3C510000D282 /* TouchCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchCircle.h; sourceTree = "<group>"; };
 		DC26DEFC1BBB3C510000D282 /* TouchCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchCircle.m; sourceTree = "<group>"; };
+		DC26DEFE1BBB70B20000D282 /* CommonMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacros.h; sourceTree = "<group>"; };
 		DC3C34161BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStackView+RemoveAllArrangedSubviews.h"; sourceTree = "<group>"; };
 		DC3C34171BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStackView+RemoveAllArrangedSubviews.m"; sourceTree = "<group>"; };
 		DC7B38CA1BB86A620013936B /* CalibrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalibrationViewController.h; sourceTree = "<group>"; };
@@ -330,6 +331,7 @@
 		DC18288A1BB1D5DB00997DD2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				DC26DEFE1BBB70B20000D282 /* CommonMacros.h */,
 				DC9B8AAA1BBB3589007750D5 /* UIDevice+Platform.h */,
 				DC9B8AAB1BBB3589007750D5 /* UIDevice+Platform.m */,
 				DC3C34161BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.h */,

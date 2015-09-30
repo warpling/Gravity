@@ -59,8 +59,8 @@ static const CGFloat coinSpacing = 20;
 
 - (void) coinSelected:(NSUInteger)coinIndex {
     NSLog(@"Coin Selected: %d", (int)coinIndex);
-    [self.coinSelectionDelegate coinSelected:coinIndex];
     self.activeCoinButtonIndex++;
+    [self.coinSelectionDelegate coinSelected:coinIndex];
 }
 
 - (void) setActiveCoinButtonIndex:(NSUInteger)activeCoinButtonIndex {

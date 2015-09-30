@@ -89,4 +89,10 @@
     return ((y - _yIntercept) / _slope);
 }
 
+# pragma mark - Description
+
+- (NSString*) description {
+    return [NSString stringWithFormat:@"Best Fit: y = %.3fx + %.3f (r: %f)", self.slope, self.yIntercept, self.rSquared];
+}
+
 @end

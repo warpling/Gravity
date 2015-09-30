@@ -28,6 +28,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 @property (nonatomic) CalibrationStep calibrationStep;
 
 @property (strong, nonatomic) Spoon *spoon;
+@property (strong, nonatomic) Spoon *altSpoon;
 
 @property (strong, nonatomic) WeighArea *weighArea;
 
@@ -55,6 +56,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     [super viewDidLoad];
     
     self.spoon = [Spoon new];
+    self.altSpoon = [Spoon new];
     
     [self.view setBackgroundColor:[UIColor gravityPurple]];
     
@@ -116,6 +118,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     [super viewWillAppear:animated];
     
     self.spoon = [Spoon new];
+    self.altSpoon = [Spoon new];
     [self.coins reset];
     
     [self setCalibrationStep:CalibrationStepWeighSpoon];
@@ -212,7 +215,9 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     }];
     
     [self.bottomLabel makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.spoonView.bottom);
+        make.height.greaterThanOrEqualTo(@100);
+        make.top.greaterThanOrEqualTo(self.spoonView.bottom).priorityHigh();
+        make.top.equalTo(self.spoonView.bottom).with.offset(40).priorityLow();
         make.bottom.equalTo(self.coins.top);
         make.left.equalTo(self.view).with.offset(labelHorizontalMargin);
         make.right.equalTo(self.view).with.offset(-labelHorizontalMargin);
@@ -311,19 +316,19 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             
             switch ([self.coins activeCoinButtonIndex]) {
                 case 0:
-                    [self.bottomLabel setText:@"Place one quarter into the spoon and press the icon below"];
+                    [self.bottomLabel setText:@"Place one quarter into the spoon then gently touch the icon below."];
                     break;
                 case 1:
-                    [self.bottomLabel setText:@"Place another quarter into the spoon and press the next icon"];
+                    [self.bottomLabel setText:@"Now another!\nRemember, gentle 👇"];
                     break;
                 case 2:
-                    [self.bottomLabel setText:@"Another one!"];
+                    [self.bottomLabel setText:@"Another one!\nNice gentle touch 👌"];
                     break;
                 case 3:
-                    [self.bottomLabel setText:@"One last time!"];
+                    [self.bottomLabel setText:@"One last time!\n"];
                     break;
                 default:
-                    [self.bottomLabel setText:@"Place one quarter into the spoon and press the icon below"];
+                    [self.bottomLabel setText:@"Place one quarter into the spoon and touch the icon below."];
             }
 
             break;
@@ -337,7 +342,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             
             [self.headerLabel setText:@"Remove spoon to continue"];
             [self.coins setHidden:YES];
-            [self.bottomLabel setText:@"Remove spoon to continue"];
+            [self.bottomLabel setText:@"Remove spoon to continue 🍴"];
 
             break;
         }
@@ -399,6 +404,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 
 - (void) resetCalibration {
     self.spoon = [Spoon new];
+    self.altSpoon = [Spoon new];
     [self.coins reset];
     [self setCalibrationStep:CalibrationStepWeighSpoon];
     
@@ -415,6 +421,11 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 //    if ((systemUptime - touch.timestamp) < staleTimestampThreshold) {
     if (lastActiveTouch) {
         [self.spoon recordBaseForce:lastActiveTouch.force];
+        
+        dispatch_async_main_after(0.1, ^{
+            UITouch *lastActiveTouch = self.weighArea.lastActiveTouch;
+            [self.spoon recordBaseForce:lastActiveTouch.force];
+        });
         //    [self.spoon recordCalibrationForce:0 forKnownWeight:0];
 
         [self setCalibrationStep:CalibrationStepAddCoins];
@@ -457,6 +468,17 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         [self setCalibrationStep:CalibrationStepFinish];
         
         LinearFunction *bestFit = [self.spoon bestFit];
+        NSLog(@"Spoon: %@", bestFit);
+        
+        LinearFunction *altBestFit = [self.altSpoon bestFit];
+        NSLog(@"Alt Spoon: %@", altBestFit);
+     
+        // If the alternate spoon has a better fit value, use it
+        // This is what we call "fuzzy logic"
+        if (altBestFit.rSquared > bestFit.rSquared) {
+            self.spoon = self.altSpoon;
+        }
+        
         [Track calibrationEndedWithSlope:bestFit.slope yIntercept:bestFit.yIntercept rSquared:bestFit.rSquared];
     }
 }
@@ -476,7 +498,12 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     CGFloat knownWeight = (coinIndex+1) * [CoinInfo knownWeightForCoinType:[self.coins coinType]];
     
     UITouch *lastActiveTouch = self.weighArea.lastActiveTouch;
-
+    NSLog(@"TouchUp  : %f", lastActiveTouch.force);
+    dispatch_async_main_after(0.1, ^{
+        UITouch *lastActiveTouch = self.weighArea.lastActiveTouch;
+        [self.altSpoon recordCalibrationForce:lastActiveTouch.force forKnownWeight:knownWeight];
+        NSLog(@"TouchUp- : %f", lastActiveTouch.force);
+    });
 //    CGFloat systemUptime = [[NSProcessInfo processInfo] systemUptime];
 //    if ((systemUptime - touch.timestamp) < staleTimestampThreshold) {
     if (lastActiveTouch) {
