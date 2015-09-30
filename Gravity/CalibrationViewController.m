@@ -262,7 +262,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             
         case CalibrationStepLayFlat:
         {
-            NSLog(@">> Lay Flat");
+            // NSLog(@">> Lay Flat");
             
             [self.headerLabel setText:@"Set device on flat surface"];
             [self.headerLabel setTextColor:[UIColor whiteColor]];
@@ -284,7 +284,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             
         case CalibrationStepWeighSpoon:
         {
-            NSLog(@">> Weigh Spoon");
+            // NSLog(@">> Weigh Spoon");
 
             [self.headerLabel setText:@"Set device on flat surface"];
 
@@ -305,7 +305,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             
         case CalibrationStepAddCoins:
         {
-            NSLog(@">> Add Coins");
+            // NSLog(@">> Add Coins");
 
             [self.headerLabel setText:@"Set device on flat surface"];
    
@@ -339,7 +339,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             
         case CalibrationStepRemoveSpoon:
         {
-            NSLog(@">> Remove Spoon");
+            // NSLog(@">> Remove Spoon");
             
             [self.headerLabel setText:@"Set device on flat surface"];
 
@@ -354,7 +354,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             
         case CalibrationStepFinish:
         {
-            NSLog(@">> Done");
+            // NSLog(@">> Done");
 
             [self.headerLabel setText:@"Set device on flat surface"];
             
@@ -475,10 +475,10 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         [self setCalibrationStep:CalibrationStepFinish];
         
         LinearFunction *bestFit = [self.spoon bestFit];
-        NSLog(@"Spoon: %@", bestFit);
+        // NSLog(@"Spoon: %@", bestFit);
         
         LinearFunction *altBestFit = [self.altSpoon bestFit];
-        NSLog(@"Alt Spoon: %@", altBestFit);
+        // NSLog(@"Alt Spoon: %@", altBestFit);
      
         // If the alternate spoon has a better fit value, use it
         // This is what we call "fuzzy logic"
@@ -505,11 +505,11 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     CGFloat knownWeight = (coinIndex+1) * [CoinInfo knownWeightForCoinType:[self.coins coinType]];
     
     UITouch *lastActiveTouch = self.weighArea.lastActiveTouch;
-    NSLog(@"TouchUp  : %f", lastActiveTouch.force);
+    // NSLog(@"TouchUp  : %f", lastActiveTouch.force);
     dispatch_async_main_after(0.1, ^{
         UITouch *lastActiveTouch = self.weighArea.lastActiveTouch;
         [self.altSpoon recordCalibrationForce:lastActiveTouch.force forKnownWeight:knownWeight];
-        NSLog(@"TouchUp- : %f", lastActiveTouch.force);
+        // NSLog(@"TouchUp- : %f", lastActiveTouch.force);
     });
 //    CGFloat systemUptime = [[NSProcessInfo processInfo] systemUptime];
 //    if ((systemUptime - touch.timestamp) < staleTimestampThreshold) {
