@@ -20,5 +20,6 @@
 
 @property (copy, nonatomic) VoidBlock onCalibrationFinished;
 @property (weak, nonatomic) id<SpoonCalibrationDelegate> spoonCalibrationDelegate;
+@property (nonatomic) BOOL canBeCancelled;
 
 @end

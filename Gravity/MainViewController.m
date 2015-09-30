@@ -311,6 +311,7 @@ static const CGFloat buttonsMaxHeight = 60;
 
     self.calibrationVC = [CalibrationViewController new];
     self.calibrationVC.spoonCalibrationDelegate = self;
+    self.calibrationVC.canBeCancelled = YES;
     self.calibrationVC.modalPresentationStyle = UIModalPresentationFullScreen;
     self.calibrationVC.modalTransitionStyle = UIModalTransitionStyleCoverVertical;
 
@@ -393,7 +394,6 @@ static const CGFloat buttonsMaxHeight = 60;
             if ([UIDevice has3DTouch]) {
                 UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"3D Touch is Disabled" message:@"It looks like you've disabled 3D Touch in Settings. You'll need to enable it in order to use Gravity.\n\nYou can find this Setting under:\nGeneral > Accessibility > 3D Touch" preferredStyle:UIAlertControllerStyleAlert];
 //                [alert addAction:[UIAlertAction actionWithTitle:@"Take me to Settings" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-                
 //                    NSURL *settingsURL = [NSURL URLWithString:@"prefs:root=General"];
 //                    if ([[UIApplication sharedApplication] canOpenURL:settingsURL]) {
 //                        [[UIApplication sharedApplication] openURL:settingsURL];

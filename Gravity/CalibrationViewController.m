@@ -118,7 +118,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     self.spoon = [Spoon new];
     [self.coins reset];
     
-    [self setCalibrationStep:CalibrationStepLayFlat];
+    [self setCalibrationStep:CalibrationStepWeighSpoon];
     
     [self.headerLabel setText:@"Set device on flat surface"];
 }
@@ -250,6 +250,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     
     // Defaults
 //    [self.headerLabel setText:@""];
+    [self.spoonView setHidden:NO];
     [self.topLabel setText:@""];
     [self.bottomLabel setText:@""];
     [self.headerLabel setTextColor:[UIColor gravityPurple]];
@@ -263,12 +264,15 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             [self.headerLabel setTextColor:[UIColor whiteColor]];
             
             [self.buttonBar removeAllArrangedSubviewsFromSuperView];
-            [self.buttonBar addArrangedSubview:self.cancelButton];
+            if (self.canBeCancelled) {
+                [self.buttonBar addArrangedSubview:self.cancelButton];   
+            }
             [self.buttonBar addArrangedSubview:self.nextButton];
 
             [self.nextButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
             [self.nextButton addTarget:self action:@selector(phoneHasBeenLayedFlat) forControlEvents:UIControlEventTouchUpInside];
             
+            [self.spoonView setHidden:YES];
             [self.coins setHidden:YES];
             
             break;
@@ -279,7 +283,9 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             NSLog(@">> Weigh Spoon");
             
             [self.buttonBar removeAllArrangedSubviewsFromSuperView];
-//            [self.buttonBar addArrangedSubview:self.cancelButton];
+            if (self.canBeCancelled) {
+                [self.buttonBar addArrangedSubview:self.cancelButton];
+            }
             [self.buttonBar addArrangedSubview:self.nextButton];
             
             [self.nextButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
@@ -367,7 +373,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 - (void) resetCalibration {
     self.spoon = [Spoon new];
     [self.coins reset];
-    [self setCalibrationStep:CalibrationStepLayFlat];
+    [self setCalibrationStep:CalibrationStepWeighSpoon];
     
     [Track calibrationReset];
 }
