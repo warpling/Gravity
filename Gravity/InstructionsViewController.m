@@ -117,7 +117,7 @@
     
     
     InstructionViewController *thirdView = [InstructionViewController new];
-    NSMutableAttributedString *attributedTextCaption3 = [[NSMutableAttributedString alloc] initWithString:@"Nice work!\n\nYou're ready to start weighing objects on your iPhone.\n\nIf you use a different spoon don't forget to recalibrate!\n\n"
+    NSMutableAttributedString *attributedTextCaption3 = [[NSMutableAttributedString alloc] initWithString:@"Nice work!\n\nYou're ready to start weighing objects with your iPhone.\n\nIf you use a different spoon don't forget to recalibrate!\n\n"
                                                                                                attributes:@{
                                                                                                             NSFontAttributeName: boldCaptionFont,
                                                                                                             NSParagraphStyleAttributeName: paragraphStyle,
