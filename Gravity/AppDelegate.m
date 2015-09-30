@@ -10,6 +10,7 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "Constants.h"
+#import "iRate.h"
 
 @interface AppDelegate ()
 
@@ -29,13 +30,25 @@
     [[NSUserDefaults standardUserDefaults] registerDefaults:userDefaultsDefaults];
     
     // TODO: Is this actually doing anything
-//    [self.window setBackgroundColor:[UIColor redColor]];
-//    [self.window setTintColor:[UIColor redColor]];
     [[UIWindow appearance] setTintColor:[UIColor gravityPurpleDark]];
     [[UIView appearance] setTintColor:[UIColor gravityPurpleDark]];
 
     // Fabric
     [Fabric with:@[[Crashlytics class]]];
+    
+    [iRate sharedInstance].appStoreID = 1042373594;
+    [iRate sharedInstance].applicationName = @"Gravity";
+    [iRate sharedInstance].daysUntilPrompt = 3;
+    [iRate sharedInstance].usesUntilPrompt = 15;
+    [iRate sharedInstance].eventsUntilPrompt = 1; // 1+ calibration
+    [iRate sharedInstance].remindPeriod = 3;
+    
+    [iRate sharedInstance].promptAtLaunch = NO;
+    
+    #ifdef DEBUG
+    [iRate sharedInstance].previewMode = YES;
+    #endif
+
     
     // Useful for debugging
     application.applicationSupportsShakeToEdit = YES;

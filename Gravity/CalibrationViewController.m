@@ -122,8 +122,6 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     [self.coins reset];
     
     [self setCalibrationStep:CalibrationStepWeighSpoon];
-    
-    [self.headerLabel setText:@"Set device on flat surface"];
 }
 
 - (void) viewDidAppear:(BOOL)animated {
@@ -254,7 +252,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     _calibrationStep = calibrationStep;
     
     // Defaults
-//    [self.headerLabel setText:@""];
+    [self.headerLabel setText:@""];
     [self.spoonView setHidden:NO];
     [self.topLabel setText:@""];
     [self.bottomLabel setText:@""];
@@ -266,6 +264,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         {
             NSLog(@">> Lay Flat");
             
+            [self.headerLabel setText:@"Set device on flat surface"];
             [self.headerLabel setTextColor:[UIColor whiteColor]];
             
             [self.buttonBar removeAllArrangedSubviewsFromSuperView];
@@ -286,7 +285,9 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         case CalibrationStepWeighSpoon:
         {
             NSLog(@">> Weigh Spoon");
-            
+
+            [self.headerLabel setText:@"Set device on flat surface"];
+
             [self.buttonBar removeAllArrangedSubviewsFromSuperView];
             if (self.canBeCancelled) {
                 [self.buttonBar addArrangedSubview:self.cancelButton];
@@ -305,7 +306,9 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         case CalibrationStepAddCoins:
         {
             NSLog(@">> Add Coins");
-            
+
+            [self.headerLabel setText:@"Set device on flat surface"];
+   
             [self.resetButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
             [self.resetButton addTarget:self action:@selector(resetCalibration) forControlEvents:UIControlEventTouchUpInside];
 
@@ -337,7 +340,9 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         case CalibrationStepRemoveSpoon:
         {
             NSLog(@">> Remove Spoon");
-                        
+            
+            [self.headerLabel setText:@"Set device on flat surface"];
+
             [self.buttonBar removeAllArrangedSubviewsFromSuperView];
             
             [self.headerLabel setText:@"Remove spoon to continue"];
@@ -350,6 +355,8 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         case CalibrationStepFinish:
         {
             NSLog(@">> Done");
+
+            [self.headerLabel setText:@"Set device on flat surface"];
             
             CGFloat rSquared = self.spoon.bestFit.rSquared;
             if (rSquared >= 0.995) {
@@ -369,7 +376,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             }
             else {
                 [self.bottomLabel setText:@""];
-                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oh no!" message:@"Our math is saying that the scale would be more accurate if we recalibrated.\n\nWe highly recommend recalibrating, otherwise your results may be very innaccurate!" preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oh no!" message:@"Our math is saying that the scale would be more accurate if we recalibrated.\n\nWe highly recommend recalibrating, otherwise your results may be innaccurate!" preferredStyle:UIAlertControllerStyleAlert];
                 [alert addAction:[UIAlertAction actionWithTitle:@"Let's recalibrate!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                     [self resetCalibration];
                 }]];
@@ -389,7 +396,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             [self.buttonBar addArrangedSubview:self.finishButton];
             
             [self.coins setHidden:YES];
-            [self.bottomLabel setText:@"You're calibrated and ready to go!"];
+            [self.bottomLabel setText:@"You're calibrated and ready!"];
 
             break;
         }

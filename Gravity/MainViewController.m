@@ -11,6 +11,7 @@
 #import "CalibrationViewController.h"
 #import "WeighArea.h"
 #import "UIImage+ImageWithColor.h"
+#import "UIColor+Adjust.h"
 #import "Masonry.h"
 #import "UIColor+Additions.h"
 #import "CoinHolder.h"
@@ -36,6 +37,8 @@
 @property (strong, nonatomic) UIButton *unitsButton;
 @property (strong, nonatomic) UIView *buttonDivider;
 
+@property (strong, nonatomic) NSTimer *ratingTimer;
+
 @end
 
 
@@ -51,6 +54,7 @@ static const CGFloat buttonsMaxHeight = 60;
     self = [super initWithCoder:aDecoder];
     if (self) {
         [self loadSavedScale];
+        [[iRate sharedInstance] setDelegate:self];
     }
     return self;
 }
@@ -109,7 +113,7 @@ static const CGFloat buttonsMaxHeight = 60;
     [tareButton setBackgroundImage:[UIImage imageWithColor:[[UIColor gravityPurple] add_colorWithBrightness:0.8]] forState:UIControlStateHighlighted];
     [tareButton.titleLabel setFont:[UIFont fontWithName:AvenirNextDemiBold size:30]];
     [tareButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [tareButton setTitleColor:[UIColor gravityPurpleDark] forState:UIControlStateNormal];
+    [tareButton setTitleColor:[UIColor changeBrightness:[UIColor gravityPurpleDark] amount:0.8] forState:UIControlStateNormal];
     [tareButton setTitle:@"zero" forState:UIControlStateNormal];
     [tareButton addTarget:self action:@selector(tare) forControlEvents:UIControlEventTouchUpInside];
     self.tareButton = tareButton;
@@ -120,7 +124,7 @@ static const CGFloat buttonsMaxHeight = 60;
     [unitsButton setBackgroundImage:[UIImage imageWithColor:[[UIColor gravityPurple] add_colorWithBrightness:0.75]] forState:UIControlStateHighlighted];
     [unitsButton.titleLabel setFont:[UIFont fontWithName:AvenirNextDemiBold size:30]];
     [unitsButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
-    [unitsButton setTitleColor:[UIColor gravityPurpleDark] forState:UIControlStateNormal];
+    [unitsButton setTitleColor:[UIColor changeBrightness:[UIColor gravityPurpleDark] amount:0.8] forState:UIControlStateNormal];
     [unitsButton setTitle:@"units" forState:UIControlStateNormal];
     [unitsButton addTarget:self action:@selector(switchUnits) forControlEvents:UIControlEventTouchUpInside];
     self.unitsButton = unitsButton;
@@ -234,20 +238,44 @@ static const CGFloat buttonsMaxHeight = 60;
     // TODO: It's unclear if this value ever changes, so we'll just record it everytime
     [self.scale setMaximumPossibleForce:maxiumPossibleForce];
     [self.scale recordNewForce:force];
+    [self.ratingTimer invalidate];
 }
 
 - (void) multipleTouchesDetected {
     [self setVisualsToErrorState:YES];
     [self.scale invalidateCurrentForce];
+    [self.ratingTimer invalidate];
 }
 
 - (void) allTouchesEnded {
     [self setVisualsToErrorState:NO];
     [self.scale invalidateCurrentForce];
+    
+    // Everytime something is scaled and nothing is added for x seconds
+    [self.ratingTimer invalidate];
+    self.ratingTimer = [NSTimer scheduledTimerWithTimeInterval:4 target:self selector:@selector(attemptToPromptToRate) userInfo:nil repeats:NO];
 }
 
 - (void) debugDataUpdated:(NSString*)debugData {
     [self.debugLabel setText:debugData];
+}
+
+- (void) attemptToPromptToRate {
+    [[iRate sharedInstance] logEvent:NO];
+    [[iRate sharedInstance] promptIfAllCriteriaMet];
+//    [[iRate sharedInstance] promptForRating];
+}
+
+- (BOOL) iRateShouldPromptForRating {
+    // Only prompt if:
+    // - the user isn't weighing anything
+    // - nothing is being presented
+    // - their scale is calibrated
+    // - their rSquared value doesn't suck
+    return (![self.weighArea lastActiveTouch]
+            && !self.presentedViewController
+            && [self.scale isCalibrated]
+            && [self.scale.spoon.bestFit rSquared] >= 0.97);
 }
 
 #pragma UI Events
@@ -381,6 +409,7 @@ static const CGFloat buttonsMaxHeight = 60;
 #pragma mark SpoonCalibrationDelegate
 - (void) spoonCalibrated:(Spoon *)spoon {
     [self.scale setSpoon:spoon];
+    [[iRate sharedInstance] logEvent:NO];
 }
 
 #pragma mark Trait Collection

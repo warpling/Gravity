@@ -41,6 +41,8 @@
 		DC1CDB311BB76CE900E52F8B /* CoinButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB301BB76CE900E52F8B /* CoinButton.m */; settings = {ASSET_TAGS = (); }; };
 		DC1CDB341BB76D9700E52F8B /* CKShapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB331BB76D9700E52F8B /* CKShapeView.m */; settings = {ASSET_TAGS = (); }; };
 		DC26DEFD1BBB3C510000D282 /* TouchCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = DC26DEFC1BBB3C510000D282 /* TouchCircle.m */; settings = {ASSET_TAGS = (); }; };
+		DC26DF021BBB81D20000D282 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DC26DEFF1BBB81D20000D282 /* iRate.bundle */; settings = {ASSET_TAGS = (); }; };
+		DC26DF031BBB81D20000D282 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC26DF011BBB81D20000D282 /* iRate.m */; settings = {ASSET_TAGS = (); }; };
 		DC3C34181BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3C34171BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m */; settings = {ASSET_TAGS = (); }; };
 		DC7B38CC1BB86A620013936B /* CalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7B38CB1BB86A620013936B /* CalibrationViewController.m */; settings = {ASSET_TAGS = (); }; };
 		DC866CE91BB34A730031EF44 /* Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = DC866CE81BB34A730031EF44 /* Scale.m */; settings = {ASSET_TAGS = (); }; };
@@ -137,6 +139,9 @@
 		DC26DEFB1BBB3C510000D282 /* TouchCircle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TouchCircle.h; sourceTree = "<group>"; };
 		DC26DEFC1BBB3C510000D282 /* TouchCircle.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TouchCircle.m; sourceTree = "<group>"; };
 		DC26DEFE1BBB70B20000D282 /* CommonMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CommonMacros.h; sourceTree = "<group>"; };
+		DC26DEFF1BBB81D20000D282 /* iRate.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = iRate.bundle; sourceTree = "<group>"; };
+		DC26DF001BBB81D20000D282 /* iRate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iRate.h; sourceTree = "<group>"; };
+		DC26DF011BBB81D20000D282 /* iRate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iRate.m; sourceTree = "<group>"; };
 		DC3C34161BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIStackView+RemoveAllArrangedSubviews.h"; sourceTree = "<group>"; };
 		DC3C34171BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIStackView+RemoveAllArrangedSubviews.m"; sourceTree = "<group>"; };
 		DC7B38CA1BB86A620013936B /* CalibrationViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalibrationViewController.h; sourceTree = "<group>"; };
@@ -331,6 +336,7 @@
 		DC18288A1BB1D5DB00997DD2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				DC26DF041BBB81D60000D282 /* iRate */,
 				DC26DEFE1BBB70B20000D282 /* CommonMacros.h */,
 				DC9B8AAA1BBB3589007750D5 /* UIDevice+Platform.h */,
 				DC9B8AAB1BBB3589007750D5 /* UIDevice+Platform.m */,
@@ -371,6 +377,16 @@
 				DC7B38CB1BB86A620013936B /* CalibrationViewController.m */,
 			);
 			name = "Instruction VCs";
+			sourceTree = "<group>";
+		};
+		DC26DF041BBB81D60000D282 /* iRate */ = {
+			isa = PBXGroup;
+			children = (
+				DC26DEFF1BBB81D20000D282 /* iRate.bundle */,
+				DC26DF001BBB81D20000D282 /* iRate.h */,
+				DC26DF011BBB81D20000D282 /* iRate.m */,
+			);
+			name = iRate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -485,6 +501,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC18285C1BB1D01300997DD2 /* LaunchScreen.storyboard in Resources */,
+				DC26DF021BBB81D20000D282 /* iRate.bundle in Resources */,
 				DC1828591BB1D01300997DD2 /* Assets.xcassets in Resources */,
 				DC1828571BB1D01300997DD2 /* Main.storyboard in Resources */,
 			);
@@ -638,6 +655,7 @@
 				DC9B8AA91BBB2DF5007750D5 /* DeviceUnsupportedViewController.m in Sources */,
 				DC26DEFD1BBB3C510000D282 /* TouchCircle.m in Sources */,
 				DC094F9A1BBA5B330071BADA /* RecalibrateBar.m in Sources */,
+				DC26DF031BBB81D20000D282 /* iRate.m in Sources */,
 				DC9B8AAC1BBB3589007750D5 /* UIDevice+Platform.m in Sources */,
 				DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */,
 				DC18284E1BB1D01300997DD2 /* main.m in Sources */,
