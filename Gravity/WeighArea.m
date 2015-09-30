@@ -137,6 +137,12 @@ static CGFloat const touchCircleSize = 120;
     [self touchesDidChange];
 }
 
+- (void) reset {
+    for (UITouch *touch in [[self.activeTouches keyEnumerator] allObjects]) {
+        [self deregisterTouch:touch];
+    }
+}
+
 #pragma mark Debug Stats
 - (void) touchesDidChange {
     

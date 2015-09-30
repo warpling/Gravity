@@ -346,6 +346,33 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         {
             NSLog(@">> Done");
             
+            CGFloat rSquared = self.spoon.bestFit.rSquared;
+            if (rSquared >= 0.995) {
+                [self.bottomLabel setText:@"Nice job calibrating! You're ready to go!"];
+            }
+            else if (rSquared >= 0.970) {
+                [self.bottomLabel setText:@"You're calibrated."];
+                
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Calibrate again?" message:@"Our math is saying that your scale should work fine, but your accuracy may be improved if you recalibrate. Want to try recalibrating?" preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"Let's recalibrate!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self resetCalibration];
+                }]];
+                [alert addAction:[UIAlertAction actionWithTitle:@"No thanks" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+                }]];
+                [self presentViewController:alert animated:YES completion:nil];
+
+            }
+            else {
+                [self.bottomLabel setText:@""];
+                UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Oh no!" message:@"Our math is saying that the scale would be more accurate if we recalibrated.\n\nWe highly recommend recalibrating, otherwise your results may be very innaccurate!" preferredStyle:UIAlertControllerStyleAlert];
+                [alert addAction:[UIAlertAction actionWithTitle:@"Let's recalibrate!" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    [self resetCalibration];
+                }]];
+                [alert addAction:[UIAlertAction actionWithTitle:@"I understand" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                }]];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+            
             [self.resetButton removeTarget:nil action:NULL forControlEvents:UIControlEventAllEvents];
             [self.resetButton addTarget:self action:@selector(resetCalibration) forControlEvents:UIControlEventTouchUpInside];
 

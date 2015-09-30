@@ -30,4 +30,6 @@
 @property (nonatomic) BOOL debugLabelsEnabled;
 @property (nonatomic) BOOL touchCirclesEnabled;
 
+- (void) reset;
+
 @end

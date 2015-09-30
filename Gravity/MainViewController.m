@@ -216,6 +216,10 @@ static const CGFloat buttonsMaxHeight = 60;
 }
 
 - (void) viewDidAppear:(BOOL)animated {
+    
+    // TODO: this is a hack to fix a bug where a calibration touch get's stuck on the MainVC's WeighArea
+    [self.weighArea reset];
+    
     [[NSUserDefaults standardUserDefaults] synchronize];
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:Gravity_InstructionsCompleted] boolValue]) {
         [self showIntroAnimated:NO];
