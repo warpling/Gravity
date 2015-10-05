@@ -38,6 +38,7 @@
 @property (strong, nonatomic) UIView *buttonDivider;
 
 @property (strong, nonatomic) NSTimer *ratingTimer;
+@property (nonatomic) NSUInteger shakeCount;
 
 @end
 
@@ -223,6 +224,7 @@ static const CGFloat buttonsMaxHeight = 60;
     
     // TODO: this is a hack to fix a bug where a calibration touch get's stuck on the MainVC's WeighArea
     [self.weighArea reset];
+    self.shakeCount = 0;
     
     [[NSUserDefaults standardUserDefaults] synchronize];
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:Gravity_InstructionsCompleted] boolValue]) {
@@ -385,14 +387,22 @@ static const CGFloat buttonsMaxHeight = 60;
 
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
-    #ifdef DEBUG
     if (motion == UIEventSubtypeMotionShake)
     {
+        if (self.shakeCount++ >= 3) {
+            UIAlertController *resetAlert = [UIAlertController alertControllerWithTitle:@"Reset Intro?" message:@"Do you want to reset the intro and recalibrate?" preferredStyle:UIAlertControllerStyleAlert];
+            [resetAlert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
+            [resetAlert addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {
+                [self resetIntro];
+            }]];
+
+            [self presentViewController:resetAlert animated:YES completion:nil];
+            
+            self.shakeCount = 0;
+        }
 //        [self setDebugInfoBarEnabled:!self.debugInfoBarEnabled];
-        [self resetIntro];
 //        [self showDeviceNotSupportedWarning];
     }
-    #endif
 }
 
 #pragma mark ScaleOutputDelegate {

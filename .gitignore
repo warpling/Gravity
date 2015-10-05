@@ -2,3 +2,4 @@ podfile
 Pods/
 xcuserdata
 xcdebugger
+*.sh
