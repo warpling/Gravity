@@ -116,7 +116,7 @@ static const CGFloat buttonsMaxHeight = 60;
     [tareButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [tareButton setTitleColor:[UIColor changeBrightness:[UIColor gravityPurpleDark] amount:0.8] forState:UIControlStateNormal];
     [tareButton setTitle:@"zero" forState:UIControlStateNormal];
-    [tareButton addTarget:self action:@selector(tare) forControlEvents:UIControlEventTouchUpInside];
+    [tareButton addTarget:self action:@selector(tare) forControlEvents:UIControlEventTouchDown];
     self.tareButton = tareButton;
     [self.view addSubview:tareButton];
     
