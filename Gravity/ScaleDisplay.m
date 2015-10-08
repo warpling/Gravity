@@ -49,11 +49,19 @@ static NSString * const dirtyString = @"----";
 
 - (void) refreshDisplay {
     static NSMassFormatter *massFormatter = nil;
-    
+    static NSNumberFormatter *numberFormatter = nil;
     static dispatch_once_t onceToken;
+    
     dispatch_once(&onceToken, ^{
         massFormatter = [NSMassFormatter new];
         [massFormatter setUnitStyle:NSFormattingUnitStyleShort];
+        
+        numberFormatter = [[NSNumberFormatter alloc] init];
+        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [numberFormatter setMinimumFractionDigits:1];
+        [numberFormatter setMaximumFractionDigits:1];
+        
+        [massFormatter setNumberFormatter:numberFormatter];
     });
     
     NSString *outputString = dirtyString;
