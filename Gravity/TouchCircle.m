@@ -8,10 +8,12 @@
 
 #import "TouchCircle.h"
 #import <Pop.h>
+#import "CAMediaTimingFunction+BasicFunctions.h"
 
 @interface TouchCircle ()
 @property (strong, nonatomic, readwrite) CircularTextView *circularLabel;
 @property (strong, nonatomic, readwrite) CKShapeView *fillCircle;
+@property (strong, nonatomic, readwrite) CKShapeView *rippleCircle;
 
 @end
 
@@ -35,6 +37,13 @@
         self.fillCircle.path = [UIBezierPath bezierPathWithOvalInRect:self.bounds];
         self.fillCircle.fillColor = [UIColor colorWithWhite:0 alpha:0.1];
         [self addSubview:self.fillCircle];
+        
+        self.rippleCircle = [[CKShapeView alloc] initWithFrame:self.bounds];
+        self.rippleCircle.path = [UIBezierPath bezierPathWithOvalInRect:self.bounds];
+        self.rippleCircle.fillColor = [UIColor clearColor];
+        self.rippleCircle.lineWidth = 2;
+        self.rippleCircle.strokeColor = [UIColor colorWithWhite:0 alpha:0.25];
+        [self addSubview:self.rippleCircle];
     }
     return self;
 }
@@ -52,6 +61,29 @@
     
     [self pop_addAnimation:growAnimation forKey:@"scale"];
     [self.fillCircle pop_addAnimation:fillExpandAnimation forKey:@"scale"];
+    
+    
+    CGFloat duration = 3.0;
+    CGFloat delay = 1.88;
+    [self.rippleCircle.layer setTransform:CATransform3DIdentity];
+    POPBasicAnimation *holeRippleScaleAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerScaleXY];
+    holeRippleScaleAnimation.duration           = duration;
+    holeRippleScaleAnimation.fromValue          = [NSValue valueWithCGSize:CGSizeMake(1, 1)];
+    holeRippleScaleAnimation.toValue            = [NSValue valueWithCGSize:CGSizeMake(3, 3)];
+    holeRippleScaleAnimation.timingFunction     = [CAMediaTimingFunction easeIn];
+    holeRippleScaleAnimation.beginTime          = CACurrentMediaTime() + delay;
+    holeRippleScaleAnimation.repeatForever      = YES;
+    
+    POPBasicAnimation *holeRippleOpacityAnimation = [POPBasicAnimation animationWithPropertyNamed:kPOPLayerOpacity];
+    holeRippleOpacityAnimation.duration           = duration;
+    holeRippleOpacityAnimation.fromValue          = @1;
+    holeRippleOpacityAnimation.toValue            = @0;
+    holeRippleOpacityAnimation.timingFunction     = [CAMediaTimingFunction CubicOut];
+    holeRippleOpacityAnimation.beginTime          = CACurrentMediaTime() + delay;
+    holeRippleOpacityAnimation.repeatForever      = YES;
+
+    [self.rippleCircle.layer pop_addAnimation:holeRippleOpacityAnimation forKey:@"opacity"];
+    [self.rippleCircle.layer pop_addAnimation:holeRippleScaleAnimation   forKey:@"scale"];
 }
 
 - (void) contractOnCompletion:(VoidBlock)onCompletion {

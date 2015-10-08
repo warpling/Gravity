@@ -28,11 +28,19 @@
 
 // Record the force created by the spoon
 - (void) recordBaseForce:(CGFloat)force {
+    #ifdef DEBUG
+    NSLog(@"🔴 Base Force: %f", force);
+    #endif
     self.spoonForce = force;
 }
 
 // Record the force created by a known weight on the spoon
 - (void) recordCalibrationForce:(CGFloat)force forKnownWeight:(CGFloat)knownWeight {
+    
+    #ifdef DEBUG
+    NSLog(@"🔴 Force for %fg: %f", knownWeight, force);
+    #endif
+    
     NSMutableDictionary *newCalibrationForces = [self.calibrationForces mutableCopy];
     [newCalibrationForces setObject:@(force) forKey:@(knownWeight)];
     self.calibrationForces = newCalibrationForces;

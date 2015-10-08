@@ -46,7 +46,7 @@
     [iRate sharedInstance].promptAtLaunch = NO;
     
     #ifdef DEBUG
-    [iRate sharedInstance].previewMode = YES;
+//    [iRate sharedInstance].previewMode = YES;
     #endif
 
     
