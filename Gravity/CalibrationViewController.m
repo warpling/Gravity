@@ -452,6 +452,10 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 - (void) calibrationFinished {
     [self.spoonCalibrationDelegate spoonCalibrated:self.spoon];
     
+    #ifdef DEBUG
+    [Track spoonCalibrated:self.spoon];
+    #endif
+    
     if (self.onCalibrationFinished) {
         self.onCalibrationFinished();
     }

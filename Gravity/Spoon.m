@@ -39,13 +39,6 @@
     [self calculateBestFit];
 }
 
-//- (CGFloat) spoonWeight {
-//    NSAssert(([self.calibrationForces count] > 2), @"Spoon weight prediction will be innacurate/impossible with 2 or fewer calibration points.");
-//    
-//    return 0;
-//}
-
-// Based on http://stackoverflow.com/a/19040841/522498
 - (void) calculateBestFit {
     // X axis: Apple Force
     NSArray *xValues = [self.calibrationForces allValues];

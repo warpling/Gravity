@@ -8,6 +8,7 @@
 
 #import "Track.h"
 #import <Crashlytics/Answers.h>
+#import "Constants.h"
 
 @implementation Track
 
@@ -120,6 +121,54 @@ static NSString * const CalibrationLevel = @"Calibration";
     
     [Answers logCustomEventWithName:@"Switch Units"
                    customAttributes:@{@"Units" : unitsString}];
+}
+
++ (void) spoonCalibrated:(Spoon*)spoon {
+    NSError *error;
+    
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:nil];
+    NSURL *url = [NSURL URLWithString:@"https://sheetsu.com/apis/9a495cdf"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLRequestUseProtocolCachePolicy
+                                                       timeoutInterval:60.0];
+    
+    [request addValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
+    [request addValue:@"application/json" forHTTPHeaderField:@"Accept"];
+    
+    // Generate ISO8601 date formatter
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    NSLocale *enUSPOSIXLocale = [NSLocale localeWithLocaleIdentifier:@"en_US_POSIX"];
+    [dateFormatter setLocale:enUSPOSIXLocale];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
+
+    NSString *build = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
+    
+    
+    NSDictionary *quarters = spoon.calibrationForces;
+    
+    [request setHTTPMethod:@"POST"];
+    NSDictionary *data = @{@"date"  : [dateFormatter stringFromDate:[NSDate date]],
+                           @"build" : build,
+                           @"spoon_force"     : @(spoon.spoonForce),
+                           @"quarter_1_force" : [quarters objectForKey:@(1*CoinWeightUSQuarter)],
+                           @"quarter_2_force" : [quarters objectForKey:@(2*CoinWeightUSQuarter)],
+                           @"quarter_3_force" : [quarters objectForKey:@(3*CoinWeightUSQuarter)],
+                           @"quarter_4_force" : [quarters objectForKey:@(4*CoinWeightUSQuarter)],
+                           @"slope"            : @(spoon.bestFit.slope),
+                           @"y_intercept"     : @(spoon.bestFit.yIntercept),
+                           @"r_squared"       : @(spoon.bestFit.rSquared),
+                           };
+    NSData *postData = [NSJSONSerialization dataWithJSONObject:data options:0 error:&error];
+    [request setHTTPBody:postData];
+    
+    
+    NSURLSessionDataTask *postDataTask = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+    }];
+    
+    [postDataTask resume];
+
 }
 
 @end

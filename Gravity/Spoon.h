@@ -11,7 +11,7 @@
 
 @interface Spoon : NSObject
 
-//@property (nonatomic, readonly) CGFloat spoonForce;
+@property (nonatomic, readonly) CGFloat spoonForce;
 @property (strong, nonatomic, readonly) NSDictionary *calibrationForces;
 @property (strong, nonatomic, readonly) LinearFunction *bestFit;
 

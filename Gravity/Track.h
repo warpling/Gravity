@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Spoon.h"
 
 @interface Track : NSObject
 
@@ -23,5 +24,7 @@
 + (void) scaleMaxedOut;
 + (void) scaleMultitouched;
 + (void) scaleSwitchedUnits:(NSMassFormatterUnit)units;
+
++ (void) spoonCalibrated:(Spoon*)spoon;
 
 @end
