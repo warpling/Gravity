@@ -48,6 +48,7 @@
 		DC866CE91BB34A730031EF44 /* Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = DC866CE81BB34A730031EF44 /* Scale.m */; settings = {ASSET_TAGS = (); }; };
 		DC9B8AA91BBB2DF5007750D5 /* DeviceUnsupportedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9B8AA81BBB2DF5007750D5 /* DeviceUnsupportedViewController.m */; settings = {ASSET_TAGS = (); }; };
 		DC9B8AAC1BBB3589007750D5 /* UIDevice+Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9B8AAB1BBB3589007750D5 /* UIDevice+Platform.m */; settings = {ASSET_TAGS = (); }; };
+		DCA4CC241BC651610003350E /* CAMediaTimingFunction+BasicFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA4CC231BC651610003350E /* CAMediaTimingFunction+BasicFunctions.m */; settings = {ASSET_TAGS = (); }; };
 		DCB9D7041BB8DE6800CED19F /* CoinInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB9D7031BB8DE6800CED19F /* CoinInfo.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
@@ -152,6 +153,8 @@
 		DC9B8AA81BBB2DF5007750D5 /* DeviceUnsupportedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DeviceUnsupportedViewController.m; sourceTree = "<group>"; };
 		DC9B8AAA1BBB3589007750D5 /* UIDevice+Platform.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+Platform.h"; sourceTree = "<group>"; };
 		DC9B8AAB1BBB3589007750D5 /* UIDevice+Platform.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+Platform.m"; sourceTree = "<group>"; };
+		DCA4CC221BC651610003350E /* CAMediaTimingFunction+BasicFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAMediaTimingFunction+BasicFunctions.h"; sourceTree = "<group>"; };
+		DCA4CC231BC651610003350E /* CAMediaTimingFunction+BasicFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAMediaTimingFunction+BasicFunctions.m"; sourceTree = "<group>"; };
 		DCB9D7021BB8DE6800CED19F /* CoinInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinInfo.h; sourceTree = "<group>"; };
 		DCB9D7031BB8DE6800CED19F /* CoinInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -336,6 +339,8 @@
 		DC18288A1BB1D5DB00997DD2 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				DCA4CC221BC651610003350E /* CAMediaTimingFunction+BasicFunctions.h */,
+				DCA4CC231BC651610003350E /* CAMediaTimingFunction+BasicFunctions.m */,
 				DC26DF041BBB81D60000D282 /* iRate */,
 				DC26DEFE1BBB70B20000D282 /* CommonMacros.h */,
 				DC9B8AAA1BBB3589007750D5 /* UIDevice+Platform.h */,
@@ -637,6 +642,7 @@
 				DC1CDB291BB74E7000E52F8B /* LinearFunction.m in Sources */,
 				DC1828921BB1DE3E00997DD2 /* InstructionViewController.m in Sources */,
 				DC1828991BB256AF00997DD2 /* UIImage+ImageWithColor.m in Sources */,
+				DCA4CC241BC651610003350E /* CAMediaTimingFunction+BasicFunctions.m in Sources */,
 				DC094F941BB9E4680071BADA /* ScaleDisplay.m in Sources */,
 				DC3C34181BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m in Sources */,
 				DC7B38CC1BB86A620013936B /* CalibrationViewController.m in Sources */,

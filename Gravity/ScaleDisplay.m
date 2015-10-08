@@ -11,6 +11,8 @@
 
 @interface ScaleDisplay ()
 @property (nonatomic) BOOL weightIsDirty;
+@property (strong, nonatomic) NSMassFormatter *massFormatter;
+@property (strong, nonatomic) NSNumberFormatter *numberFormatter;
 @end
 
 @implementation ScaleDisplay
@@ -21,8 +23,17 @@ static NSString * const dirtyString = @"----";
     self = [super initWithFrame:frame];
     if (self) {
         
-        _massUnit = (NSMassFormatterUnit)[[[NSUserDefaults standardUserDefaults] valueForKey:Gravity_DefaultMassDisplayUnits] intValue];
+        self.massFormatter = [NSMassFormatter new];
+        [self.massFormatter setUnitStyle:NSFormattingUnitStyleShort];
+        
+        self.numberFormatter = [[NSNumberFormatter alloc] init];
+        [self.numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
+        [self.massFormatter setNumberFormatter:_numberFormatter];
+
+        // Setting the mass unit will set the right maxFractionDigits
+        self.massUnit = (NSMassFormatterUnit)[[[NSUserDefaults standardUserDefaults] valueForKey:Gravity_DefaultMassDisplayUnits] intValue];
         _weightIsDirty = YES;
+
 
         [self setBackgroundColor:[UIColor gravityPurpleDark]];
 
@@ -44,31 +55,23 @@ static NSString * const dirtyString = @"----";
 
 - (void) setMassUnit:(NSMassFormatterUnit)massUnit {
     _massUnit = massUnit;
+    
+    // More digits for oz
+    NSUInteger minFractionDigits = (self.massUnit == NSMassFormatterUnitGram) ? 1 : 2;
+    NSUInteger maxFractionDigits = (self.massUnit == NSMassFormatterUnitGram) ? 1 : 2;
+    [self.numberFormatter setMinimumFractionDigits:minFractionDigits];
+    [self.numberFormatter setMaximumFractionDigits:maxFractionDigits];
+    [self.massFormatter setNumberFormatter:self.numberFormatter];
+
     [self refreshDisplay];
 }
 
 - (void) refreshDisplay {
-    static NSMassFormatter *massFormatter = nil;
-    static NSNumberFormatter *numberFormatter = nil;
-    static dispatch_once_t onceToken;
-    
-    dispatch_once(&onceToken, ^{
-        massFormatter = [NSMassFormatter new];
-        [massFormatter setUnitStyle:NSFormattingUnitStyleShort];
-        
-        numberFormatter = [[NSNumberFormatter alloc] init];
-        [numberFormatter setNumberStyle:NSNumberFormatterDecimalStyle];
-        [numberFormatter setMinimumFractionDigits:1];
-        [numberFormatter setMaximumFractionDigits:1];
-        
-        [massFormatter setNumberFormatter:numberFormatter];
-    });
-    
     NSString *outputString = dirtyString;
     
     if (![self weightIsDirty]) {
         CGFloat convertedWeight = (self.massUnit == NSMassFormatterUnitGram) ? self.weight : (gramToOzMultiplier * self.weight);
-        outputString = [massFormatter stringFromValue:convertedWeight unit:self.massUnit];
+        outputString = [self.massFormatter stringFromValue:convertedWeight unit:self.massUnit];
     }
     
     [self setText:outputString];
