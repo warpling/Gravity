@@ -31,6 +31,8 @@
 
 - (void) setSpoon:(Spoon *)spoon {
     _spoon = spoon;
+    // Pre-tare for the user
+    [self setTareForce:spoon.spoonForce];
     
     // Only keep good spoons
     if ([spoon isCalibrated]) {
