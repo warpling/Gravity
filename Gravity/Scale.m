@@ -71,10 +71,16 @@
 
 - (void) tare {
     if (!self.currentForceIsDirty) {
-        self.tareForce = self.currentForce;
-        
-        [Track scaleTared];
+        // Immediately tare
+        [self setTareForce:self.currentForce];
         [self sendOutWeightChange];
+        [Track scaleTared];
+
+        // Tare again 0.05s later to accound for fluctuations
+        dispatch_async_main_after(0.05, ^{
+            [self setTareForce:self.currentForce];
+            [self sendOutWeightChange];
+        });
     }
 }
 
