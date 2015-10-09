@@ -42,7 +42,7 @@
         self.rippleCircle.path = [UIBezierPath bezierPathWithOvalInRect:self.bounds];
         self.rippleCircle.fillColor = [UIColor clearColor];
         self.rippleCircle.lineWidth = 2;
-        self.rippleCircle.strokeColor = [UIColor colorWithWhite:0 alpha:0.25];
+        self.rippleCircle.strokeColor = [UIColor colorWithWhite:0 alpha:0.4];
         [self addSubview:self.rippleCircle];
     }
     return self;
