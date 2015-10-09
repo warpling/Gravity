@@ -144,7 +144,9 @@ static NSString * const CalibrationLevel = @"Calibration";
     [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZZZZZ"];
 
     NSString *build = [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey];
-    
+    #ifdef DEBUG
+    build = [build stringByAppendingString:@"*"];
+    #endif
     
     NSDictionary *quarters = spoon.calibrationForces;
     
@@ -157,7 +159,7 @@ static NSString * const CalibrationLevel = @"Calibration";
                            @"quarter_2_force" : [quarters objectForKey:@(2*CoinWeightUSQuarter)],
                            @"quarter_3_force" : [quarters objectForKey:@(3*CoinWeightUSQuarter)],
                            @"quarter_4_force" : [quarters objectForKey:@(4*CoinWeightUSQuarter)],
-                           @"slope"            : @(spoon.bestFit.slope),
+                           @"slope"           : @(spoon.bestFit.slope),
                            @"y_intercept"     : @(spoon.bestFit.yIntercept),
                            @"r_squared"       : @(spoon.bestFit.rSquared),
                            };
