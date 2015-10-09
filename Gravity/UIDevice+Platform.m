@@ -81,7 +81,8 @@
 
 + (int) has3DTouch {
     NSString *platformRaw = [UIDevice platformRawString];
-    return ([platformRaw containsString:@"iPhone8,"]);
+    return ([platformRaw containsString:@"iPhone8,"] || // iPhone 6
+            [platformRaw containsString:@"iPhone9,"]);  // iPhone 7?
 }
 
 + (BOOL) celluarAvailable {

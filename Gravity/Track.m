@@ -9,6 +9,7 @@
 #import "Track.h"
 #import <Crashlytics/Answers.h>
 #import "Constants.h"
+#import "UIDevice+Platform.h"
 
 @implementation Track
 
@@ -150,6 +151,7 @@ static NSString * const CalibrationLevel = @"Calibration";
     [request setHTTPMethod:@"POST"];
     NSDictionary *data = @{@"date"  : [dateFormatter stringFromDate:[NSDate date]],
                            @"build" : build,
+                           @"device" : [UIDevice platformNiceString],
                            @"spoon_force"     : @(spoon.spoonForce),
                            @"quarter_1_force" : [quarters objectForKey:@(1*CoinWeightUSQuarter)],
                            @"quarter_2_force" : [quarters objectForKey:@(2*CoinWeightUSQuarter)],
