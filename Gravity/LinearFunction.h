@@ -19,5 +19,6 @@
 + (instancetype) bestFitWithXValues:(NSArray*)xValues yValues:(NSArray*)yValues;
 - (CGFloat) solveGivenX:(CGFloat)x;
 - (CGFloat) solveGivenY:(CGFloat)y;
+- (CGFloat) xIntercept;
 
 @end

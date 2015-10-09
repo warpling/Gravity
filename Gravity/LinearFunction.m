@@ -89,6 +89,11 @@
     return ((y - _yIntercept) / _slope);
 }
 
+- (CGFloat) xIntercept {
+    // 0 = mx + b
+    return (-_yIntercept/_slope);
+}
+
 # pragma mark - Description
 
 - (NSString*) description {
