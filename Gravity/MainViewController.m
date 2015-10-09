@@ -102,6 +102,7 @@ static const CGFloat buttonsMaxHeight = 60;
     self.debugLabel = debugLabel;
     [self.debugLabel setText:@"––––"];
     [self.view addSubview:self.debugLabel];
+    [self setDebugInfoBarEnabled:YES];
     #endif
     
     ScaleDisplay *scaleDisplay = [ScaleDisplay new];
@@ -116,7 +117,7 @@ static const CGFloat buttonsMaxHeight = 60;
     [tareButton.titleLabel setTextAlignment:NSTextAlignmentCenter];
     [tareButton setTitleColor:[UIColor changeBrightness:[UIColor gravityPurpleDark] amount:0.8] forState:UIControlStateNormal];
     [tareButton setTitle:@"zero" forState:UIControlStateNormal];
-    [tareButton addTarget:self action:@selector(tare) forControlEvents:UIControlEventTouchDown];
+    [tareButton addTarget:self action:@selector(tare) forControlEvents:UIControlEventTouchUpInside];
     self.tareButton = tareButton;
     [self.view addSubview:tareButton];
     
@@ -213,9 +214,9 @@ static const CGFloat buttonsMaxHeight = 60;
     
     #ifdef DEBUG
     [self.debugLabel makeConstraints:^(MASConstraintMaker *make) {
-        make.left.equalTo(self.view);
-        make.right.equalTo(self.view);
-        make.bottom.equalTo(self.scaleDisplay.top);
+        make.left.equalTo(self.view).with.offset(8);
+        make.right.equalTo(self.view).with.offset(-8);
+        make.bottom.equalTo(self.scaleDisplay.top).with.offset(-4);
     }];
     #endif
 }
@@ -259,6 +260,7 @@ static const CGFloat buttonsMaxHeight = 60;
 }
 
 - (void) debugDataUpdated:(NSString*)debugData {
+    debugData = [debugData stringByAppendingString:[self.scale.spoon.bestFit description]];
     [self.debugLabel setText:debugData];
 }
 
@@ -400,6 +402,7 @@ static const CGFloat buttonsMaxHeight = 60;
             
             self.shakeCount = 0;
         }
+        
 //        [self setDebugInfoBarEnabled:!self.debugInfoBarEnabled];
 //        [self showDeviceNotSupportedWarning];
     }

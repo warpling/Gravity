@@ -489,6 +489,11 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             self.spoon = self.altSpoon;
         }
         
+        if (bestFit.rSquared < 0.995) {
+            NSLog(@"Previously you would have trashed this spoon");
+        }
+        
+        [self setCalibrationStep:CalibrationStepFinish];
         [Track calibrationEndedWithSlope:bestFit.slope yIntercept:bestFit.yIntercept rSquared:bestFit.rSquared];
     }
 }
