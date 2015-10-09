@@ -319,13 +319,13 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             
             switch ([self.coins activeCoinButtonIndex]) {
                 case 0:
-                    [self.bottomLabel setText:@"Place one quarter into the spoon then gently touch the icon below."];
+                    [self.bottomLabel setText:@"Drop one quarter into the spoon then gently touch the icon below."];
                     break;
                 case 1:
-                    [self.bottomLabel setText:@"Now another!\nRemember, gentle 👇"];
+                    [self.bottomLabel setText:@"Drop another!\nTry to not touch the spoon.👇"];
                     break;
                 case 2:
-                    [self.bottomLabel setText:@"Another one!\nNice gentle touch 👌"];
+                    [self.bottomLabel setText:@"Another one!\n Press the buttons gently 👌"];
                     break;
                 case 3:
                     [self.bottomLabel setText:@"One last time!\n"];
@@ -359,7 +359,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             [self.headerLabel setText:@"Set device on flat surface"];
             
             CGFloat rSquared = self.spoon.bestFit.rSquared;
-            if (rSquared >= 0.995) {
+            if (rSquared >= 0.985) {
                 [self.bottomLabel setText:@"Nice job calibrating! You're ready to go!"];
             }
             else if (rSquared >= 0.970) {
@@ -431,7 +431,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
         
         dispatch_async_main_after(0.1, ^{
             UITouch *lastActiveTouch = self.weighArea.lastActiveTouch;
-            [self.spoon recordBaseForce:lastActiveTouch.force];
+            [self.altSpoon recordBaseForce:lastActiveTouch.force];
         });
         //    [self.spoon recordCalibrationForce:0 forKnownWeight:0];
 
@@ -452,9 +452,9 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 - (void) calibrationFinished {
     [self.spoonCalibrationDelegate spoonCalibrated:self.spoon];
     
-    #ifdef DEBUG
+//    #ifdef DEBUG
     [Track spoonCalibrated:self.spoon];
-    #endif
+//    #endif
     
     if (self.onCalibrationFinished) {
         self.onCalibrationFinished();
@@ -476,7 +476,6 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 - (void) allTouchesEnded {
     // TODO: touches could potentially end before CalibrationStepRemoveSpoon and then the user would never be able to advance without resetting
     if (self.calibrationStep == CalibrationStepRemoveSpoon) {
-        [self setCalibrationStep:CalibrationStepFinish];
         
         LinearFunction *bestFit = [self.spoon bestFit];
         // NSLog(@"Spoon: %@", bestFit);
