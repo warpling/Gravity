@@ -133,10 +133,9 @@
     [thirdView.contentTextView setAttributedText:attributedTextCaption3];
     [thirdView setContinueButtonText:@"Start"];
     [thirdView setContinueButtonAction:^{
-        [self dismissViewControllerAnimated:YES completion:^{
-            [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:Gravity_InstructionsCompleted];
-            [[NSUserDefaults standardUserDefaults] synchronize];
-        }];
+        [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:Gravity_InstructionsCompleted];
+        [[NSUserDefaults standardUserDefaults] synchronize];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }];
     
     return thirdView;

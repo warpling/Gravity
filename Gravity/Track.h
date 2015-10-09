@@ -17,7 +17,7 @@
 + (void) calibrationBegan;
 + (void) calibrationReset;
 + (void) calibrationInterupted;
-+ (void) calibrationEndedWithSlope:(CGFloat)slope yIntercept:(CGFloat)yIntercept rSquared:(CGFloat)rSquared;
++ (void) calibrationEndedWithSlope:(CGFloat)slope yIntercept:(CGFloat)yIntercept rSquared:(CGFloat)rSquared attempts:(NSUInteger)attempts;
 + (void) calibrationErrorNoSpoonDetected;
 
 + (void) scaleTared;

@@ -227,7 +227,6 @@ static const CGFloat buttonsMaxHeight = 60;
     [self.weighArea reset];
     self.shakeCount = 0;
     
-    [[NSUserDefaults standardUserDefaults] synchronize];
     if (![[[NSUserDefaults standardUserDefaults] objectForKey:Gravity_InstructionsCompleted] boolValue]) {
         [self showIntroAnimated:NO];
     }
@@ -362,7 +361,7 @@ static const CGFloat buttonsMaxHeight = 60;
 }
 
 - (void) resetIntro {
-    [[NSUserDefaults standardUserDefaults] setValue:@(YES) forKey:Gravity_InstructionsCompleted];
+    [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:Gravity_InstructionsCompleted];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self showIntroAnimated:YES];
     
@@ -391,7 +390,7 @@ static const CGFloat buttonsMaxHeight = 60;
 {
     if (motion == UIEventSubtypeMotionShake)
     {
-        if (self.shakeCount++ >= 3) {
+        if (self.shakeCount++ >= 2) {
             UIAlertController *resetAlert = [UIAlertController alertControllerWithTitle:@"Reset Intro?" message:@"Do you want to reset the intro and recalibrate?" preferredStyle:UIAlertControllerStyleAlert];
             [resetAlert addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil]];
             [resetAlert addAction:[UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction * _Nonnull action) {

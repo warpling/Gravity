@@ -50,21 +50,25 @@ static NSString * const CalibrationLevel = @"Calibration";
         customAttributes:@{}];
 }
 
-+ (void) calibrationEndedWithSlope:(CGFloat)slope yIntercept:(CGFloat)yIntercept rSquared:(CGFloat)rSquared {
++ (void) calibrationEndedWithSlope:(CGFloat)slope yIntercept:(CGFloat)yIntercept rSquared:(CGFloat)rSquared attempts:(NSUInteger)attempts {
+    
+    CGFloat expandedRSquared = 10000 * rSquared;
+    
     [Answers logLevelEnd:CalibrationLevel
-                   score:@(100 * rSquared)
+                   score:@(expandedRSquared)
                  success:@YES
         customAttributes:@{
                            @"slope"      : @(slope),
                            @"yIntercept" : @(yIntercept),
-                           @"rSquared"   : @(rSquared),
+                           @"rSquared"   : @(expandedRSquared),
+                           @"attempts"   : @(attempts)
                            }];
     
     [Answers logCustomEventWithName:@"Spoon Calibrated"
                    customAttributes:@{
                                       @"slope"      : @(slope),
                                       @"yIntercept" : @(yIntercept),
-                                      @"rSquared"   : @(rSquared),
+                                      @"rSquared"   : @(expandedRSquared),
                                       }];
 }
 

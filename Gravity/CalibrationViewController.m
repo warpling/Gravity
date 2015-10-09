@@ -45,6 +45,8 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
 @property (strong, nonatomic) GhostButton *resetButton;
 @property (strong, nonatomic) GhostButton *finishButton;
 
+@property (nonatomic) NSUInteger calibrationAttempts;
+
 @end
 
 
@@ -109,7 +111,8 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     self.spoonView = [SpoonView new];
     [self.spoonView setUserInteractionEnabled:NO];
     [self.view addSubview:self.spoonView];
-
+    
+    self.calibrationAttempts = 1;
     
     [self setupViewConstraints];
 }
@@ -257,7 +260,7 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     [self.topLabel setText:@""];
     [self.bottomLabel setText:@""];
     [self.headerLabel setTextColor:[UIColor gravityPurple]];
-
+    
     switch (calibrationStep) {
             
         case CalibrationStepLayFlat:
@@ -413,8 +416,10 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
     self.spoon = [Spoon new];
     self.altSpoon = [Spoon new];
     [self.coins reset];
+    
     [self setCalibrationStep:CalibrationStepWeighSpoon];
     
+    self.calibrationAttempts++;
     [Track calibrationReset];
 }
 
@@ -489,12 +494,14 @@ typedef NS_ENUM(NSInteger, CalibrationStep) {
             self.spoon = self.altSpoon;
         }
         
+        #ifdef DEBUG
         if (bestFit.rSquared < 0.995) {
             NSLog(@"Previously you would have trashed this spoon");
         }
+        #endif
         
         [self setCalibrationStep:CalibrationStepFinish];
-        [Track calibrationEndedWithSlope:bestFit.slope yIntercept:bestFit.yIntercept rSquared:bestFit.rSquared];
+        [Track calibrationEndedWithSlope:bestFit.slope yIntercept:bestFit.yIntercept rSquared:bestFit.rSquared attempts:self.calibrationAttempts];
     }
 }
 
