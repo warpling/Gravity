@@ -37,6 +37,8 @@
 @property (strong, nonatomic) UIButton *unitsButton;
 @property (strong, nonatomic) UIView *buttonDivider;
 
+@property (strong, nonatomic) UITapGestureRecognizer *debugTapRecognizer;
+
 @property (strong, nonatomic) NSTimer *ratingTimer;
 @property (nonatomic) NSUInteger shakeCount;
 
@@ -102,13 +104,18 @@ static const CGFloat buttonsMaxHeight = 60;
     self.debugLabel = debugLabel;
     [self.debugLabel setText:@"––––"];
     [self.view addSubview:self.debugLabel];
-    [self setDebugInfoBarEnabled:YES];
     #endif
     
     ScaleDisplay *scaleDisplay = [ScaleDisplay new];
     self.scaleDisplay = scaleDisplay;
     [self.scale addScaleOutputDelegate:self.scaleDisplay];
     [self.view addSubview:self.scaleDisplay];
+    
+    self.debugTapRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(scaleDisplayTapped:)];
+    [self.debugTapRecognizer setNumberOfTouchesRequired:2];
+    [self.scaleDisplay setUserInteractionEnabled:YES];
+    [self.scaleDisplay addGestureRecognizer:self.debugTapRecognizer];
+
     
     UIButton *tareButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [tareButton setBackgroundImage:[UIImage imageWithColor:[UIColor gravityPurple]] forState:UIControlStateNormal];
@@ -323,7 +330,9 @@ static const CGFloat buttonsMaxHeight = 60;
 
 - (void) setDebugInfoBarEnabled:(BOOL)debugInfoBarEnabled {
     _debugInfoBarEnabled = debugInfoBarEnabled;
-    self.debugLabel.hidden = !debugInfoBarEnabled;
+    
+    [self.debugLabel setHidden:!debugInfoBarEnabled];
+    [self.weighArea setDebugLabelsEnabled:debugInfoBarEnabled];
 }
 
 #pragma mark Intro
@@ -364,8 +373,10 @@ static const CGFloat buttonsMaxHeight = 60;
     [[NSUserDefaults standardUserDefaults] setValue:@(NO) forKey:Gravity_InstructionsCompleted];
     [[NSUserDefaults standardUserDefaults] synchronize];
     [self showIntroAnimated:YES];
-    
-//    [self showCalibrationScreenAnimated:YES];
+}
+
+- (void) scaleDisplayTapped:(UIGestureRecognizer*)recognizer {
+    self.debugInfoBarEnabled = !self.debugInfoBarEnabled;
 }
 
 - (void) showDeviceNotSupportedWarning {
