@@ -39,7 +39,8 @@
     [iRate sharedInstance].appStoreID = 1042373594;
     [iRate sharedInstance].applicationName = @"Gravity";
     [iRate sharedInstance].daysUntilPrompt = 3;
-    [iRate sharedInstance].usesUntilPrompt = 15;
+    #warning iRate disabled
+    [iRate sharedInstance].usesUntilPrompt = 9000;//15;
     [iRate sharedInstance].eventsUntilPrompt = 1; // 1+ calibration
     [iRate sharedInstance].remindPeriod = 3;
     
