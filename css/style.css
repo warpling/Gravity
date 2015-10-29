@@ -1,0 +1,727 @@
+/* ------------------------------------------ */
+/* Variables
+/* ------------------------------------------ */
+html, body, #main {
+  height: 100%;
+}
+
+body {
+  background: #24232a;
+  color: #EEEEEE;
+  overflow: hidden;
+  text-rendering: optimizeLegibility;
+}
+
+.flex-container {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+  -webkit-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+h1.title {
+  text-align: center;
+  text-transform: uppercase;
+}
+
+h3.byline {
+  text-align: center;
+  font-size: 1.4em;
+  opacity: 0.9;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  line-height: 1.5em;
+  margin-top: 10px;
+}
+
+h4 {
+  font-size: 1em;
+}
+h4.byline {
+  text-align: center;
+  font-size: 1.18em;
+  opacity: 0.9;
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  margin-top: 0px;
+}
+
+.hero-container {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.hero-container img.blackbox-svg {
+  opacity: 0;
+}
+.hero-container .blackbox-svg {
+  width: 600px;
+  height: 82px;
+  margin-top: -200px;
+}
+.hero-container .blackbox-svg.animated {
+  -moz-transition-duration: 1.2s;
+  -o-transition-duration: 1.2s;
+  -webkit-transition-duration: 1.2s;
+  transition-duration: 1.2s;
+  -moz-transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  -o-transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  -webkit-transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
+  margin-top: -265px;
+}
+.hero-container .blackbox-svg.animated.animate {
+  margin-top: -200px;
+}
+.hero-container .input__label--foldie {
+  position: absolute;
+  left: 0;
+  right: 0;
+  text-align: center;
+  top: 70%;
+  margin-top: 62px;
+  font-weight: 500;
+  letter-spacing: 0.5em;
+  white-space: nowrap;
+  font-size: 82.25%;
+}
+
+.positive, .negative {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.positive {
+  background: RGB(36, 35, 41);
+}
+.positive svg.blackbox-svg.animated {
+  fill: RGB(36, 35, 41);
+}
+.positive svg.blackbox-svg.animated.animate {
+  fill: RGB(225, 10, 60);
+}
+.positive .byline.animated {
+  color: RGB(36, 35, 41);
+}
+.positive .byline.animated.animate {
+  -moz-transition: color 2.4s ease-out 1.55s;
+  -o-transition: color 2.4s ease-out 1.55s;
+  -webkit-transition: color 2.4s ease-out;
+  -webkit-transition-delay: 1.55s;
+  transition: color 2.4s ease-out 1.55s;
+  color: RGB(225, 10, 60);
+}
+.positive .input__label--foldie.animated-with-delay-1 {
+  color: RGB(36, 35, 41);
+}
+.positive .input__label--foldie.animated-with-delay-1.animate {
+  -moz-transition: color 0.6s ease-out;
+  -o-transition: color 0.6s ease-out;
+  -webkit-transition: color 0.6s ease-out;
+  transition: color 0.6s ease-out;
+  color: RGB(225, 10, 60);
+}
+
+.negative {
+  background: RGB(225, 10, 60);
+}
+.negative.animated {
+  -webkit-clip-path: polygon(100% 0, 0% 0, 100% 100%, 100% 100%);
+  clip-path: polygon(100% 0, 0% 0, 100% 100%, 100% 100%);
+}
+.negative.animated.animate {
+  -moz-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+  transition-duration: 1s;
+  -moz-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -o-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  -webkit-clip-path: polygon(100% 0, 76% 0, 23% 100%, 100% 100%);
+  clip-path: polygon(100% 0, 76% 0, 23% 100%, 100% 100%);
+}
+.negative svg.blackbox-svg {
+  fill: RGB(225, 10, 60);
+}
+.negative svg.blackbox-svg.animate {
+  fill: RGB(36, 35, 41);
+}
+.negative .byline.animated {
+  color: RGB(225, 10, 60);
+}
+.negative .byline.animated.animate {
+  -moz-transition: color 2.4s ease-out 2s;
+  -o-transition: color 2.4s ease-out 2s;
+  -webkit-transition: color 2.4s ease-out;
+  -webkit-transition-delay: 2s;
+  transition: color 2.4s ease-out 2s;
+  color: RGB(36, 35, 41);
+}
+.negative .input__label--foldie.animated-with-delay-1 {
+  color: RGB(225, 10, 60);
+}
+.negative .input__label--foldie.animated-with-delay-1.animate {
+  -moz-transition: color 0.6s ease-out;
+  -o-transition: color 0.6s ease-out;
+  -webkit-transition: color 0.6s ease-out;
+  transition: color 0.6s ease-out;
+  color: RGB(36, 35, 41);
+}
+
+.tick-marks:before {
+  content: "";
+  position: absolute;
+  top: 41.5%;
+  left: 60px;
+  margin-top: -1px;
+  width: 54px;
+  height: 2px;
+  background-color: RGB(225, 10, 60);
+}
+.tick-marks:after {
+  content: "";
+  position: absolute;
+  top: 41.5%;
+  right: 60px;
+  margin-top: -1px;
+  width: 54px;
+  height: 2px;
+  background-color: RGB(36, 35, 41);
+}
+
+.email-form-container {
+  position: absolute;
+  top: 70%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  text-align: center;
+}
+
+.email-form {
+  display: inline-block;
+  width: 250px;
+}
+.email-form.animated {
+  opacity: 0;
+}
+.email-form.animated.animate {
+  opacity: 1;
+  -moz-transition: opacity 1.2s ease-out 2.5s;
+  -o-transition: opacity 1.2s ease-out 2.5s;
+  -webkit-transition: opacity 1.2s ease-out;
+  -webkit-transition-delay: 2.5s;
+  transition: opacity 1.2s ease-out 2.5s;
+}
+.email-form .circle-arrow-button {
+  position: absolute;
+  z-index: 11;
+  top: 10px;
+  right: 8px;
+  opacity: 0;
+}
+.email-form input.button {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  top: 0;
+  left: 0;
+  z-index: 12;
+  opacity: 0;
+  pointer-events: none;
+  cursor: default;
+}
+.email-form .input--filled input.button {
+  pointer-events: inherit;
+  cursor: pointer;
+}
+.email-form .input--filled .circle-arrow-button {
+  transition: opacity 1s 0.5s ease-in;
+  opacity: 0.65;
+}
+.email-form .input--filled .circle-arrow-button:hover {
+  transition: opacity 0.1s ease-in;
+  opacity: 1;
+}
+.email-form .input {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  margin: 1em;
+  max-width: 350px;
+  width: calc(100% - 2em);
+  vertical-align: top;
+}
+.email-form .input__field {
+  position: relative;
+  display: block;
+  float: right;
+  padding: 0.8em;
+  padding-right: 40px;
+  width: 60%;
+  border: none;
+  border-radius: 0;
+  background: #f0f0f0;
+  color: yellow;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-appearance: none;
+  /* for box shadows to show on iOS */
+}
+.email-form .input__field:focus {
+  outline: none;
+}
+.email-form .input__field.slide-email-off {
+  -moz-transition: all, 1s, ease-in, 0s;
+  -o-transition: all, 1s, ease-in, 0s;
+  -webkit-transition: all, 1s, ease-in, 0s;
+  transition: all, 1s, ease-in, 0s;
+  padding-left: 350px;
+  -moz-transition-delay: 0s !important;
+  -o-transition-delay: 0s !important;
+  -webkit-transition-delay: 0s !important;
+  transition-delay: 0s !important;
+}
+.email-form .input__label {
+  display: inline-block;
+  padding: 0;
+  text-align: center;
+  width: 40%;
+  color: RGB(36, 35, 41);
+  font-weight: 500;
+  letter-spacing: 0.5em;
+  white-space: nowrap;
+  font-size: 70.25%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-touch-callout: none;
+  -moz-user-select: -moz-none;
+  -ms-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.email-form .input__label-content {
+  position: relative;
+  text-align: center;
+  display: block;
+  padding: 1.6em 0;
+  width: 100%;
+}
+.email-form .input__field--foldie {
+  z-index: 10;
+  width: 100%;
+  background: transparent;
+  color: RGB(39, 169, 235);
+  opacity: 0;
+  -moz-transition: opacity, 0.3s;
+  -o-transition: opacity, 0.3s;
+  -webkit-transition: opacity, 0.3s;
+  transition: opacity, 0.3s;
+}
+.email-form .input__label--foldie {
+  position: relative;
+  width: 100%;
+  color: RGB(36, 35, 41);
+  font-weight: 800;
+  text-align: left;
+}
+.email-form .input__label--foldie.animated-with-delay-1::after {
+  -moz-transform: scaleX(0);
+  -ms-transform: scaleX(0);
+  -webkit-transform: scaleX(0);
+  transform: scaleX(0);
+}
+.email-form .input__label--foldie.animate::after {
+  -moz-transform: scaleX(1);
+  -ms-transform: scaleX(1);
+  -webkit-transform: scaleX(1);
+  transform: scaleX(1);
+}
+.email-form .input__label--foldie::before {
+  content: '';
+  position: absolute;
+  bottom: 100%;
+  left: 0;
+  width: 100%;
+  height: 4em;
+  background: RGB(36, 35, 41);
+  -webkit-transform: perspective(1000px) rotate3d(1, 0, 0, 90deg);
+  transform: perspective(1000px) rotate3d(1, 0, 0, 90deg);
+  -webkit-transform-origin: 50% 100%;
+  transform-origin: 50% 100%;
+  -webkit-transition: -webkit-transform 0.3s;
+  transition: transform 0.3s;
+}
+.email-form .input__label--foldie::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0.25em;
+  background: RGB(36, 35, 41);
+  -webkit-transform-origin: 50% 0%;
+  transform-origin: 50% 0%;
+  -moz-transition: -moz-transform, 0.3s;
+  -o-transition: -o-transform, 0.3s;
+  -webkit-transition: -webkit-transform, 0.3s;
+  transition: transform, 0.3s;
+}
+.email-form .input__label-content--foldie {
+  padding: 0.75em 0;
+}
+.email-form .input__field--foldie:focus,
+.email-form .input--filled .input__field--foldie {
+  opacity: 1;
+  -moz-transition-delay: 0.3s;
+  -o-transition-delay: 0.3s;
+  -webkit-transition-delay: 0.3s;
+  transition-delay: 0.3s;
+}
+.email-form .input__field--foldie:focus + .input__label--foldie::before,
+.email-form .input--filled .input__label--foldie::before {
+  -webkit-transform: perspective(1000px) rotate3d(1, 0, 0, 0deg);
+  transform: perspective(1000px) rotate3d(1, 0, 0, 0deg);
+}
+.email-form .input__field--foldie:focus + .input__label--foldie,
+.email-form .input--filled .input__label--foldie {
+  pointer-events: none;
+}
+.email-form .input__field--foldie:focus + .input__label--foldie::after,
+.email-form .input--filled .input__label--foldie::after {
+  -webkit-transform: perspective(1000px) rotate3d(1, 0, 0, -90deg);
+  transform: perspective(1000px) rotate3d(1, 0, 0, -90deg);
+}
+
+.footer {
+  position: absolute;
+  height: 50px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.footer .social-icons {
+  position: absolute;
+  bottom: 1.8em;
+  left: 1.8em;
+}
+.footer .social-icons .btn-social-icon {
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 2px solid;
+  border-radius: 0;
+}
+.footer .social-icons .btn-social-icon .fa {
+  font-size: 1.6em;
+  line-height: 45px;
+  vertical-align: middle;
+}
+.footer .social-icons .btn-social-icon:first-child {
+  border-right: 1.5px solid;
+}
+.footer .social-icons .btn-social-icon:not(:first-child) {
+  border-left: 1.5px solid;
+}
+.footer .contact {
+  position: absolute;
+  bottom: 1.8em;
+  right: 1.8em;
+}
+.footer .contact a.email {
+  opacity: 0.75;
+  text-transform: uppercase;
+  font-size: 0.9em;
+  letter-spacing: 0.25em;
+}
+.footer .contact a.email:hover {
+  opacity: 1;
+  text-decoration: none;
+}
+
+.footer.transition .btn-social-icon {
+  -moz-transition: color 1.25s ease-in, border-color 1.25s ease-in;
+  -o-transition: color 1.25s ease-in, border-color 1.25s ease-in;
+  -webkit-transition: color 1.25s ease-in, border-color 1.25s ease-in;
+  transition: color 1.25s ease-in, border-color 1.25s ease-in;
+}
+
+.positive .footer .btn-social-icon {
+  border-color: RGB(36, 35, 41);
+  color: RGB(36, 35, 41);
+}
+.positive .footer .btn-social-icon:hover {
+  background-color: RGB(36, 35, 41);
+  color: RGB(225, 10, 60);
+}
+.positive .footer .btn-social-icon:first-child {
+  border-right-color: RGB(36, 35, 41);
+}
+.positive .footer .btn-social-icon:not(:first-child) {
+  border-left-color: RGB(36, 35, 41);
+}
+.positive .footer a.email {
+  color: RGB(36, 35, 41);
+}
+.positive .footer.color-in .btn-social-icon {
+  border-color: RGB(225, 10, 60);
+  color: RGB(225, 10, 60);
+}
+.positive .footer.color-in .btn-social-icon:hover {
+  background-color: RGB(225, 10, 60);
+  color: RGB(36, 35, 41);
+}
+.positive .footer.color-in .btn-social-icon:first-child {
+  border-right-color: RGB(225, 10, 60);
+}
+.positive .footer.color-in .btn-social-icon:not(:first-child) {
+  border-left-color: RGB(225, 10, 60);
+}
+.positive .footer.color-in a.email {
+  color: RGB(225, 10, 60);
+}
+
+.negative .footer .btn-social-icon {
+  border-color: RGB(225, 10, 60);
+  color: RGB(225, 10, 60);
+}
+.negative .footer .btn-social-icon:hover {
+  background-color: RGB(225, 10, 60);
+  color: RGB(36, 35, 41);
+}
+.negative .footer .btn-social-icon:first-child {
+  border-right-color: RGB(225, 10, 60);
+}
+.negative .footer .btn-social-icon:not(:first-child) {
+  border-left-color: RGB(225, 10, 60);
+}
+.negative .footer a.email {
+  color: RGB(225, 10, 60);
+}
+.negative .footer.color-in .btn-social-icon {
+  border-color: RGB(36, 35, 41);
+  color: RGB(36, 35, 41);
+}
+.negative .footer.color-in .btn-social-icon:hover {
+  background-color: RGB(36, 35, 41);
+  color: RGB(225, 10, 60);
+}
+.negative .footer.color-in .btn-social-icon:first-child {
+  border-right-color: RGB(36, 35, 41);
+}
+.negative .footer.color-in .btn-social-icon:not(:first-child) {
+  border-left-color: RGB(36, 35, 41);
+}
+.negative .footer.color-in a.email {
+  color: RGB(36, 35, 41);
+}
+
+/* ------------------------------------------ */
+/* Circle Arrows
+/* ------------------------------------------ */
+.circle-arrow-button {
+  display: inline-block;
+  vertical-align: middle;
+}
+.circle-arrow-button a {
+  display: inline-block;
+  border-radius: 50%;
+}
+.circle-arrow-button .right {
+  display: inline-block;
+  width: 26px;
+  height: 26px;
+  border: 2px solid RGB(39, 169, 235);
+  border-radius: 50%;
+}
+.circle-arrow-button .right:after {
+  content: '';
+  display: inline-block;
+  margin-top: 6px;
+  margin-left: -2px;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid RGB(39, 169, 235);
+  border-right: 2px solid RGB(39, 169, 235);
+  -moz-transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+/* ------------------------------------------ */
+/* Animations
+/* ------------------------------------------ */
+.shake {
+  -moz-animation-duration: 400ms;
+  -webkit-animation-duration: 400ms;
+  animation-duration: 400ms;
+  -moz-animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -moz-animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -moz-animation-name: shake;
+  -webkit-animation-name: shake;
+  animation-name: shake;
+}
+
+.input__label--foldie.shake::before {
+  -moz-animation-duration: 400ms;
+  -webkit-animation-duration: 400ms;
+  animation-duration: 400ms;
+  -moz-animation-fill-mode: both;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  -moz-animation-timing-function: ease-in-out;
+  -webkit-animation-timing-function: ease-in-out;
+  animation-timing-function: ease-in-out;
+  -moz-animation-name: shake;
+  -webkit-animation-name: shake;
+  animation-name: shake;
+}
+
+@-moz-keyframes shake {
+  0% {
+    -moz-transform: translateX(0);
+    transform: translateX(0);
+  }
+  12.5% {
+    -moz-transform: translateX(-6px) rotateY(-5deg);
+    transform: translateX(-6px) rotateY(-5deg);
+  }
+  37.5% {
+    -moz-transform: translateX(5px) rotateY(4deg);
+    transform: translateX(5px) rotateY(4deg);
+  }
+  62.5% {
+    -moz-transform: translateX(-3px) rotateY(-2deg);
+    transform: translateX(-3px) rotateY(-2deg);
+  }
+  87.5% {
+    -moz-transform: translateX(2px) rotateY(1deg);
+    transform: translateX(2px) rotateY(1deg);
+  }
+  100% {
+    -moz-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@-webkit-keyframes shake {
+  0% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  12.5% {
+    -webkit-transform: translateX(-6px) rotateY(-5deg);
+    transform: translateX(-6px) rotateY(-5deg);
+  }
+  37.5% {
+    -webkit-transform: translateX(5px) rotateY(4deg);
+    transform: translateX(5px) rotateY(4deg);
+  }
+  62.5% {
+    -webkit-transform: translateX(-3px) rotateY(-2deg);
+    transform: translateX(-3px) rotateY(-2deg);
+  }
+  87.5% {
+    -webkit-transform: translateX(2px) rotateY(1deg);
+    transform: translateX(2px) rotateY(1deg);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+@keyframes shake {
+  0% {
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+  12.5% {
+    -moz-transform: translateX(-6px) rotateY(-5deg);
+    -ms-transform: translateX(-6px) rotateY(-5deg);
+    -webkit-transform: translateX(-6px) rotateY(-5deg);
+    transform: translateX(-6px) rotateY(-5deg);
+  }
+  37.5% {
+    -moz-transform: translateX(5px) rotateY(4deg);
+    -ms-transform: translateX(5px) rotateY(4deg);
+    -webkit-transform: translateX(5px) rotateY(4deg);
+    transform: translateX(5px) rotateY(4deg);
+  }
+  62.5% {
+    -moz-transform: translateX(-3px) rotateY(-2deg);
+    -ms-transform: translateX(-3px) rotateY(-2deg);
+    -webkit-transform: translateX(-3px) rotateY(-2deg);
+    transform: translateX(-3px) rotateY(-2deg);
+  }
+  87.5% {
+    -moz-transform: translateX(2px) rotateY(1deg);
+    -ms-transform: translateX(2px) rotateY(1deg);
+    -webkit-transform: translateX(2px) rotateY(1deg);
+    transform: translateX(2px) rotateY(1deg);
+  }
+  100% {
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+/* ------------------------------------------ */
+/* Media Queries
+/* ------------------------------------------ */
+@media only screen and (min-width: 0px) and (max-width: 568px) {
+  .positive svg.blackbox-svg,
+  .negative svg.blackbox-svg {
+    width: 276px;
+    height: 37.72px;
+  }
+
+  h3.byline {
+    font-size: 0.8em;
+    margin-top: 1em;
+  }
+
+  h4.byline {
+    font-size: 0.65em;
+  }
+
+  .hero-container .blackbox-svg.animated {
+    -moz-transition: 1.5s, ease-out;
+    -o-transition: 1.5s, ease-out;
+    -webkit-transition: 1.5s, ease-out;
+    transition: 1.5s, ease-out;
+    margin-top: -65px;
+  }
+  .hero-container .blackbox-svg.animated.animate {
+    margin-top: -165px;
+  }
+  .hero-container .input__label--foldie {
+    top: 50%;
+  }
+
+  .email-form-container {
+    top: 50%;
+  }
+}
+@media only screen and (min-width: 0px) and (max-width: 840px) {
+  .tick-marks {
+    display: none;
+  }
+}
