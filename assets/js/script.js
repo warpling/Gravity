@@ -61,11 +61,11 @@ window.setTimeout(function applyAnimations() {
             $('.input--foldie').first().addClass('input--filled'); // redundancy
             }, 500);
     });
-}, 4200);
+}, 1200);
 
 // Fade in the footer
-var footerFadeInDelay = 4200;
-var footerAnimationDuration = 1500;
+var footerFadeInDelay = 2200;
+var footerAnimationDuration = 2500;
 window.setTimeout(function applyAnimations() {
     $('.footer').each(function(){
         $(this).addClass('color-in');
