@@ -73,10 +73,10 @@ h4.byline {
   margin-top: -200px;
 }
 .hero-container .gravity-svg.animated {
-  -moz-transition-duration: 1.2s;
-  -o-transition-duration: 1.2s;
-  -webkit-transition-duration: 1.2s;
-  transition-duration: 1.2s;
+  -moz-transition-duration: 1s;
+  -o-transition-duration: 1s;
+  -webkit-transition-duration: 1s;
+  transition-duration: 1s;
   -moz-transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
   -o-transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
   -webkit-transition-timing-function: cubic-bezier(0.165, 0.84, 0.44, 1);
@@ -99,12 +99,12 @@ h4.byline {
   color: RGB(129, 0, 255);
 }
 .content .byline.animated.animate {
-  -moz-transition: color 2.4s ease-out 1.55s;
-  -o-transition: color 2.4s ease-out 1.55s;
+  -moz-transition: color 2.4s ease-out 0.55s;
+  -o-transition: color 2.4s ease-out 0.55s;
   -webkit-transition: color 2.4s ease-out;
-  -webkit-transition-delay: 1.55s;
-  transition: color 2.4s ease-out 1.55s;
-  color: RGBA(255, 255, 255, 0.9);
+  -webkit-transition-delay: 0.55s;
+  transition: color 2.4s ease-out 0.55s;
+  color: RGBA(255, 255, 255, 0.95);
 }
 .content .input__label--foldie.animated-with-delay-1 {
   color: RGB(129, 0, 255);
@@ -114,7 +114,7 @@ h4.byline {
   -o-transition: color 0.6s ease-out;
   -webkit-transition: color 0.6s ease-out;
   transition: color 0.6s ease-out;
-  color: RGBA(255, 255, 255, 0.9);
+  color: RGBA(255, 255, 255, 0.95);
 }
 
 .email-form-container {
@@ -134,11 +134,14 @@ h4.byline {
 }
 .email-form.animated.animate {
   opacity: 1;
-  -moz-transition: opacity 1.2s ease-out 2.5s;
-  -o-transition: opacity 1.2s ease-out 2.5s;
-  -webkit-transition: opacity 1.2s ease-out;
-  -webkit-transition-delay: 2.5s;
-  transition: opacity 1.2s ease-out 2.5s;
+  -moz-transition: opacity 1.4s ease-out 1s;
+  -o-transition: opacity 1.4s ease-out 1s;
+  -webkit-transition: opacity 1.4s ease-out;
+  -webkit-transition-delay: 1s;
+  transition: opacity 1.4s ease-out 1s;
+}
+.email-form #mc_embed_signup form {
+  padding: 0;
 }
 .email-form #mc_embed_signup label[for=mce-EMAIL] {
   width: 100%;
@@ -149,8 +152,12 @@ h4.byline {
   color: RGB(25, 25, 25);
 }
 .email-form #mc_embed_signup #mc-embedded-subscribe {
+  height: 38px;
   width: 100%;
-  background-color: RGB(237, 2, 68);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  background-color: RGB(75, 0, 149);
+  color: RGBA(255, 255, 255, 0.95);
 }
 
 .footer {
@@ -188,6 +195,7 @@ h4.byline {
   border-top-right-radius: 6px;
 }
 .footer .contact {
+  font-weight: 600;
   position: absolute;
   bottom: 1.8em;
   right: 1.8em;
@@ -195,7 +203,7 @@ h4.byline {
 .footer .contact a.email {
   opacity: 0.75;
   text-transform: uppercase;
-  font-size: 0.9em;
+  font-size: 1em;
   letter-spacing: 0.25em;
 }
 .footer .contact a.email:hover {
@@ -216,7 +224,7 @@ h4.byline {
 }
 .content .footer .btn-social-icon:hover {
   background-color: RGB(129, 0, 255);
-  color: RGBA(255, 255, 255, 0.9);
+  color: RGBA(255, 255, 255, 0.95);
 }
 .content .footer .btn-social-icon:first-child {
   border-right-color: RGB(129, 0, 255);
@@ -228,39 +236,39 @@ h4.byline {
   color: RGB(129, 0, 255);
 }
 .content .footer.color-in .btn-social-icon {
-  border-color: RGBA(255, 255, 255, 0.9);
-  color: RGBA(255, 255, 255, 0.9);
+  border-color: RGBA(255, 255, 255, 0.95);
+  color: RGBA(255, 255, 255, 0.95);
 }
 .content .footer.color-in .btn-social-icon:hover {
-  background-color: RGBA(255, 255, 255, 0.9);
+  background-color: RGBA(255, 255, 255, 0.95);
   color: RGB(129, 0, 255);
 }
 .content .footer.color-in .btn-social-icon:first-child {
-  border-right-color: RGBA(255, 255, 255, 0.9);
+  border-right-color: RGBA(255, 255, 255, 0.95);
 }
 .content .footer.color-in .btn-social-icon:not(:first-child) {
-  border-left-color: RGBA(255, 255, 255, 0.9);
+  border-left-color: RGBA(255, 255, 255, 0.95);
 }
 .content .footer.color-in a.email {
-  color: RGBA(255, 255, 255, 0.9);
+  color: RGBA(255, 255, 255, 0.95);
 }
 
 .footer .btn-social-icon {
-  border-color: RGBA(255, 255, 255, 0.9);
-  color: RGBA(255, 255, 255, 0.9);
+  border-color: RGBA(255, 255, 255, 0.95);
+  color: RGBA(255, 255, 255, 0.95);
 }
 .footer .btn-social-icon:hover {
-  background-color: RGBA(255, 255, 255, 0.9);
+  background-color: RGBA(255, 255, 255, 0.95);
   color: RGB(129, 0, 255);
 }
 .footer .btn-social-icon:first-child {
-  border-right-color: RGBA(255, 255, 255, 0.9);
+  border-right-color: RGBA(255, 255, 255, 0.95);
 }
 .footer .btn-social-icon:not(:first-child) {
-  border-left-color: RGBA(255, 255, 255, 0.9);
+  border-left-color: RGBA(255, 255, 255, 0.95);
 }
 .footer a.email {
-  color: RGBA(255, 255, 255, 0.9);
+  color: RGBA(255, 255, 255, 0.95);
 }
 .footer.color-in .btn-social-icon {
   border-color: RGB(129, 0, 255);
@@ -268,7 +276,7 @@ h4.byline {
 }
 .footer.color-in .btn-social-icon:hover {
   background-color: RGB(129, 0, 255);
-  color: RGBA(255, 255, 255, 0.9);
+  color: RGBA(255, 255, 255, 0.95);
 }
 .footer.color-in .btn-social-icon:first-child {
   border-right-color: RGB(129, 0, 255);

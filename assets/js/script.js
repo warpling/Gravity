@@ -59,12 +59,12 @@ window.setTimeout(function applyAnimations() {
         window.setTimeout(function() {
             $('#mce-EMAIL').first().focus();
             $('.input--foldie').first().addClass('input--filled'); // redundancy
-            }, 500);
+            }, 0);
     });
-}, 1200);
+}, 500);
 
 // Fade in the footer
-var footerFadeInDelay = 2200;
+var footerFadeInDelay = 2000;
 var footerAnimationDuration = 2500;
 window.setTimeout(function applyAnimations() {
     $('.footer').each(function(){
