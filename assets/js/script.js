@@ -82,21 +82,21 @@ window.setTimeout(function applyAnimations() {
     // I only have one form on the page but you can be more specific if need be.
     var $form = $('#mc-embedded-subscribe-form');
 
-    if ($form.length > 0) {
-        $form.submit(function (event) {
-            if (event) {
-                event.preventDefault();
-            }
+    // if ($form.length > 0) {
+    //     $form.submit(function (event) {
+    //         if (event) {
+    //             event.preventDefault();
+    //         }
 
-            if (validate_email($form)) {
-                register($form);
-            }
-            else {
-                // TODO: shake email field
-                shake();
-            }
-        });
-    }
+    //         if (validate_email($form)) {
+    //             register($form);
+    //         }
+    //         else {
+    //             // TODO: shake email field
+    //             shake();
+    //         }
+    //     });
+    // }
 });
 
 function validate_email($form) {
@@ -113,10 +113,10 @@ function register($form) {
         dataType    : 'jsonp',
         jsonp       : 'c',
         contentType: "application/json; charset=utf-8",
-        error       : function(err) { alert("Could not connect to the registration server. Please try again later."); },
+        error       : function(err) { alert("Sorry! Something isn't working on our end :(\n\nIn the meantime please email us at hello@gravity-scale.com and we'll get you on the list!"); },
         success     : function(data) {
             if (data.result != "success") {
-                console.log("MailChimp failed to save email: " + data.msg);
+                console.log("MailChimp failed to save email: %s" + data.msg);
                 shake();
             } else {
                 // It worked, carry on...

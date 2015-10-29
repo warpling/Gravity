@@ -146,10 +146,11 @@ h4.byline {
 }
 .email-form #mc_embed_signup input.email {
   width: 100%;
+  color: RGB(25, 25, 25);
 }
 .email-form #mc_embed_signup #mc-embedded-subscribe {
   width: 100%;
-  background-color: RGB(82, 0, 201);
+  background-color: RGB(237, 2, 68);
 }
 
 .footer {
