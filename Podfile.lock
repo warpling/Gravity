@@ -1,16 +1,24 @@
 PODS:
   - Masonry (0.6.3)
   - pop (1.0.8)
-  - UIColor+Additions (2.0.2)
+  - "UIColor+Additions (2.0.2)"
 
 DEPENDENCIES:
   - Masonry
   - pop
-  - UIColor+Additions
+  - "UIColor+Additions"
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Masonry
+    - pop
+    - "UIColor+Additions"
 
 SPEC CHECKSUMS:
   Masonry: ff105a956abcd19a618b2028b121cb638d7a8e2f
   pop: bb773ae2c791ca2629de13b347e7a8b450fa6a57
-  UIColor+Additions: 8b14f4851a4da23ef60be123454f4f30fafdb5c2
+  "UIColor+Additions": 8b14f4851a4da23ef60be123454f4f30fafdb5c2
 
-COCOAPODS: 0.38.2
+PODFILE CHECKSUM: f4738b404616f7b002c27e1387e53048e8c54714
+
+COCOAPODS: 1.5.0

@@ -270,6 +270,8 @@ static const CGFloat buttonsMaxHeight = 60;
     [self.debugLabel setText:debugData];
 }
 
+#pragma mark - iRate Support
+
 - (void) attemptToPromptToRate {
     [[iRate sharedInstance] logEvent:NO];
     [[iRate sharedInstance] promptIfAllCriteriaMet];

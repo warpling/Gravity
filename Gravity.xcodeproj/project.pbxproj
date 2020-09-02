@@ -7,15 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		014ADECA89824FD76824F95C /* libPods-GravityUITests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C27E1C97FD4D12D70540DE4A /* libPods-GravityUITests.a */; };
-		184EFB99B2DB4A8756CD293B /* libPods-Gravity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B925554E87C962CED6C12B /* libPods-Gravity.a */; };
-		8EFE43BF64FDF919A37869C4 /* libPods-GravityTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 04027853D8458B91E8E80992 /* libPods-GravityTests.a */; };
-		DC094F941BB9E4680071BADA /* ScaleDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F931BB9E4680071BADA /* ScaleDisplay.m */; settings = {ASSET_TAGS = (); }; };
-		DC094F9A1BBA5B330071BADA /* RecalibrateBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F991BBA5B330071BADA /* RecalibrateBar.m */; settings = {ASSET_TAGS = (); }; };
-		DC094F9D1BBA5E590071BADA /* UIColor+Adjust.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F9C1BBA5E590071BADA /* UIColor+Adjust.m */; settings = {ASSET_TAGS = (); }; };
-		DC094FA01BBA7E7C0071BADA /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F9F1BBA7E7C0071BADA /* Track.m */; settings = {ASSET_TAGS = (); }; };
-		DC094FA31BBA8F570071BADA /* TitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094FA21BBA8F570071BADA /* TitleViewController.m */; settings = {ASSET_TAGS = (); }; };
-		DC0CE8B31BB8729600C479E3 /* SpoonView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0CE8B21BB8729600C479E3 /* SpoonView.m */; settings = {ASSET_TAGS = (); }; };
+		455D676E73B1697EE80CBF5B /* libPods-GravityTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13C5C9A3167038F70E5AAB7B /* libPods-GravityTests.a */; };
+		BA49A3BFAA79D3ADC57717AA /* libPods-Gravity.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 44CEB2FE7E2AAFFC8D02FF13 /* libPods-Gravity.a */; };
+		DC094F941BB9E4680071BADA /* ScaleDisplay.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F931BB9E4680071BADA /* ScaleDisplay.m */; };
+		DC094F9A1BBA5B330071BADA /* RecalibrateBar.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F991BBA5B330071BADA /* RecalibrateBar.m */; };
+		DC094F9D1BBA5E590071BADA /* UIColor+Adjust.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F9C1BBA5E590071BADA /* UIColor+Adjust.m */; };
+		DC094FA01BBA7E7C0071BADA /* Track.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094F9F1BBA7E7C0071BADA /* Track.m */; };
+		DC094FA31BBA8F570071BADA /* TitleViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC094FA21BBA8F570071BADA /* TitleViewController.m */; };
+		DC0CE8B31BB8729600C479E3 /* SpoonView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC0CE8B21BB8729600C479E3 /* SpoonView.m */; };
 		DC18284E1BB1D01300997DD2 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18284D1BB1D01300997DD2 /* main.m */; };
 		DC1828511BB1D01300997DD2 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828501BB1D01300997DD2 /* AppDelegate.m */; };
 		DC1828541BB1D01300997DD2 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828531BB1D01300997DD2 /* MainViewController.m */; };
@@ -24,32 +23,32 @@
 		DC18285C1BB1D01300997DD2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC18285A1BB1D01300997DD2 /* LaunchScreen.storyboard */; };
 		DC1828671BB1D01300997DD2 /* GravityTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828661BB1D01300997DD2 /* GravityTests.m */; };
 		DC1828721BB1D01300997DD2 /* GravityUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828711BB1D01300997DD2 /* GravityUITests.m */; };
-		DC1828821BB1D0FC00997DD2 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1828801BB1D0FC00997DD2 /* Fabric.framework */; settings = {ASSET_TAGS = (); }; };
-		DC1828831BB1D0FC00997DD2 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1828811BB1D0FC00997DD2 /* Crashlytics.framework */; settings = {ASSET_TAGS = (); }; };
-		DC1828861BB1D54400997DD2 /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828851BB1D54400997DD2 /* InstructionsViewController.m */; settings = {ASSET_TAGS = (); }; };
-		DC1828891BB1D5B000997DD2 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828881BB1D5B000997DD2 /* UIColor+AppColors.m */; settings = {ASSET_TAGS = (); }; };
-		DC18288E1BB1D6B700997DD2 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18288D1BB1D6B700997DD2 /* Constants.m */; settings = {ASSET_TAGS = (); }; };
-		DC1828921BB1DE3E00997DD2 /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828911BB1DE3E00997DD2 /* InstructionViewController.m */; settings = {ASSET_TAGS = (); }; };
-		DC1828961BB229EB00997DD2 /* GhostButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828951BB229EB00997DD2 /* GhostButton.m */; settings = {ASSET_TAGS = (); }; };
-		DC1828991BB256AF00997DD2 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828981BB256AF00997DD2 /* UIImage+ImageWithColor.m */; settings = {ASSET_TAGS = (); }; };
-		DC18289C1BB263BC00997DD2 /* WeighArea.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18289B1BB263BC00997DD2 /* WeighArea.m */; settings = {ASSET_TAGS = (); }; };
-		DC1CDB221BB605F600E52F8B /* CircularTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB211BB605F600E52F8B /* CircularTextView.m */; settings = {ASSET_TAGS = (); }; };
-		DC1CDB261BB746B900E52F8B /* Spoon.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB251BB746B900E52F8B /* Spoon.m */; settings = {ASSET_TAGS = (); }; };
-		DC1CDB291BB74E7000E52F8B /* LinearFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB281BB74E7000E52F8B /* LinearFunction.m */; settings = {ASSET_TAGS = (); }; };
-		DC1CDB2B1BB7507C00E52F8B /* LinearFunctionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB2A1BB7507C00E52F8B /* LinearFunctionTests.m */; settings = {ASSET_TAGS = (); }; };
-		DC1CDB2E1BB76B0500E52F8B /* CoinHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB2D1BB76B0500E52F8B /* CoinHolder.m */; settings = {ASSET_TAGS = (); }; };
-		DC1CDB311BB76CE900E52F8B /* CoinButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB301BB76CE900E52F8B /* CoinButton.m */; settings = {ASSET_TAGS = (); }; };
-		DC1CDB341BB76D9700E52F8B /* CKShapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB331BB76D9700E52F8B /* CKShapeView.m */; settings = {ASSET_TAGS = (); }; };
-		DC26DEFD1BBB3C510000D282 /* TouchCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = DC26DEFC1BBB3C510000D282 /* TouchCircle.m */; settings = {ASSET_TAGS = (); }; };
-		DC26DF021BBB81D20000D282 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DC26DEFF1BBB81D20000D282 /* iRate.bundle */; settings = {ASSET_TAGS = (); }; };
-		DC26DF031BBB81D20000D282 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC26DF011BBB81D20000D282 /* iRate.m */; settings = {ASSET_TAGS = (); }; };
-		DC3C34181BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3C34171BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m */; settings = {ASSET_TAGS = (); }; };
-		DC7B38CC1BB86A620013936B /* CalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7B38CB1BB86A620013936B /* CalibrationViewController.m */; settings = {ASSET_TAGS = (); }; };
-		DC866CE91BB34A730031EF44 /* Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = DC866CE81BB34A730031EF44 /* Scale.m */; settings = {ASSET_TAGS = (); }; };
-		DC9B8AA91BBB2DF5007750D5 /* DeviceUnsupportedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9B8AA81BBB2DF5007750D5 /* DeviceUnsupportedViewController.m */; settings = {ASSET_TAGS = (); }; };
-		DC9B8AAC1BBB3589007750D5 /* UIDevice+Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9B8AAB1BBB3589007750D5 /* UIDevice+Platform.m */; settings = {ASSET_TAGS = (); }; };
-		DCA4CC241BC651610003350E /* CAMediaTimingFunction+BasicFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA4CC231BC651610003350E /* CAMediaTimingFunction+BasicFunctions.m */; settings = {ASSET_TAGS = (); }; };
-		DCB9D7041BB8DE6800CED19F /* CoinInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB9D7031BB8DE6800CED19F /* CoinInfo.m */; settings = {ASSET_TAGS = (); }; };
+		DC1828821BB1D0FC00997DD2 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1828801BB1D0FC00997DD2 /* Fabric.framework */; };
+		DC1828831BB1D0FC00997DD2 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1828811BB1D0FC00997DD2 /* Crashlytics.framework */; };
+		DC1828861BB1D54400997DD2 /* InstructionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828851BB1D54400997DD2 /* InstructionsViewController.m */; };
+		DC1828891BB1D5B000997DD2 /* UIColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828881BB1D5B000997DD2 /* UIColor+AppColors.m */; };
+		DC18288E1BB1D6B700997DD2 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18288D1BB1D6B700997DD2 /* Constants.m */; };
+		DC1828921BB1DE3E00997DD2 /* InstructionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828911BB1DE3E00997DD2 /* InstructionViewController.m */; };
+		DC1828961BB229EB00997DD2 /* GhostButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828951BB229EB00997DD2 /* GhostButton.m */; };
+		DC1828991BB256AF00997DD2 /* UIImage+ImageWithColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1828981BB256AF00997DD2 /* UIImage+ImageWithColor.m */; };
+		DC18289C1BB263BC00997DD2 /* WeighArea.m in Sources */ = {isa = PBXBuildFile; fileRef = DC18289B1BB263BC00997DD2 /* WeighArea.m */; };
+		DC1CDB221BB605F600E52F8B /* CircularTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB211BB605F600E52F8B /* CircularTextView.m */; };
+		DC1CDB261BB746B900E52F8B /* Spoon.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB251BB746B900E52F8B /* Spoon.m */; };
+		DC1CDB291BB74E7000E52F8B /* LinearFunction.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB281BB74E7000E52F8B /* LinearFunction.m */; };
+		DC1CDB2B1BB7507C00E52F8B /* LinearFunctionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB2A1BB7507C00E52F8B /* LinearFunctionTests.m */; };
+		DC1CDB2E1BB76B0500E52F8B /* CoinHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB2D1BB76B0500E52F8B /* CoinHolder.m */; };
+		DC1CDB311BB76CE900E52F8B /* CoinButton.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB301BB76CE900E52F8B /* CoinButton.m */; };
+		DC1CDB341BB76D9700E52F8B /* CKShapeView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC1CDB331BB76D9700E52F8B /* CKShapeView.m */; };
+		DC26DEFD1BBB3C510000D282 /* TouchCircle.m in Sources */ = {isa = PBXBuildFile; fileRef = DC26DEFC1BBB3C510000D282 /* TouchCircle.m */; };
+		DC26DF021BBB81D20000D282 /* iRate.bundle in Resources */ = {isa = PBXBuildFile; fileRef = DC26DEFF1BBB81D20000D282 /* iRate.bundle */; };
+		DC26DF031BBB81D20000D282 /* iRate.m in Sources */ = {isa = PBXBuildFile; fileRef = DC26DF011BBB81D20000D282 /* iRate.m */; };
+		DC3C34181BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3C34171BB8C15D0094830D /* UIStackView+RemoveAllArrangedSubviews.m */; };
+		DC7B38CC1BB86A620013936B /* CalibrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC7B38CB1BB86A620013936B /* CalibrationViewController.m */; };
+		DC866CE91BB34A730031EF44 /* Scale.m in Sources */ = {isa = PBXBuildFile; fileRef = DC866CE81BB34A730031EF44 /* Scale.m */; };
+		DC9B8AA91BBB2DF5007750D5 /* DeviceUnsupportedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9B8AA81BBB2DF5007750D5 /* DeviceUnsupportedViewController.m */; };
+		DC9B8AAC1BBB3589007750D5 /* UIDevice+Platform.m in Sources */ = {isa = PBXBuildFile; fileRef = DC9B8AAB1BBB3589007750D5 /* UIDevice+Platform.m */; };
+		DCA4CC241BC651610003350E /* CAMediaTimingFunction+BasicFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = DCA4CC231BC651610003350E /* CAMediaTimingFunction+BasicFunctions.m */; };
+		DCB9D7041BB8DE6800CED19F /* CoinInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = DCB9D7031BB8DE6800CED19F /* CoinInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,15 +69,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		04027853D8458B91E8E80992 /* libPods-GravityTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GravityTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		09B925554E87C962CED6C12B /* libPods-Gravity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Gravity.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		0B063946473B63D1BC0D7D31 /* Pods-Gravity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gravity.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Gravity/Pods-Gravity.debug.xcconfig"; sourceTree = "<group>"; };
-		3DA70EB5CAEB37B328D50C70 /* Pods-GravityUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GravityUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GravityUITests/Pods-GravityUITests.release.xcconfig"; sourceTree = "<group>"; };
-		69C51726814CD18C39BF7F2E /* Pods-GravityUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GravityUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GravityUITests/Pods-GravityUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		7C3F56E258E485D8CA4B5110 /* Pods-GravityTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GravityTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GravityTests/Pods-GravityTests.debug.xcconfig"; sourceTree = "<group>"; };
-		8A4C67706398C13C2E405B4B /* Pods-Gravity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gravity.release.xcconfig"; path = "Pods/Target Support Files/Pods-Gravity/Pods-Gravity.release.xcconfig"; sourceTree = "<group>"; };
-		AEA7947AD685A68618C1FB6D /* Pods-GravityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GravityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GravityTests/Pods-GravityTests.release.xcconfig"; sourceTree = "<group>"; };
-		C27E1C97FD4D12D70540DE4A /* libPods-GravityUITests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GravityUITests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		13C5C9A3167038F70E5AAB7B /* libPods-GravityTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-GravityTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1FC1841B3C57A1FB84AE9AC4 /* Pods-Gravity.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gravity.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Gravity/Pods-Gravity.debug.xcconfig"; sourceTree = "<group>"; };
+		44CEB2FE7E2AAFFC8D02FF13 /* libPods-Gravity.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Gravity.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A01D3E6BBC3AEE073E152608 /* Pods-Gravity.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Gravity.release.xcconfig"; path = "Pods/Target Support Files/Pods-Gravity/Pods-Gravity.release.xcconfig"; sourceTree = "<group>"; };
+		C35F5BD67E2A48139044B5A7 /* Pods-GravityTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GravityTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GravityTests/Pods-GravityTests.release.xcconfig"; sourceTree = "<group>"; };
 		DC094F921BB9E4680071BADA /* ScaleDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScaleDisplay.h; sourceTree = "<group>"; };
 		DC094F931BB9E4680071BADA /* ScaleDisplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScaleDisplay.m; sourceTree = "<group>"; };
 		DC094F981BBA5B330071BADA /* RecalibrateBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RecalibrateBar.h; sourceTree = "<group>"; };
@@ -157,6 +152,7 @@
 		DCA4CC231BC651610003350E /* CAMediaTimingFunction+BasicFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAMediaTimingFunction+BasicFunctions.m"; sourceTree = "<group>"; };
 		DCB9D7021BB8DE6800CED19F /* CoinInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoinInfo.h; sourceTree = "<group>"; };
 		DCB9D7031BB8DE6800CED19F /* CoinInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoinInfo.m; sourceTree = "<group>"; };
+		FD3AE15BAE18126D95F3796B /* Pods-GravityTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GravityTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GravityTests/Pods-GravityTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,7 +162,7 @@
 			files = (
 				DC1828831BB1D0FC00997DD2 /* Crashlytics.framework in Frameworks */,
 				DC1828821BB1D0FC00997DD2 /* Fabric.framework in Frameworks */,
-				184EFB99B2DB4A8756CD293B /* libPods-Gravity.a in Frameworks */,
+				BA49A3BFAA79D3ADC57717AA /* libPods-Gravity.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -174,7 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8EFE43BF64FDF919A37869C4 /* libPods-GravityTests.a in Frameworks */,
+				455D676E73B1697EE80CBF5B /* libPods-GravityTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,34 +178,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				014ADECA89824FD76824F95C /* libPods-GravityUITests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C0F6DB8113201F07177EFAC7 /* Pods */ = {
+		1375AFCB9D1CCAEF2D85160E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				0B063946473B63D1BC0D7D31 /* Pods-Gravity.debug.xcconfig */,
-				8A4C67706398C13C2E405B4B /* Pods-Gravity.release.xcconfig */,
-				7C3F56E258E485D8CA4B5110 /* Pods-GravityTests.debug.xcconfig */,
-				AEA7947AD685A68618C1FB6D /* Pods-GravityTests.release.xcconfig */,
-				69C51726814CD18C39BF7F2E /* Pods-GravityUITests.debug.xcconfig */,
-				3DA70EB5CAEB37B328D50C70 /* Pods-GravityUITests.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		D1321EE4D91DE2FB4B05201D /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				09B925554E87C962CED6C12B /* libPods-Gravity.a */,
-				04027853D8458B91E8E80992 /* libPods-GravityTests.a */,
-				C27E1C97FD4D12D70540DE4A /* libPods-GravityUITests.a */,
+				44CEB2FE7E2AAFFC8D02FF13 /* libPods-Gravity.a */,
+				13C5C9A3167038F70E5AAB7B /* libPods-GravityTests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8D602A93FDF9DE1247B396C5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1FC1841B3C57A1FB84AE9AC4 /* Pods-Gravity.debug.xcconfig */,
+				A01D3E6BBC3AEE073E152608 /* Pods-Gravity.release.xcconfig */,
+				FD3AE15BAE18126D95F3796B /* Pods-GravityTests.debug.xcconfig */,
+				C35F5BD67E2A48139044B5A7 /* Pods-GravityTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 		DC094F8F1BB9E3490071BADA /* CoinHolder */ = {
@@ -269,8 +261,8 @@
 				DC1828651BB1D01300997DD2 /* GravityTests */,
 				DC1828701BB1D01300997DD2 /* GravityUITests */,
 				DC18284A1BB1D01300997DD2 /* Products */,
-				C0F6DB8113201F07177EFAC7 /* Pods */,
-				D1321EE4D91DE2FB4B05201D /* Frameworks */,
+				8D602A93FDF9DE1247B396C5 /* Pods */,
+				1375AFCB9D1CCAEF2D85160E /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -401,12 +393,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC1828761BB1D01300997DD2 /* Build configuration list for PBXNativeTarget "Gravity" */;
 			buildPhases = (
-				E335CC17C7A62F783991A59C /* Check Pods Manifest.lock */,
+				7B744B27D56ED182479D8EC6 /* [CP] Check Pods Manifest.lock */,
 				DC1828451BB1D01300997DD2 /* Sources */,
 				DC1828461BB1D01300997DD2 /* Frameworks */,
 				DC1828471BB1D01300997DD2 /* Resources */,
 				DC18287F1BB1D0D200997DD2 /* ShellScript */,
-				6463FE1F5D72732D46CEA2B4 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -421,11 +412,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC1828791BB1D01300997DD2 /* Build configuration list for PBXNativeTarget "GravityTests" */;
 			buildPhases = (
-				3539AC59A63B0D9EE085F749 /* Check Pods Manifest.lock */,
+				46CEC470CE22B2D60E45A43C /* [CP] Check Pods Manifest.lock */,
 				DC18285E1BB1D01300997DD2 /* Sources */,
 				DC18285F1BB1D01300997DD2 /* Frameworks */,
 				DC1828601BB1D01300997DD2 /* Resources */,
-				73A96AE9337648201E156300 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -441,11 +431,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = DC18287C1BB1D01300997DD2 /* Build configuration list for PBXNativeTarget "GravityUITests" */;
 			buildPhases = (
-				11A58CC47D4DD5301347D07C /* Check Pods Manifest.lock */,
 				DC1828691BB1D01300997DD2 /* Sources */,
 				DC18286A1BB1D01300997DD2 /* Frameworks */,
 				DC18286B1BB1D01300997DD2 /* Resources */,
-				7224389AAA2708F0449EB7DB /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -529,79 +517,40 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		11A58CC47D4DD5301347D07C /* Check Pods Manifest.lock */ = {
+		46CEC470CE22B2D60E45A43C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GravityTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		3539AC59A63B0D9EE085F749 /* Check Pods Manifest.lock */ = {
+		7B744B27D56ED182479D8EC6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Gravity-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		6463FE1F5D72732D46CEA2B4 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Gravity/Pods-Gravity-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7224389AAA2708F0449EB7DB /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GravityUITests/Pods-GravityUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		73A96AE9337648201E156300 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GravityTests/Pods-GravityTests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		DC18287F1BB1D0D200997DD2 /* ShellScript */ = {
@@ -616,21 +565,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run 673738a1f47ec0da3396e3de86c334d12d2070dc 5edf2639ca144252ed06d41580f6c0fbede430c30d504fa2f8eb90d6162d0298";
-		};
-		E335CC17C7A62F783991A59C /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -805,7 +739,7 @@
 		};
 		DC1828771BB1D01300997DD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B063946473B63D1BC0D7D31 /* Pods-Gravity.debug.xcconfig */;
+			baseConfigurationReference = 1FC1841B3C57A1FB84AE9AC4 /* Pods-Gravity.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -819,18 +753,36 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Gravity/PrefixHeader.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+				);
 				INFOPLIST_FILE = Gravity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.growpixel.gravity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1eb378b9-e1f7-421b-8dd4-fde666cf8701";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
 		DC1828781BB1D01300997DD2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A4C67706398C13C2E405B4B /* Pods-Gravity.release.xcconfig */;
+			baseConfigurationReference = A01D3E6BBC3AEE073E152608 /* Pods-Gravity.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -843,18 +795,36 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Gravity/PrefixHeader.pch;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+				);
 				INFOPLIST_FILE = Gravity/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
+				OTHER_CFLAGS = (
+					"$(inherited)",
+					"-isystem",
+					"\"${PODS_ROOT}/Headers/Public\"",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-ObjC",
+					"-framework",
+					"\"Foundation\"",
+					"-framework",
+					"\"UIKit\"",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.growpixel.gravity;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "1eb378b9-e1f7-421b-8dd4-fde666cf8701";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
 		DC18287A1BB1D01300997DD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7C3F56E258E485D8CA4B5110 /* Pods-GravityTests.debug.xcconfig */;
+			baseConfigurationReference = FD3AE15BAE18126D95F3796B /* Pods-GravityTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = GravityTests/Info.plist;
@@ -867,7 +837,7 @@
 		};
 		DC18287B1BB1D01300997DD2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AEA7947AD685A68618C1FB6D /* Pods-GravityTests.release.xcconfig */;
+			baseConfigurationReference = C35F5BD67E2A48139044B5A7 /* Pods-GravityTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = GravityTests/Info.plist;
@@ -880,7 +850,6 @@
 		};
 		DC18287D1BB1D01300997DD2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 69C51726814CD18C39BF7F2E /* Pods-GravityUITests.debug.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = GravityUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -893,7 +862,6 @@
 		};
 		DC18287E1BB1D01300997DD2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3DA70EB5CAEB37B328D50C70 /* Pods-GravityUITests.release.xcconfig */;
 			buildSettings = {
 				INFOPLIST_FILE = GravityUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
