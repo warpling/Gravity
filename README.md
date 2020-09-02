@@ -8,5 +8,3 @@ Why hello there. It's been several years. Maybe you heard about Gravity from [th
 Anyway with 3D touch essentially dead and tons of people always asking me for the code I've decided to get over my perfectionism and just open source the damn thing. If you want to rewrite it in Swift, make PRs, etc please go for it. The only thing I ask is that you don't submit scale apps to the app store but you already know that. 
 
 ~Ryan
-
-![App Store Screenshots of Gravity](https://github.com/warpling/Gravity/blob/master/assets/images/Gravity%20App%20Store%20Screens.png)
